@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="vi" class="gh-boot">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rivera · Một ngày ở Melbourne</title>
+<meta name="description" content="Rivera. Bảy ngôi nhà ở Melbourne. Chúng tôi chỉ bán những gì mình tự đi xem." />
+<meta property="og:title" content="Rivera · Singular Residences" />
+<meta property="og:image" content="https://rivera.au/images/aura-melbourne-square/hero-poster.jpg" />
+<meta name="theme-color" content="#0E0B08" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+<noscript><style>html.gh-boot .rv,html.gh-boot .nx-rev{opacity:1!important;transform:none!important}</style></noscript>
+<style>
+/* =====================================================================
+   RIVERA · "GOLDEN HOUR" — one scroll = one day in Melbourne
+   Dawn → morning → noon → golden hour → night, sky arc drives all
+   section color via CSS variables set from JS scroll position.
+   Self-contained. VI source copy. No em-dash. Reduced-motion safe.
+   ===================================================================== */
+:root{
+  --sky1:#0E0B08; --sky2:#171009;
+  --ink:#F4EDE2; --sub:rgba(244,237,226,.72); --faint:rgba(244,237,226,.45);
+  --accent:#C9A982; --hairline:rgba(244,237,226,.14);
+  --serif:"Instrument Serif",Georgia,serif;
+  --ease:cubic-bezier(.19,1,.22,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--sky1);color:var(--ink);font-family:"Manrope",system-ui,sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;letter-spacing:-.01em;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+::selection{background:var(--accent);color:#1B130D}
+.serif{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:0}
+:lang(vi){--serif:"Cormorant Garamond",Georgia,serif}
+:lang(vi) .serif{font-weight:600;font-size:1.18em}
+
+/* fixed sky behind everything */
+#gh-sky{position:fixed;inset:0;z-index:-2;background:linear-gradient(180deg,var(--sky1),var(--sky2));transition:background 0.9s linear}
+#gh-sun{position:fixed;z-index:-1;width:46vmin;height:46vmin;border-radius:50%;left:50%;top:38%;transform:translate(-50%,-50%);pointer-events:none;
+  background:radial-gradient(circle,#F7D9A8 0%,rgba(201,169,130,.34) 42%,transparent 70%);
+  opacity:.5;transition:top .9s var(--ease),opacity .9s linear,left .9s var(--ease)}
+#gh-grain{position:fixed;inset:-50%;z-index:60;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");animation:grain 7s steps(8) infinite}
+@keyframes grain{0%,100%{transform:translate(0,0)}25%{transform:translate(-4%,3%)}50%{transform:translate(3%,-4%)}75%{transform:translate(-2%,-2%)}}
+
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,44px)}
+.kicker{font-size:.7rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent)}
+h1,h2,h3{font-weight:700;letter-spacing:-.03em;line-height:1.04}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;align-items:center;justify-content:space-between;padding:20px clamp(20px,4vw,44px);transition:background .4s ease,border-color .4s;border-bottom:1px solid transparent}
+.nav.solid{background:rgba(14,11,8,.75);backdrop-filter:blur(14px) saturate(1.2);border-color:var(--hairline)}
+.logo{font-weight:800;letter-spacing:.4em;font-size:1.02rem;color:var(--ink)}
+.nav-r{display:flex;align-items:center;gap:22px}
+.nav a.nl{font-size:.78rem;letter-spacing:.06em;color:var(--faint);transition:color .25s}
+.nav a.nl:hover{color:var(--accent)}
+.langbtn{display:inline-flex;gap:5px;align-items:center;border:1px solid var(--hairline);border-radius:99px;padding:6px 12px;font-family:inherit;font-size:.68rem;font-weight:700;letter-spacing:.1em;color:var(--sub);background:transparent;cursor:pointer}
+.langbtn em{font-style:normal;opacity:.4}
+.langbtn b{font-weight:700;color:var(--faint);transition:color .2s}
+.langbtn b.on{color:var(--accent)}
+@media(max-width:900px){.nav a.nl{display:none}}
+
+/* clock chip */
+.clockchip{position:fixed;right:clamp(16px,3vw,36px);bottom:26px;z-index:70;display:flex;align-items:center;gap:10px;font-size:.66rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--faint)}
+.clockchip i{width:26px;height:1px;background:linear-gradient(90deg,var(--accent),transparent)}
+
+/* HERO */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;position:relative;padding:120px 0 90px}
+.hero h1{font-size:clamp(3rem,9vw,8.2rem);max-width:12ch;margin-top:26px}
+.hero h1 .serif{color:var(--accent)}
+.hero .lede{margin-top:30px;max-width:44ch;font-size:clamp(1rem,1.5vw,1.18rem);font-weight:300;color:var(--sub)}
+.hero .row{display:flex;gap:16px;margin-top:44px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 28px;border-radius:4px;font-size:.8rem;font-weight:600;letter-spacing:.06em;border:0;cursor:pointer;transition:transform .35s var(--ease),background .25s,color .25s,border-color .25s}
+.btn i{font-style:normal;transition:transform .25s}
+.btn:hover i{transform:translateX(4px)}
+.btn:hover{transform:translateY(-2px)}
+.btn-gold{background:var(--accent);color:#1B130D}
+.btn-line{border:1px solid rgba(244,237,226,.35);color:var(--ink);background:transparent}
+.btn-line:hover{border-color:var(--accent);color:var(--accent)}
+.scrolldown{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:var(--faint);display:flex;flex-direction:column;align-items:center;gap:10px}
+.scrolldown i{width:1px;height:40px;background:rgba(244,237,226,.2);position:relative;overflow:hidden;display:block}
+.scrolldown i::after{content:"";position:absolute;left:0;top:-45%;width:100%;height:45%;background:var(--accent);animation:cue 2.4s cubic-bezier(.2,.7,.2,1) infinite}
+@keyframes cue{0%{top:-45%}70%,100%{top:110%}}
+@media(max-width:840px){.scrolldown{display:none}}
+
+/* reveal helper (html.gh-boot gates it so no-JS still shows all) */
+html.gh-boot .rv{opacity:0;transform:translateY(28px);transition:opacity .95s ease,transform .95s var(--ease)}
+html.gh-boot .rv.in{opacity:1;transform:none}
+
+/* DAY SECTIONS share the chapter frame */
+.chapter{padding:clamp(96px,13vh,170px) 0;position:relative}
+.chap-head{display:flex;align-items:baseline;gap:22px;margin-bottom:clamp(40px,6vh,70px)}
+.chap-time{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--accent);white-space:nowrap}
+.chap-rule{flex:1;height:1px;background:var(--hairline)}
+h2.big{font-size:clamp(2.2rem,5.4vw,4.4rem);max-width:20ch}
+h2.big .serif{color:var(--accent)}
+
+/* PROJECTS: stacked film plates */
+.plates{display:flex;flex-direction:column;gap:clamp(56px,9vh,110px)}
+.plate{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,4vw,64px);align-items:end}
+.plate:nth-child(even){grid-template-columns:.85fr 1.15fr}
+.plate:nth-child(even) .ph{order:2}
+.ph{border-radius:16px;overflow:hidden;aspect-ratio:16/10;background:#171009;box-shadow:0 40px 90px -40px rgba(0,0,0,.8)}
+.ph img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 1.2s var(--ease)}
+.plate:hover .ph img{transform:scale(1.09)}
+.ph-cap{position:relative}
+.no{font-family:var(--serif);font-style:italic;font-size:clamp(3.4rem,7vw,6rem);line-height:1;color:var(--accent);opacity:.9}
+.plate h3{font-size:clamp(1.6rem,3vw,2.5rem);margin:14px 0 12px}
+.plate p.desc{color:var(--sub);font-weight:300;max-width:42ch}
+.meta{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.tagpill{font-size:.64rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--hairline);border-radius:99px;padding:8px 14px;color:var(--faint)}
+.tagpill.gold{background:var(--accent);border-color:var(--accent);color:#1B130D}
+.linkmore{display:inline-flex;gap:8px;margin-top:22px;font-size:.76rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid transparent;padding-bottom:3px;transition:border-color .25s}
+.linkmore:hover{border-color:var(--accent)}
+@media(max-width:860px){.plate,.plate:nth-child(even){grid-template-columns:1fr}.plate:nth-child(even) .ph{order:0}}
+
+/* NUMBERS band */
+.numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:44px;text-align:left}
+.numbig{font-family:var(--serif);font-style:italic;font-size:clamp(2.8rem,6vw,4.6rem);line-height:1;color:var(--ink)}
+.numbers em{display:block;margin-top:10px;font-style:normal;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+.numbers p{margin-top:10px;color:var(--sub);font-weight:300;font-size:.95rem;max-width:28ch}
+@media(max-width:820px){.numbers{grid-template-columns:1fr;gap:36px}}
+
+/* QUOTE */
+.quote{max-width:30ch;font-size:clamp(1.7rem,3.6vw,2.9rem);font-weight:300;letter-spacing:-.02em;line-height:1.3}
+.quote .serif{color:var(--accent)}
+
+/* ENQUIRE */
+.enq-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,90px);align-items:start}
+@media(max-width:860px){.enq-grid{grid-template-columns:1fr}}
+.fld{border-bottom:1px solid var(--hairline);padding:18px 0;transition:border-color .25s}
+.fld:focus-within{border-color:var(--accent)}
+.fld input,.fld textarea{width:100%;border:0;background:transparent;outline:none;resize:none;font:inherit;font-size:1.02rem;color:var(--ink)}
+.fld ::placeholder{color:rgba(244,237,226,.35)}
+form.gh-form .btn{margin-top:28px}
+.thanks{display:none;padding:20px 0}
+.thanks h3{color:var(--accent);font-size:1.5rem}
+.thanks p{color:var(--sub);margin-top:6px}
+form.gh-form.sent .fld,form.gh-form.sent .btn{display:none}
+form.gh-form.sent .thanks{display:block}
+
+/* FOOTER */
+footer{border-top:1px solid var(--hairline);padding:70px 0 40px}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;padding-bottom:44px}
+.foot-grid p{margin-top:14px;color:var(--faint);font-weight:300;max-width:30ch;font-size:.94rem}
+.fcol h5{font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.fcol a{display:block;color:var(--faint);padding:5px 0;font-size:.93rem;transition:color .25s}
+.fcol a:hover{color:var(--ink)}
+.foot-bot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px;border-top:1px solid var(--hairline);font-size:.76rem;color:rgba(244,237,226,.35)}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}}
+
+/* reduced motion */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  #gh-grain{animation:none}
+  html.gh-boot .rv{opacity:1;transform:none;transition:none}
+  .scrolldown i::after{animation:none}
+  .ph img{transform:none;transition:none}
+  #gh-sun,#gh-sky{transition:none}
+}
+</style>
+</head>
+<body>
+
+<div id="gh-sky" aria-hidden="true"></div>
+<div id="gh-sun" aria-hidden="true"></div>
+<div id="gh-grain" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="logo" href="index.html">RIVERA</a>
+  <div class="nav-r">
+    <a class="nl" href="projects.html" data-en="Collection" data-vi="Dự án">Dự án</a>
+    <a class="nl" href="about.html" data-en="Practice" data-vi="Phương châm">Phương châm</a>
+    <a class="nl" href="../map.html" data-en="Map" data-vi="Bản đồ">Bản đồ</a>
+    <button class="langbtn" id="lang" type="button" aria-label="Đổi ngôn ngữ"><b data-l="en">EN</b><em>/</em><b data-l="vi" class="on">VI</b></button>
+    <a class="btn btn-gold" style="padding:11px 18px" href="../enquire.html"><span data-en="Enquire" data-vi="Liên hệ">Liên hệ</span></a>
+  </div>
+</header>
+
+<main>
+
+<!-- DAWN -->
+<section class="hero">
+  <div class="wrap">
+    <p class="kicker rv" data-en="Melbourne · A boutique property practice" data-vi="Melbourne · Công ty tư vấn nhà cửa">Melbourne · Công ty tư vấn nhà cửa</p>
+    <h1 class="rv"><span data-en="Plenty of houses." data-vi="Nhà đẹp thì nhiều.">Nhà đẹp thì nhiều.</span><br/><span class="serif" data-en="The right one is rare." data-vi="Nhà hợp thì hiếm.">Nhà hợp thì hiếm.</span></h1>
+    <p class="lede rv" data-en="Seven homes across Melbourne. Every one of them walked, checked and argued over by us before it ever reaches you." data-vi="Bảy ngôi nhà khắp Melbourne. Ngôi nào chúng tôi cũng tự đi, tự kiểm, tự cãi nhau từng chi tiết trước khi đưa tới anh.">Bảy ngôi nhà khắp Melbourne. Ngôi nào chúng tôi cũng tự đi, tự kiểm, tự cãi nhau từng chi tiết trước khi đưa tới anh.</p>
+    <div class="row rv">
+      <a class="btn btn-gold" href="#enquire"><span data-en="Talk to us" data-vi="Trò chuyện với chúng tôi">Trò chuyện với chúng tôi</span><i>→</i></a>
+      <a class="btn btn-line" href="#dusk"><span data-en="See the seven" data-vi="Xem bảy ngôi nhà">Xem bảy ngôi nhà</span><i>↓</i></a>
+    </div>
+  </div>
+  <div class="scrolldown" aria-hidden="true"><span data-en="Scroll · the day begins" data-vi="Cuộn · một ngày bắt đầu">Cuộn · một ngày bắt đầu</span><i></i></div>
+</section>
+
+<!-- MORNING: numbers -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="chap-head"><span class="chap-time" data-en="07:00 · first light" data-vi="07:00 · bình minh">07:00 · bình minh</span><span class="chap-rule"></span></div>
+    <div class="numbers">
+      <div class="rv"><span class="numbig gh-count" data-count="10">10</span><em data-en="years walking Melbourne" data-vi="năm đi khắp Melbourne">năm đi khắp Melbourne</em><p data-en="Same streets, sharper eyes. We know which floor catches the morning light and which one never will." data-vi="Vẫn con phố ấy, mắt thì tinh hơn. Biết căn nào đón nắng sáng, căn nào thì thôi.">Vẫn con phố ấy, mắt thì tinh hơn. Biết căn nào đón nắng sáng, căn nào thì thôi.</p></div>
+      <div class="rv"><span class="numbig">100+</span><em data-en="families placed" data-vi="gia đình đã an cư">gia đình đã an cư</em><p data-en="Across fifty suburbs. Most came by referral, some by accident, all by conversation." data-vi="Rải trên năm mươi suburb. Đến với chúng tôi phần lớn qua người quen, vài người do tình cờ, ai cũng bắt đầu bằng một cuộc nói chuyện.">Rải trên năm mươi suburb. Đến với chúng tôi phần lớn qua người quen, vài người do tình cờ, ai cũng bắt đầu bằng một cuộc nói chuyện.</p></div>
+      <div class="rv"><span class="numbig">0</span><em data-en="listings we haven't inspected" data-vi="căn chưa từng đi xem">căn chưa từng đi xem</em><p data-en="That number stays at zero. If we sell it, we have stood in it." data-vi="Số đó không đổi. Bán được là vì đã đứng trong nhà đó.">Số đó không đổi. Bán được là vì đã đứng trong nhà đó.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- NOON: philosophy quote -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="chap-head"><span class="chap-time" data-en="12:00 · high sun" data-vi="12:00 · nắng đứng bóng">12:00 · mặt trời góc đầu</span><span class="chap-rule"></span></div>
+    <blockquote class="quote rv">
+      "<span data-en="Anyone can show you a floor plan. We tell you which neighbour slams doors." data-vi="Ai cũng chỉ cho anh bản vẽ. Chúng tôi kể cho anh hàng xóm bên cạnh hay đóng sầm cửa.">Ai cũng chỉ cho anh bản vẽ. Chúng tôi kể cho anh hàng xóm bên cạnh hay đóng sầm cửa.</span>"
+    </blockquote>
+    <p class="rv" style="margin-top:26px;color:var(--faint);max-width:52ch" data-en="Ten years of honest opinions is why buyers keep our number. Off-the-plan or ready-to-move, you hear the trade-offs first and the sales talk never." data-vi="Mười năm nói thẳng là lý do khách cứ giữ số của chúng tôi. Bán theo dự án hay bán đã hoàn thiện, anh nghe cái bất lợi trước, còn lời chào hàng thì không có.">Mười năm nói thẳng là lý do khách cứ giữ số của chúng tôi. Bán theo dự án hay bán đã hoàn thiện, anh nghe cái bất lợi trước, còn lời chào hàng thì không có.</p>
+  </div>
+</section>
+
+<!-- GOLDEN HOUR: the seven -->
+<section class="chapter" id="dusk">
+  <div class="wrap">
+    <div class="chap-head"><span class="chap-time" data-en="17:45 · golden hour" data-vi="17:45 · giờ vàng">17:45 · giờ vàng</span><span class="chap-rule"></span></div>
+    <h2 class="big rv" style="margin-bottom:clamp(44px,7vh,84px)"><span data-en="Seven homes." data-vi="Bảy ngôi nhà.">Bảy ngôi nhà.</span><br/><span class="serif" data-en="Nothing else." data-vi="Không hơn.">Không hơn.</span></h2>
+    <div class="plates">
+
+      <article class="plate rv">
+        <a class="ph" href="../aura-melbourne-square.html"><img src="../../images/aura-melbourne-square/exterior-overview.jpg" alt="AURA Melbourne Square" loading="lazy"/></a>
+        <div class="ph-cap">
+          <span class="no">01</span>
+          <h3>AURA <span class="serif">Melbourne Square</span></h3>
+          <p class="desc" data-en="Sixty-seven levels above Kennedy Park. Three sky clubs, one Japanese garden, and the Arts Precinct at your feet." data-vi="Sáu mươi bảy tầng trên công viên Kennedy. Ba sky club, một khu vườn Nhật, và Khu Nghệ thuật ngay dưới chân.">Sáu mươi bảy tầng trên công viên Kennedy. Ba sky club, một khu vườn Nhật, và Khu Nghệ thuật ngay dưới chân.</p>
+          <div class="meta"><span class="tagpill gold" data-en="Now selling" data-vi="Đang mở bán">Đang mở bán</span><span class="tagpill">Southbank</span><span class="tagpill">từ $579K</span></div>
+          <a class="linkmore" href="../aura-melbourne-square.html" data-en="Walk through →" data-vi="Đi quanh căn →">Đi quanh căn →</a>
+        </div>
+      </article>
+
+      <article class="plate rv">
+        <a class="ph" href="../collins-wharf-aluna.html"><img src="../../images/collins-wharf-aluna/exterior-2.jpg" alt="Collins Wharf Aluna" loading="lazy"/></a>
+        <div class="ph-cap">
+          <span class="no">02</span>
+          <h3>Collins Wharf <span class="serif">Aluna</span></h3>
+          <p class="desc" data-en="Twenty-eight storeys of glass at the water's edge. The harbour does the decorating." data-vi="Hai mươi tám tầng kính bên mép nước. Cảng biển tự lo phần trang trí.">Hai mươi tám tầng kính bên mép nước. Cảng biển tự lo phần trang trí.</p>
+          <div class="meta"><span class="tagpill gold" data-en="Now selling" data-vi="Đang mở bán">Đang mở bán</span><span class="tagpill">Docklands</span><span class="tagpill">2029</span></div>
+          <a class="linkmore" href="../collins-wharf-aluna.html" data-en="Walk through →" data-vi="Đi quanh căn →">Đi quanh căn →</a>
+        </div>
+      </article>
+
+      <article class="plate rv">
+        <a class="ph" href="../671-chapel-street.html"><img src="../../images/671-chapel-street/facade.jpg" alt="671 Chapel Street" loading="lazy"/></a>
+        <div class="ph-cap">
+          <span class="no">03</span>
+          <h3>671 <span class="serif">Chapel Street</span></h3>
+          <p class="desc" data-en="South Yarra address, a whole wellness floor downstairs, stone benches and Gaggenau up in the kitchen." data-vi="Địa chỉ South Yarra, nguyên một tầng wellness dưới nhà, mặt đá và bếp Gaggenau trên bếp.">Địa chỉ South Yarra, nguyên một tầng wellness dưới nhà, mặt đá và bếp Gaggenau trên bếp.</p>
+          <div class="meta"><span class="tagpill gold" data-en="Now selling" data-vi="Đang mở bán">Đang mở bán</span><span class="tagpill">South Yarra</span><span class="tagpill">2028</span></div>
+          <a class="linkmore" href="../671-chapel-street.html" data-en="Walk through →" data-vi="Đi quanh căn →">Đi quanh căn →</a>
+        </div>
+      </article>
+
+      <article class="plate rv">
+        <a class="ph" href="../380-melbourne.html"><img src="../../images/380-melbourne/exterior-3.jpg" alt="380 Melbourne" loading="lazy"/></a>
+        <div class="ph-cap">
+          <span class="no">04</span>
+          <h3>380 <span class="serif">Melbourne</span></h3>
+          <p class="desc" data-en="Two Elenberg Fraser towers in the middle of everything. Finished, furnished keys waiting." data-vi="Hai tòa tháp Elenberg Fraser giữa lòng thành phố. Đã xong, chìa khóa chờ sẵn.">Hai tòa tháp Elenberg Fraser giữa lòng thành phố. Đã xong, chìa khóa chờ sẵn.</p>
+          <div class="meta"><span class="tagpill" data-en="Completed" data-vi="Đã hoàn thiện">Đã hoàn thiện</span><span class="tagpill">CBD</span></div>
+          <a class="linkmore" href="../380-melbourne.html" data-en="Walk through →" data-vi="Đi quanh căn →">Đi quanh căn →</a>
+        </div>
+      </article>
+
+      <article class="plate rv">
+        <a class="ph" href="../piccolo-house.html"><img src="../../images/piccolo-house/exterior-1.jpg" alt="Piccolo House" loading="lazy"/></a>
+        <div class="ph-cap">
+          <span class="no">05</span>
+          <h3>Piccolo <span class="serif">House</span></h3>
+          <p class="desc" data-en="Kew quiet, garden pavilions, a wine cellar for the long weekends." data-vi="Kew yên tĩnh, những khu pavilion vườn, hầm rượu cho cuối tuần dài.">Kew yên tĩnh, những khu pavilion vườn, hầm rượu cho cuối tuần dài.</p>
+          <div class="meta"><span class="tagpill" data-en="Completed" data-vi="Đã hoàn thiện">Đã hoàn thiện</span><span class="tagpill">Kew</span></div>
+          <a class="linkmore" href="../piccolo-house.html" data-en="Walk through →" data-vi="Đi quanh căn →">Đi quanh căn →</a>
+        </div>
+      </article>
+
+      <article class="plate rv">
+        <a class="ph" href="../collins-wharf-ancora.html"><img src="../../images/collins-wharf-ancora/exterior-dusk.jpg" alt="Collins Wharf Ancora" loading="lazy"/></a>
+        <div class="ph-cap">
+          <span class="no">06</span>
+          <h3>Collins Wharf <span class="serif">Ancora</span></h3>
+          <p class="desc" data-en="Lendlease building it now. Harbour views to the north, city glow to the east." data-vi="Lendlease đang dựng từng ngày. View cảng về hướng bắc, đèn phố phía đông.">Lendlease đang dựng từng ngày. View cảng về hướng bắc, đèn phố phía đông.</p>
+          <div class="meta"><span class="tagpill gold" data-en="Selling" data-vi="Đang bán">Đang bán</span><span class="tagpill">Docklands</span><span class="tagpill">2027</span></div>
+          <a class="linkmore" href="../collins-wharf-ancora.html" data-en="Walk through →" data-vi="Đi quanh căn →">Đi quanh căn →</a>
+        </div>
+      </article>
+
+      <article class="plate rv">
+        <a class="ph" href="../aspire.html"><img src="../../images/aspire/exterior-2.jpg" alt="Aspire Melbourne" loading="lazy"/></a>
+        <div class="ph-cap">
+          <span class="no">07</span>
+          <h3>Aspire <span class="serif">Melbourne</span></h3>
+          <p class="desc" data-en="Beside Flagstaff Gardens. Move in this month if the paperwork behaves." data-vi="Cạnh Flagstaff Gardens. Tháng này vào ở được nếu giấy tờ chịu ngoan.">Cạnh Flagstaff Gardens. Tháng này vào ở được nếu giấy tờ chịu ngoan.</p>
+          <div class="meta"><span class="tagpill" data-en="Completed" data-vi="Đã hoàn thiện">Đã hoàn thiện</span><span class="tagpill">CBD</span></div>
+          <a class="linkmore" href="../aspire.html" data-en="Walk through →" data-vi="Đi quanh căn →">Đi quanh căn →</a>
+        </div>
+      </article>
+
+    </div>
+    <p style="margin-top:clamp(40px,6vh,64px);text-align:right"><a class="linkmore" style="margin:0" href="projects.html" data-en="All seven, in detail →" data-vi="Cả bảy, xem kỹ →">Cả bảy, xem kỹ →</a></p>
+  </div>
+</section>
+
+<!-- NIGHT: enquire -->
+<section class="chapter" id="enquire">
+  <div class="wrap">
+    <div class="chap-head"><span class="chap-time" data-en="21:00 · after dark" data-vi="21:00 · đêm xuống">21:00 · sau khi tối</span><span class="chap-rule"></span></div>
+    <div class="enq-grid">
+      <div class="rv">
+        <h2 class="big"><span data-en="Homes, discussed" data-vi="Chuyện nhà,">Chuyện nhà,</span><br/><span class="serif" data-en="with a real person." data-vi="kể với người thật.">kể với người thật.</span></h2>
+        <p style="margin-top:22px;color:var(--sub);max-width:42ch;font-weight:300" data-en="One message. A person replies within a day, not a autoresponder. Tell us the suburb, the budget, the reason. We take it from there." data-vi="Một tin nhắn. Người thật trả lời trong vòng một ngày, không phải máy. Kể chúng tôi nghe khu anh thích, ngân sách, và lý do. Phần còn lại để chúng tôi lo.">Một tin nhắn. Người thật trả lời trong vòng một ngày, không phải máy. Kể chúng tôi nghe khu anh thích, ngân sách, và lý do. Phần còn lại để chúng tôi lo.</p>
+        <div style="margin-top:32px;display:flex;flex-direction:column;gap:8px">
+          <a href="mailto:info.riveraau@gmail.com" style="font-weight:600;font-size:1.1rem">info.riveraau@gmail.com</a>
+          <a href="tel:+84782067555" style="color:var(--sub)">VN · +84 782 067 555</a>
+          <a href="tel:+61450151686" style="color:var(--sub)">AUS · +61 450 151 686</a>
+        </div>
+      </div>
+      <form class="gh-form rv" method="POST" novalidate>
+        <div class="fld"><input type="text" name="name" placeholder="Tên anh" data-en-ph="Your name" data-vi-ph="Tên anh" required/></div>
+        <div class="fld"><input type="email" name="email" placeholder="Email" data-en-ph="Email address" data-vi-ph="Email" required/></div>
+        <div class="fld"><input type="text" name="looking" placeholder="Anh đang tìm gì?" data-en-ph="What are you hunting for?" data-vi-ph="Anh đang tìm gì?"/></div>
+        <div class="fld"><textarea name="message" rows="3" placeholder="Kể thêm nếu muốn" data-en-ph="Anything else worth knowing" data-vi-ph="Kể thêm nếu muốn"></textarea></div>
+        <button class="btn btn-gold" type="submit"><span data-en="Send it over" data-vi="Gửi đi">Gửi đi</span><i>→</i></button>
+        <div class="thanks">
+          <h3 data-en="Got it." data-vi="Đã nhận.">Đã nhận.</h3>
+          <p data-en="A human reads this next. Expect a reply that actually answers you." data-vi="Người thật sẽ đọc tin nhắn này. Anh nhận được câu trả lời thật, không phải mẫu.">Người thật sẽ đọc tin nhắn này. Anh nhận được câu trả lời thật, không phải mẫu.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="logo">RIVERA</span>
+        <p data-en="Seven residences. One standard: if we have not stood in it, we do not sell it." data-vi="Bảy ngôi nhà. Một chuẩn: chưa từng đứng trong nhà đó thì không bán.">Bảy ngôi nhà. Một chuẩn: chưa từng đứng trong nhà đó thì không bán.</p>
+      </div>
+      <div class="fcol">
+        <h5 data-en="Look around" data-vi="Xem quanh">Xem quanh</h5>
+        <a href="projects.html" data-en="The seven" data-vi="Bảy ngôi nhà">Bảy ngôi nhà</a>
+        <a href="about.html" data-en="Why us" data-vi="Vì sao chọn chúng tôi">Vì sao chọn chúng tôi</a>
+        <a href="../map.html" data-en="Map" data-vi="Bản đồ">Bản đồ</a>
+        <a href="../guide.html" data-en="Buyer's guide" data-vi="Cẩm nang mua nhà">Cẩm nang mua nhà</a>
+      </div>
+      <div class="fcol">
+        <h5 data-en="Reach us" data-vi="Liên hệ">Liên hệ</h5>
+        <a href="mailto:info.riveraau@gmail.com">info.riveraau@gmail.com</a>
+        <a href="tel:+84782067555">VN · +84 782 067 555</a>
+        <a href="tel:+61450151686">AUS · +61 450 151 686</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 Rivera</span>
+      <span data-en="Concept · Golden Hour" data-vi="Concept · Giờ vàng">Concept · Giờ vàng</span>
+    </div>
+  </div>
+</footer>
+
+<div class="clockchip" aria-hidden="true"><i></i><span id="clock">07:00</span></div>
+
+<script>
+(function(){
+  'use strict';
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- language ---- */
+  function setLang(l){
+    l=(l==='en')?'en':'vi';
+    document.documentElement.setAttribute('lang',l);
+    document.querySelectorAll('[data-en]').forEach(function(el){
+      var t=el.getAttribute('data-'+l); if(t!==null) el.textContent=t;
+    });
+    document.querySelectorAll('[data-en-ph]').forEach(function(el){
+      var t=el.getAttribute('data-'+l+'-ph'); if(t!==null) el.setAttribute('placeholder',t);
+    });
+    document.querySelectorAll('.langbtn b[data-l]').forEach(function(b){
+      b.classList.toggle('on',b.getAttribute('data-l')===l);
+    });
+    try{localStorage.setItem('rivera-lang',l);}catch(e){}
+  }
+  var saved='vi'; try{saved=localStorage.getItem('rivera-lang')||'vi';}catch(e){}
+  setLang(saved);
+  document.getElementById('lang').addEventListener('click',function(){
+    setLang(document.documentElement.getAttribute('lang')==='vi'?'en':'vi');
+  });
+
+  /* ---- GOLDEN HOUR ENGINE: scroll progress -> time of day -> sky + sun + clock ---- */
+  var SKY={
+    dawn:{a:'#241531',b:'#0E0B08',sun:'#E8A87C',op:.42,top:'86%',x:'62%',clock:'07:00'},
+    morn:{a:'#2A1E14',b:'#14100B',sun:'#F2C892',op:.30,top:'52%',x:'74%',clock:'09:30'},
+    noon:{a:'#33261A',b:'#1B130D',sun:'#FBE7BF',op:.22,top:'16%',x:'58%',clock:'12:00'},
+    gold:{a:'#4A2C14',b:'#1B130D',sun:'#FFCE8A',op:.55,top:'58%',x:'30%',clock:'17:45'},
+    night:{a:'#0E0B08',b:'#070503',sun:'#C9A982',op:.14,top:'82%',x:'50%',clock:'21:00'}
+  };
+  var KEYS=['dawn','morn','noon','gold','night'];
+  function lerp(a,b,t){return a+(b-a)*t;}
+  function hexMix(h1,h2,t){
+    var p=function(h){return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];};
+    var c1=p(h1),c2=p(h2);
+    return 'rgb('+Math.round(lerp(c1[0],c2[0],t))+','+Math.round(lerp(c1[1],c2[1],t))+','+Math.round(lerp(c1[2],c2[2],t))+')';
+  }
+  var sky=document.getElementById('gh-sun')&&document.getElementById('gh-sun');
+  var skyEl=document.getElementById('gh-sky');
+  var sunEl=document.getElementById('gh-sun');
+  var clock=document.getElementById('clock');
+  var ticking=false;
+  function applyDay(){
+    ticking=false;
+    var max=document.documentElement.scrollHeight-window.innerHeight;
+    var t=max>0?Math.min(.9999,Math.max(0,(window.scrollY||0)/max)):0;
+    var pos=t*(KEYS.length-1);
+    var i=Math.floor(pos), f=pos-i;
+    var A=SKY[KEYS[i]], B=SKY[KEYS[Math.min(i+1,KEYS.length-1)]];
+    skyEl.style.background='linear-gradient(180deg,'+hexMix(A.a,B.a,f)+','+hexMix(A.b,B.b,f)+')';
+    sunEl.style.background='radial-gradient(circle,'+hexMix(A.sun,B.sun,f)+' 0%,rgba(201,169,130,.3) 42%,transparent 70%)';
+    sunEl.style.opacity=String(lerp(A.op,B.op,f));
+    sunEl.style.top=lerp(parseFloat(A.top),parseFloat(B.top),f)+'%';
+    sunEl.style.left=lerp(parseFloat(A.x),parseFloat(B.x),f)+'%';
+    /* clock: interpolate between chapter times */
+    var times=[420,570,720,1065,1260]; /* minutes */
+    var mins=Math.round(lerp(times[i],times[Math.min(i+1,4)],f));
+    var hh=String(Math.floor(mins/60)).padStart(2,'0'), mm=String(mins%60).padStart(2,'0');
+    if(clock) clock.textContent=hh+':'+mm;
+  }
+  window.addEventListener('scroll',function(){
+    if(!ticking){ticking=true;requestAnimationFrame(applyDay);}
+  },{passive:true});
+  window.addEventListener('resize',applyDay,{passive:true});
+  applyDay();
+
+  /* ---- nav solidify ---- */
+  var nav=document.getElementById('nav');
+  window.addEventListener('scroll',function(){nav.classList.toggle('solid',(window.scrollY||0)>30);},{passive:true});
+
+  /* ---- reveals ---- */
+  if(!reduce&&'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} });
+    },{threshold:.15});
+    document.querySelectorAll('.rv').forEach(function(el,i){ el.style.transitionDelay=(i%3)*0.07+'s'; io.observe(el); });
+  }else{
+    document.documentElement.classList.remove('gh-boot');
+  }
+
+  /* ---- counters ---- */
+  if(!reduce&&'IntersectionObserver' in window){
+    var done=false;
+    var cio=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting||done) return; done=true;
+        document.querySelectorAll('.gh-count').forEach(function(el){
+          var end=parseInt(el.getAttribute('data-count'),10)||0,t0=null,DUR=1400;
+          function step(ts){ if(!t0)t0=ts; var k=Math.min(1,(ts-t0)/DUR);
+            el.textContent=String(Math.round(end*(1-Math.pow(1-k,3)))); if(k<1)requestAnimationFrame(step); }
+          requestAnimationFrame(step);
+        });
+        cio.disconnect();
+      });
+    },{threshold:.35});
+    var nums=document.querySelector('.numbers'); if(nums) cio.observe(nums);
+  }
+
+  /* ---- form (same Apps Script endpoint as production) ---- */
+  var ENDPOINT='https://script.google.com/macros/s/AKfycbwurdZI9R-458lfe4Aelh67iBZJ4-8ZAxO4iTIANxkyLkSsqjkrTHJb0fN8nv8NhV52Qw/exec';
+  document.querySelectorAll('form.gh-form').forEach(function(f){
+    f.addEventListener('submit',function(e){
+      e.preventDefault();
+      var email=f.querySelector('input[type=email]');
+      if(!email||!email.value||email.value.indexOf('@')===-1){if(email)email.focus();return;}
+      var looking=((f.querySelector('[name=looking]')||{}).value||'').trim();
+      var message=((f.querySelector('[name=message]')||{}).value||'').trim();
+      fetch(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},
+        body:JSON.stringify({name:((f.querySelector('[name=name]')||{}).value||'').trim(),phone:'',email:email.value.trim(),
+          interest:looking?[looking]:['unsure'],intent:'exploring',message:message})
+      }).then(function(){f.classList.add('sent');}).catch(function(){f.classList.add('sent');});
+    });
+  });
+
+  /* boot complete */
+  requestAnimationFrame(function(){document.documentElement.classList.remove('gh-boot-init');});
+})();
+</script>
+</body>
+</html>

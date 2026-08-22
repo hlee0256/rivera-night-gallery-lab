@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rivera · Viết thư</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Instrument+Serif:ital@0;1&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+<style>
+:root{--bg:#0E0B08;--bg2:#141009;--tan:#C9A982;--sand:#E6DACA;--paper:#F4F0E9;--ink:#231A12;--line:rgba(201,169,130,.20);--muted:rgba(230,218,202,.60);--serif:"Instrument Serif",serif;--vserif:"Cormorant Garamond",serif;--ease:cubic-bezier(.16,1,.3,1)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--sand);font-family:"Manrope",system-ui,sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--tan);color:#1B130D}
+.serif{font-family:var(--serif);font-style:italic;font-weight:400}
+:lang(vi){--serif:"Cormorant Garamond",Georgia,serif}
+:lang(vi) .serif{font-weight:600;font-size:1.16em}
+.nav{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;justify-content:space-between;align-items:center;padding:18px clamp(18px,4vw,44px);background:rgba(14,11,8,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.logo{font-weight:800;letter-spacing:.42em;font-size:.95rem;color:var(--paper)}
+.nr{display:flex;gap:20px;align-items:center;font-size:.76rem;color:var(--muted)}
+.nr a:hover{color:var(--tan)}
+.langbtn{border:1px solid var(--line);background:transparent;border-radius:99px;padding:6px 12px;font-family:inherit;font-size:.66rem;font-weight:700;letter-spacing:.1em;color:var(--muted);cursor:pointer}
+.langbtn b.on{color:var(--tan)}
+@media(max-width:820px){.nr a{display:none}}
+.wrap{max-width:940px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
+.head{padding:130px 0 44px;text-align:center}
+.kicker{font-size:.68rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--tan)}
+h1{font-size:clamp(2.2rem,5.6vw,4rem);color:var(--paper);letter-spacing:-.02em;margin-top:16px}
+.head p{margin-top:16px;color:var(--muted);font-weight:300}
+/* letter sheet */
+.sheet{background:var(--paper);color:var(--ink);border-radius:10px;padding:clamp(28px,5vw,64px);box-shadow:0 60px 120px -50px rgba(0,0,0,.95);position:relative;margin-bottom:70px}
+.lh{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #231A12;padding-bottom:18px;margin-bottom:34px;gap:16px;flex-wrap:wrap}
+.lh .lg{font-weight:800;letter-spacing:.4em;color:#231A12}
+.lh .rg{text-align:right;font-size:.78rem;color:#6E5E4D;line-height:1.6}
+.salut{font-family:var(--serif);font-style:italic;font-size:1.5rem;color:#7A4E2D;margin-bottom:26px}
+:lang(vi) .salut{font-family:var(--vserif);font-weight:500}
+.fld{position:relative;border-bottom:1px solid rgba(35,26,18,.25);padding:16px 0 12px;transition:border-color .25s}
+.fld:focus-within{border-color:#7A4E2D}
+.fld label{position:absolute;top:-9px;left:0;background:var(--paper);padding:0 8px 0 0;font-size:.64rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#6E5E4D}
+.fld input,.fld textarea,.fld select{width:100%;border:0;background:transparent;outline:0;font:inherit;font-size:1.04rem;color:#231A12;resize:vertical}
+.fld ::placeholder{color:#b3a48f}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 36px}
+@media(max-width:680px){.grid2{grid-template-columns:1fr}}
+.send{margin-top:32px;display:inline-flex;align-items:center;gap:10px;background:#1B130D;color:var(--paper);border:0;border-radius:4px;padding:17px 30px;font-family:inherit;font-size:.82rem;font-weight:600;letter-spacing:.06em;cursor:pointer;transition:transform .3s var(--ease),background .25s}
+.send:hover{transform:translateY(-2px);background:#7A4E2D}
+.send i{font-style:normal;transition:transform .25s}
+.send:hover i{transform:translateX(4px)}
+.privacy{margin-top:16px;font-size:.74rem;color:#8a7a66}
+/* stamp */
+.seal{position:absolute;top:22px;right:26px;width:112px;height:112px;pointer-events:none;opacity:0;transform:rotate(-14deg) scale(1.6)}
+.seal.show{animation:slam .55s cubic-bezier(.2,1.6,.3,1) forwards}
+@keyframes slam{from{opacity:0;transform:rotate(-24deg) scale(1.7)}to{opacity:.92;transform:rotate(-13deg) scale(1)}}
+.seal circle{fill:none;stroke:#A0522D;stroke-width:3;stroke-dasharray:3.5 3}
+.seal text{fill:#A0522D;font-weight:800;letter-spacing:.16em}
+.sent-hide .fld,.sent-hide .send,.sent-hide .salut{visibility:hidden}
+.thanks{display:none;position:absolute;inset:0;flex-direction:column;justify-content:center;align-items:flex-start;padding:inherit;padding:clamp(28px,5vw,64px)}
+form.sent .thanks{display:flex}
+.thanks h3{font-size:1.9rem;font-weight:700;color:#231A12}
+.thanks p{margin-top:10px;color:#6E5E4D;max-width:44ch}
+.lines{margin-top:30px;display:flex;flex-direction:column;gap:6px}
+.lines a{color:#231A12;font-weight:600}
+.lines span{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:#8a7a66}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s var(--ease)}
+html.js .rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1!important;transform:none!important}.seal.show{animation:none;opacity:.92}}
+footer{border-top:1px solid var(--line);padding:30px 0 46px}
+.foot{max-width:940px;margin:0 auto;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:.78rem}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="logo" href="index.html">RIVERA</a>
+  <div class="nr">
+    <a href="projects.html" data-en="Collection" data-vi="Triển lãm">Triển lãm</a>
+    <a href="map.html" data-en="Map room" data-vi="Phòng bản đồ">Phòng bản đồ</a>
+    <a href="about.html" data-en="Practice" data-vi="Hồ sơ">Hồ sơ</a>
+    <button class="langbtn" id="lang"><b data-l="en">EN</b>/<b data-l="vi" class="on">VI</b></button>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="head">
+    <p class="kicker" data-en="Rivera · Write to us" data-vi="Rivera · Viết thư cho chúng tôi">Rivera · Viết thư cho chúng tôi</p>
+    <h1><span data-en="One letter." data-vi="Một lá thư.">Một lá thư.</span> <span class="serif" data-en="A real reply." data-vi="Một câu trả lời thật.">Một câu trả lời thật.</span></h1>
+    <p data-en="No call centre on the other side. A person reads this and answers within a day." data-vi="Bên kia không phải tổng đài. Người thật đọc và trả lời trong vòng một ngày.">Bên kia không phải tổng đài. Người thật đọc và trả lời trong vòng một ngày.</p>
+  </div>
+
+  <div class="sheet rv" style="position:relative">
+    <!-- seal -->
+    <svg class="seal" id="seal" viewBox="0 0 120 120" aria-hidden="true">
+      <circle cx="60" cy="60" r="52"/>
+      <circle cx="60" cy="60" r="42"/>
+      <text x="60" y="57" font-size="15" text-anchor="middle">ĐÃ NHẬN</text>
+      <text x="60" y="76" font-size="9" text-anchor="middle" letter-spacing=".28em">RIVERA · MELB</text>
+    </svg>
+
+    <form id="letter" novalidate>
+      <p class="salut" data-en="Dear Rivera," data-vi="Gửi Rivera,">Gửi Rivera,</p>
+
+      <div class="grid2">
+        <div class="fld"><label data-en="My name is" data-vi="Tôi là">Tôi là</label><input type="text" name="name" data-en-ph="Your name" data-vi-ph="Tên của anh" required/></div>
+        <div class="fld"><label data-en="Reach me at" data-vi="Liên hệ qua email">Liên hệ qua email</label><input type="email" name="email" placeholder="email@..." required/></div>
+      </div>
+      <div class="fld"><label data-en="Phone (optional)" data-vi="Số điện thoại (nếu có)">Số điện thoại (nếu có)</label><input type="tel" name="phone"/></div>
+      <div class="fld"><label data-en="I am looking for" data-vi="Tôi đang tìm">Tôi đang tìm</label>
+        <select name="looking">
+          <option value="owner-occupier" data-en="A home to live in" data-vi="Nhà để ở">Nhà để ở</option>
+          <option value="investment" data-en="An investment" data-vi="Nhà đầu tư">Nhà đầu tư</option>
+          <option value="off-the-plan" data-en="Something off the plan" data-vi="Nhà dự án (off-the-plan)">Nhà dự án (off-the-plan)</option>
+          <option value="unsure" data-en="Not sure yet, that is why I am writing" data-vi="Chưa rõ, nên mới viết thư này">Chưa rõ, nên mới viết thư này</option>
+        </select>
+      </div>
+      <div class="fld"><label data-en="The rest of the letter" data-vi="Phần còn lại của lá thư">Phần còn lại của lá thư</label><textarea rows="5" name="message" data-en-ph="Suburb, budget, timing, or anything else worth knowing" data-vi-ph="Khu vực, ngân sách, thời điểm, hay điều gì anh thấy cần kể"></textarea></div>
+
+      <button class="send" type="submit"><span data-en="Send the letter" data-vi="Gửi thư">Gửi thư</span><i>→</i></button>
+      <p class="privacy" data-en="One reply from one person. Your details go nowhere else." data-vi="Một hồi âm từ một người thật. Thông tin của anh không đi đâu khác.">Một hồi âm từ một người thật. Thông tin của anh không đi đâu khác.</p>
+    </form>
+
+    <div class="thanks">
+      <h3 data-en="Received." data-vi="Đã nhận thư.">Đã nhận thư.</h3>
+      <p data-en="Stamped and in the morning pile. Expect an answer with actual sentences in it, within a day." data-vi="Đóng dấu và vào chồng thư sáng mai. Anh sẽ nhận câu trả lời viết bằng câu chữ thật, không phải mẫu, trong vòng một ngày.">Đóng dấu và vào chồng thư sáng mai. Anh sẽ nhận câu trả lời viết bằng câu chữ thật, không phải mẫu, trong vòng một ngày.</p>
+      <div class="lines">
+        <span data-en="Or skip the post:" data-vi="Hoặc liên hệ thẳng:">Hoặc liên hệ thẳng:</span>
+        <a href="mailto:info.riveraau@gmail.com">info.riveraau@gmail.com</a>
+        <a href="tel:+84782067555">VN · +84 782 067 555</a>
+        <a href="tel:+61450151686">AUS · +61 450 151 686</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer><div class="foot">
+  <span>© 2026 RIVERA</span>
+  <span data-en="Write to us · Night Gallery edition" data-vi="Viết thư · bản Night Gallery">Viết thư · bản Night Gallery</span>
+</div></footer>
+
+<script>
+document.documentElement.classList.add('js');
+(function(){
+  function setLang(l){l=(l==='en')?'en':'vi';document.documentElement.setAttribute('lang',l);
+    document.querySelectorAll('[data-en]').forEach(function(el){var t=el.getAttribute('data-'+l);if(t!==null)el.textContent=t;});
+    document.querySelectorAll('[data-en-ph]').forEach(function(el){var t=el.getAttribute('data-'+l+'-ph');if(t!==null)el.setAttribute('placeholder',t);});
+    document.querySelectorAll('.langbtn b[data-l]').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-l')===l);});
+    try{localStorage.setItem('rivera-lang',l);}catch(e){}}
+  var sv='vi';try{sv=localStorage.getItem('rivera-lang')||'vi';}catch(e){}
+  setLang(sv);
+  document.getElementById('lang').addEventListener('click',function(){setLang(document.documentElement.getAttribute('lang')==='vi'?'en':'vi');});
+
+  /* form -> production Apps Script */
+  var ENDPOINT='https://script.google.com/macros/s/AKfycbwurdZI9R-458lfe4Aelh67iBZJ4-8ZAxO4iTIANxkyLkSsqjkrTHJb0fN8nv8NhV52Qw/exec';
+  var form=document.getElementById('letter'), seal=document.getElementById('seal'), sheet=form.closest('.sheet');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var em=form.querySelector('input[type=email]');
+    if(!em.value||em.value.indexOf('@')<0){em.focus();return;}
+    var look=(form.querySelector('[name=looking] option:checked').getAttribute('data-vi')||'').trim();
+    fetch(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body:JSON.stringify({name:(form.name.value||'').trim(),phone:(form.phone.value||'').trim(),email:em.value.trim(),
+        interest:[look||'unsure'],intent:'exploring',message:(form.message.value||'').trim()})})
+      .then(done).catch(done);
+    function done(){sheet.classList.add('sent','sent-hide');seal.classList.add('show');}
+  });
+
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.14});
+    document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+  }else{document.documentElement.classList.remove('js');}
+})();
+</script>
+</body>
+</html>

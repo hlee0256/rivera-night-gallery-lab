@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rivera · Hồ sơ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+<style>
+:root{--paper:#F4F0E9;--paper2:#FBF9F4;--ink:#231A12;--soft:#6E5E4D;--brown:#7A4E2D;--tan:#C9A982;--line:rgba(35,26,18,.16);--serif:"Instrument Serif",Georgia,serif;--ease:cubic-bezier(.19,1,.22,1)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:"Manrope",system-ui,sans-serif;font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}
+::selection{background:var(--tan);color:var(--ink)}
+.serif{font-family:var(--serif);font-style:italic;font-weight:400}
+:lang(vi){--serif:"Cormorant Garamond",Georgia,serif}
+:lang(vi) .serif{font-weight:600;font-size:1.18em}
+.wrap{max-width:1080px;margin:0 auto;padding:0 clamp(20px,4vw,44px)}
+.mast{display:flex;justify-content:space-between;align-items:center;padding:22px clamp(20px,4vw,44px);border-bottom:1px solid var(--line)}
+.logo{font-weight:800;letter-spacing:.4em;font-size:1rem;color:var(--ink)}
+.mr{display:flex;gap:20px;align-items:center;font-size:.8rem;color:var(--soft)}
+.mr a:hover{color:var(--brown)}
+.langbtn{border:1px solid var(--line);border-radius:99px;background:transparent;font-family:inherit;font-size:.68rem;font-weight:700;padding:6px 12px;cursor:pointer;color:var(--soft);letter-spacing:.08em}
+.head{padding:clamp(60px,10vh,110px) 0 30px}
+.runhead{font-size:.68rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--brown);display:flex;gap:16px;align-items:center}
+.runhead::after{content:"";flex:1;height:1px;background:var(--line)}
+h1{font-size:clamp(2.4rem,6vw,4.6rem);letter-spacing:-.03em;line-height:1.04;margin-top:24px}
+h1 .serif{color:var(--brown)}
+.essay{padding:40px 0 70px;display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(36px,5vw,80px)}
+@media(max-width:820px){.essay{grid-template-columns:1fr}}
+.essay p{margin-bottom:20px;font-weight:300;color:#3a2e22;max-width:58ch}
+.essay p.opener::first-letter{font-family:var(--serif);font-style:italic;font-size:3.4em;float:left;line-height:.82;margin:.06em .12em 0 0;color:var(--brown)}
+.side{position:sticky;top:90px;align-self:start;border:1px solid var(--line);border-radius:10px;background:var(--paper2);padding:28px 26px}
+.side h5{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--brown);margin-bottom:18px}
+.pr{display:flex;gap:14px;padding:14px 0;border-top:1px solid var(--line)}
+.pr:first-of-type{border-top:0;padding-top:0}
+.pr b{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--brown);font-size:1.05rem;min-width:26px}
+.pr h4{font-size:.95rem;font-weight:600}
+.pr p{font-size:.85rem;color:var(--soft);margin-top:3px;line-height:1.55}
+.colophon{border-top:1px solid var(--line);padding:44px 0 70px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end}
+.colophon .sig{font-family:var(--serif);font-style:italic;font-size:1.7rem;color:var(--brown)}
+.colophon .lines a{display:block;color:var(--soft);font-size:.92rem;padding:3px 0}
+.colophon .lines a:hover{color:var(--brown)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s var(--ease)}
+html.js .rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1!important;transform:none!important;transition:none}}
+footer{border-top:1px solid var(--line);padding:26px 0 46px;font-size:.78rem;color:var(--soft);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<header class="mast">
+  <a class="logo" href="index.html">RIVERA</a>
+  <nav class="mr">
+    <a href="projects.html" data-en="Collection" data-vi="Bảy ngôi nhà">Bảy ngôi nhà</a>
+    <a href="insights.html" data-en="Market" data-vi="Thị trường">Thị trường</a>
+    <a href="enquire.html" data-en="Enquire" data-vi="Viết thư">Viết thư</a>
+    <button class="langbtn" id="lang" type="button"><b data-l="en">EN</b>/<b data-l="vi" class="on">VI</b></button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="head">
+    <p class="runhead" data-en="RIVERA · The practice · No. 08" data-vi="RIVERA · Hồ sơ · Số 08">RIVERA · Hồ sơ · Số 08</p>
+    <h1>Bắt đầu vì bực mình,<br/><span class="serif" data-en="giữ lại vì thích." data-vi="giữ lại vì thích.">giữ lại vì thích.</span></h1>
+  </div>
+
+  <div class="essay">
+    <div>
+      <p class="opener rv" data-en="Ten years ago someone showed us a render so wide the living room looked like a warehouse, and called it honest marketing. That afternoon is why Rivera exists." data-vi="Mười năm trước, có người đưa chúng tôi xem một tấm ảnh phối cảnh rộng đến mức phòng khách nhìn như nhà kho, và gọi đó là tiếp thị trung thực. Buổi chiều hôm ấy là lý do Rivera tồn tại.">Mười năm trước, có người đưa chúng tôi xem một tấm ảnh phối cảnh rộng đến mức phòng khách nhìn như nhà kho, và gọi đó là tiếp thị trung thực. Buổi chiều hôm ấy là lý do Rivera tồn tại.</p>
+      <p class="rv" data-en="We were tired of agents selling suburbs they had never walked through. Tired of buyers left alone with contracts written to be misunderstood. So we built the opposite: one person who walks every floor themselves, tells you the ugly parts first, and stays reachable long after the keys change hands." data-vi="Chúng tôi ngán những môi giới bán cả khu phố mà chưa từng bước chân tới. Ngán thấy người mua bị bỏ một mình với hợp đồng viết ra để gây hiểu lầm. Nên chúng tôi làm điều ngược lại: một người tự đi từng căn, nói phần xấu trước, và vẫn nghe máy lâu sau khi chìa khóa đã đổi chủ.">Chúng tôi ngán những môi giới bán cả khu phố mà chưa từng bước chân tới. Ngán thấy người mua bị bỏ một mình với hợp đồng viết ra để gây hiểu lầm. Nên chúng tôi làm điều ngược lại: một người tự đi từng căn, nói phần xấu trước, và vẫn nghe máy lâu sau khi chìa khóa đã đổi chủ.</p>
+      <p class="rv" data-en="A decade in, the numbers read like this: ten years on the streets, more than a hundred families settled, fifty suburbs covered. But the number we protect hardest is zero: zero homes sold that we have not stood inside ourselves." data-vi="Một thập kỷ trôi qua, số liệu như thế này: mười năm trên đường, hơn trăm gia đình an cư, năm mươi suburb. Nhưng con số chúng tôi giữ kỹ nhất là số không: không bán căn nào mà chưa từng đứng trong đó.">Một thập kỷ trôi qua, số liệu như thế này: mười năm trên đường, hơn trăm gia đình an cư, năm mươi suburb. Nhưng con số chúng tôi giữ kỹ nhất là số không: không bán căn nào mà chưa từng đứng trong đó.</p>
+      <p class="rv" data-en="That is the whole company. Everything else is furniture." data-vi="Đó là toàn bộ công ty này. Còn lại chỉ là đồ đạc.">Đó là toàn bộ công ty này. Còn lại chỉ là đồ đạc.</p>
+    </div>
+
+    <aside class="side rv">
+      <h5 data-en="Four house rules" data-vi="Bốn luật nhà">Bốn luật nhà</h5>
+      <div class="pr"><b>i.</b><span><h4 data-en="Walk it first" data-vi="Đi xem trước">Đi xem trước</h4><p data-en="If we have not stood in the kitchen, it does not reach you." data-vi="Chưa đứng trong bếp thì căn đó không bao giờ tới tay anh.">Chưa đứng trong bếp thì căn đó không bao giờ tới tay anh.</p></span></div>
+      <div class="pr"><b>ii.</b><span><h4 data-en="Bad news travels first" data-vi="Tin xấu nói trước">Tin xấu nói trước</h4><p data-en="Every home has a weak side. You hear it before the good bits." data-vi="Nhà nào cũng có điểm yếu. Anh nghe nó trước cả phần hay.">Nhà nào cũng có điểm yếu. Anh nghe nó trước cả phần hay.</p></span></div>
+      <div class="pr"><b>iii.</b><span><h4 data-en="One voice" data-vi="Một giọng nói">Một giọng nói</h4><p data-en="No relay race of juniors. The person who answers knows your file." data-vi="Không chuyển ca trợ lý trẻ. Người trả lời là người nắm hồ sơ của anh.">Không chuyển ca trợ lý trẻ. Người trả lời là người nắm hồ sơ của anh.</p></span></div>
+      <div class="pr"><b>iv.</b><span><h4 data-en="Aftercare stays open" data-vi="Hỗ trợ không đóng cửa">Hỗ trợ không đóng cửa</h4><p data-en="Two years after settlement and you need a tradesman? Call." data-vi="Nhận nhà hai năm cần thợ sửa? Vẫn cứ gọi.">Nhận nhà hai năm cần thợ sửa? Vẫn cứ gọi.</p></span></div>
+    </aside>
+  </div>
+
+  <div class="colophon rv">
+    <span class="sig" data-en="Written at the front desk, Melbourne." data-vi="Viết ở bàn tiền, Melbourne.">Viết ở bàn tiền, Melbourne.</span>
+    <span class="lines">
+      <a href="mailto:info.riveraau@gmail.com">info.riveraau@gmail.com</a>
+      <a href="tel:+84782067555">VN · +84 782 067 555</a>
+      <a href="tel:+61450151686">AUS · +61 450 151 686</a>
+    </span>
+  </div>
+</main>
+
+<footer class="wrap">
+  <span data-en="Rivera · A boutique property practice" data-vi="Rivera · Công ty tư vấn nhà đất chọn lọc">Rivera · Công ty tư vấn nhà đất chọn lọc</span>
+  <span data-en="Folio No. 08 · Paper & Light edition" data-vi="Số 08 · bản Paper & Light">Số 08 · bản Paper & Light</span>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+(function(){
+  function setLang(l){
+    l=(l==='en')?'en':'vi';
+    document.documentElement.setAttribute('lang',l);
+    document.querySelectorAll('[data-en]').forEach(function(el){var t=el.getAttribute('data-'+l);if(t!==null)el.textContent=t;});
+    document.querySelectorAll('.langbtn b[data-l]').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-l')===l);});
+    try{localStorage.setItem('rivera-lang',l);}catch(e){}
+  }
+  var saved='vi'; try{saved=localStorage.getItem('rivera-lang')||'vi';}catch(e){}
+  setLang(saved);
+  document.getElementById('lang').addEventListener('click',function(){
+    setLang(document.documentElement.getAttribute('lang')==='vi'?'en':'vi');
+  });
+  if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14});
+    document.querySelectorAll('.rv').forEach(function(el,i){el.style.transitionDelay=(i%3)*.07+'s';io.observe(el);});
+  }else{
+    document.documentElement.classList.remove('js');
+  }
+})();
+</script>
+</body>
+</html>

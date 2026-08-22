@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rivera · Triển lãm</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Instrument+Serif:ital@0;1&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+<style>
+:root{--bg:#0E0B08;--bg2:#141009;--tan:#C9A982;--sand:#E6DACA;--paper:#F4F0E9;--line:rgba(201,169,130,.20);--muted:rgba(230,218,202,.60);--serif:"Instrument Serif",serif;--vserif:"Cormorant Garamond",serif;--ease:cubic-bezier(.16,1,.3,1)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--sand);font-family:"Manrope",system-ui,sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}
+::selection{background:var(--tan);color:#1B130D}
+.serif{font-family:var(--serif);font-style:italic;font-weight:400}
+:lang(vi){--serif:"Cormorant Garamond",Georgia,serif}
+:lang(vi) .serif{font-weight:600;font-size:1.16em}
+.nav{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;justify-content:space-between;align-items:center;padding:18px clamp(18px,4vw,44px);background:rgba(14,11,8,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.logo{font-weight:800;letter-spacing:.42em;font-size:.95rem;color:var(--paper)}
+.nr{display:flex;gap:20px;align-items:center;font-size:.76rem;color:var(--muted)}
+.nr a:hover,.nr a.on{color:var(--tan)}
+.langbtn{border:1px solid var(--line);background:transparent;border-radius:99px;padding:6px 12px;font-family:inherit;font-size:.66rem;font-weight:700;letter-spacing:.1em;color:var(--muted);cursor:pointer}
+.langbtn b.on{color:var(--tan)}
+@media(max-width:820px){.nr a{display:none}}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
+.head{padding:130px 0 40px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.kicker{font-size:.68rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--tan)}
+h1{font-size:clamp(2.4rem,6vw,4.4rem);color:var(--paper);letter-spacing:-.02em;margin-top:16px;line-height:1.04}
+.head p{color:var(--muted);max-width:38ch;font-weight:300}
+.exh{display:grid;grid-template-columns:minmax(280px,1fr) minmax(260px,.85fr);gap:clamp(20px,4vw,56px);padding:clamp(34px,6vh,60px) 0;border-top:1px solid var(--line);align-items:center}
+.exh:nth-child(even) .fig{order:2}
+.fig{position:relative;border-radius:12px;overflow:hidden;background:var(--bg2);aspect-ratio:16/10;box-shadow:0 40px 90px -45px rgba(0,0,0,.95)}
+.fig img{width:100%;height:100%;object-fit:cover;transform:scale(1.03);transition:transform 1.2s var(--ease),filter .8s ease;filter:saturate(.82) brightness(.92)}
+.exh:hover .fig img{transform:scale(1.08);filter:saturate(1) brightness(1)}
+.no{position:absolute;left:-10px;top:-30px;font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-size:clamp(5rem,10vw,8rem);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(201,169,130,.35);pointer-events:none;z-index:2}
+:lang(vi) .no{font-family:var(--vserif);font-weight:500}
+.exh h2{font-size:clamp(1.6rem,3.4vw,2.6rem);color:var(--paper);font-weight:600;letter-spacing:-.02em;line-height:1.08;margin:14px 0 12px}
+.exh .sub{font-size:.68rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--tan)}
+.exh p.d{color:var(--muted);font-weight:300;max-width:48ch;margin-bottom:16px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.pill{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--line);border-radius:99px;padding:7px 13px;color:var(--muted)}
+.pill.gold{background:var(--tan);border-color:var(--tan);color:#1B130D}
+.lnk{display:inline-flex;gap:8px;font-size:.76rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--tan);border-bottom:1px solid transparent;padding-bottom:3px;transition:border-color .25s}
+.exh:hover .lnk{border-color:var(--tan)}
+@media(max-width:860px){.exh,.exh:nth-child(even){grid-template-columns:1fr}.exh:nth-child(even) .fig{order:0}.no{left:auto;right:6px;top:-18px}}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .95s ease,transform .95s var(--ease)}
+html.js .rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1!important;transform:none!important}.fig img{transform:none;transition:none}}
+footer{border-top:1px solid var(--line);padding:30px 0 46px}
+.foot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:.78rem}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="logo" href="index.html">RIVERA</a>
+  <div class="nr">
+    <a class="on" href="projects.html" data-en="Collection" data-vi="Triển lãm">Triển lãm</a>
+    <a href="map.html" data-en="Map room" data-vi="Phòng bản đồ">Phòng bản đồ</a>
+    <a href="insights.html" data-en="Reading" data-vi="Tủ đọc">Tủ đọc</a>
+    <button class="langbtn" id="lang"><b data-l="en">EN</b>/<b data-l="vi" class="on">VI</b></button>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="head">
+    <div>
+      <p class="kicker" data-en="Rivera · The exhibition" data-vi="Rivera · Triển lãm">Rivera · Triển lãm</p>
+      <h1><span data-en="Seven works," data-vi="Bảy tác phẩm," >Bảy tác phẩm,</span> <span class="serif" data-en="hung in the dark." data-vi="treo trong bóng tối.">treo trong bóng tối.</span></h1>
+    </div>
+    <p data-en="Each one inspected in person before it earned a frame. Walk through any of them." data-vi="Căn nào cũng phải qua mắt chúng tôi trước khi được đóng khung. Cứ bước vào xem.">Căn nào cũng phải qua mắt chúng tôi trước khi được đóng khung. Cứ bước vào xem.</p>
+  </div>
+
+  <article class="exh rv"><a class="fig" href="../../aura-melbourne-square.html"><span class="no">01</span><img src="../../images/aura-melbourne-square/exterior-overview.jpg" alt="AURA" loading="lazy"/></a>
+    <div><p class="sub">Southbank · <span data-en="Now selling" data-vi="Đang mở bán">Đang mở bán</span></p>
+      <h2>AURA <span class="serif">Melbourne Square</span></h2>
+      <p class="d" data-en="Sixty-seven levels over Kennedy Park. Three sky clubs, a Japanese garden, and the whole Arts Precinct humming below." data-vi="Sáu mươi bảy tầng trên công viên Kennedy. Ba sky club, một khu vườn Nhật, và cả Khu Nghệ thuật rộn ràng dưới chân.">Sáu mươi bảy tầng trên công viên Kennedy. Ba sky club, một khu vườn Nhật, và cả Khu Nghệ thuật rộn ràng dưới chân.</p>
+      <div class="meta"><span class="pill gold" data-en="Now selling" data-vi="Đang mở bán">Đang mở bán</span><span class="pill">COX</span><span class="pill" data-en="from $579K" data-vi="từ $579K">từ $579K</span></div>
+      <a class="lnk" href="../../aura-melbourne-square.html" data-en="Step inside →" data-vi="Bước vào →">Bước vào →</a></div>
+  </article>
+
+  <article class="exh rv"><a class="fig" href="../../collins-wharf-aluna.html"><span class="no">02</span><img src="../../images/collins-wharf-aluna/exterior-2.jpg" alt="Aluna" loading="lazy"/></a>
+    <div><p class="sub">Docklands · <span data-en="Now selling" data-vi="Đang mở bán">Đang mở bán</span></p>
+      <h2>Collins Wharf <span class="serif">Aluna</span></h2>
+      <p class="d" data-en="Twenty-eight storeys of glass at the water. The harbour does the interior decorating." data-vi="Hai mươi tám tầng kính bên nước. Phần trang trí nội thất để cảng biển lo.">Hai mươi tám tầng kính bên nước. Phần trang trí nội thất để cảng biển lo.</p>
+      <div class="meta"><span class="pill gold" data-en="Now selling" data-vi="Đang mở bán">Đang mở bán</span><span class="pill">Lendlease</span><span class="pill">2029</span></div>
+      <a class="lnk" href="../../collins-wharf-aluna.html" data-en="Step inside →" data-vi="Bước vào →">Bước vào →</a></div>
+  </article>
+
+  <article class="exh rv"><a class="fig" href="../../collins-wharf-ancora.html"><span class="no">03</span><img src="../../images/collins-wharf-ancora/exterior-dusk.jpg" alt="Ancora" loading="lazy"/></a>
+    <div><p class="sub">Docklands · <span data-en="Under construction" data-vi="Đang xây">Đang xây</span></p>
+      <h2>Collins Wharf <span class="serif">Ancora</span></h2>
+      <p class="d" data-en="Lendlease builds it day by day. Harbour to the north, city glow to the east." data-vi="Lendlease dựng từng ngày. View cảng về bắc, đèn phố về đông.">Lendlease dựng từng ngày. View cảng về bắc, đèn phố về đông.</p>
+      <div class="meta"><span class="pill gold" data-en="Selling" data-vi="Đang bán">Đang bán</span><span class="pill">2027</span></div>
+      <a class="lnk" href="../../collins-wharf-ancora.html" data-en="Step inside →" data-vi="Bước vào →">Bước vào →</a></div>
+  </article>
+
+  <article class="exh rv"><a class="fig" href="../../671-chapel-street.html"><span class="no">04</span><img src="../../images/671-chapel-street/facade.jpg" alt="671 Chapel" loading="lazy"/></a>
+    <div><p class="sub">South Yarra · <span data-en="Now selling" data-vi="Đang mở bán">Đang mở bán</span></p>
+      <h2>671 <span class="serif">Chapel Street</span></h2>
+      <p class="d" data-en="A full wellness floor downstairs, stone and Gaggenau upstairs, Chapel Street for everything else." data-vi="Nguyên một tầng wellness dưới nhà, đá tự nhiên và bếp Gaggenau trên nhà, Chapel Street lo phần còn lại.">Nguyên một tầng wellness dưới nhà, đá tự nhiên và bếp Gaggenau trên nhà, Chapel Street lo phần còn lại.</p>
+      <div class="meta"><span class="pill gold" data-en="Now selling" data-vi="Đang mở bán">Đang mở bán</span><span class="pill">CASA · Bates Smart</span><span class="pill">2028</span></div>
+      <a class="lnk" href="../../671-chapel-street.html" data-en="Step inside →" data-vi="Bước vào →">Bước vào →</a></div>
+  </article>
+
+  <article class="exh rv"><a class="fig" href="../../380-melbourne.html"><span class="no">05</span><img src="../../images/380-melbourne/exterior-3.jpg" alt="380 Melbourne" loading="lazy"/></a>
+    <div><p class="sub">CBD · <span data-en="Completed" data-vi="Đã hoàn thiện">Đã hoàn thiện</span></p>
+      <h2>380 <span class="serif">Melbourne</span></h2>
+      <p class="d" data-en="Two Elenberg Fraser towers in the middle of everything. Keys ready when you are." data-vi="Hai tòa tháp Elenberg Fraser giữa lòng thành phố. Chìa khóa sẵn, chỉ chờ anh.">Hai tòa tháp Elenberg Fraser giữa lòng thành phố. Chìa khóa sẵn, chỉ chờ anh.</p>
+      <div class="meta"><span class="pill" data-en="Completed" data-vi="Đã hoàn thiện">Đã hoàn thiện</span><span class="pill" data-en="Move-in ready" data-vi="Vào ở ngay">Vào ở ngay</span></div>
+      <a class="lnk" href="../../380-melbourne.html" data-en="Step inside →" data-vi="Bước vào →">Bước vào →</a></div>
+  </article>
+
+  <article class="exh rv"><a class="fig" href="../../aspire.html"><span class="no">06</span><img src="../../images/aspire/exterior-2.jpg" alt="Aspire" loading="lazy"/></a>
+    <div><p class="sub">CBD · <span data-en="Completed" data-vi="Đã hoàn thiện">Đã hoàn thiện</span></p>
+      <h2>Aspire <span class="serif">Melbourne</span></h2>
+      <p class="d" data-en="Beside Flagstaff Gardens, ICD built, done arguing with itself years ago." data-vi="Cạnh Flagstaff Gardens, ICD xây, đã ngừng làm khó bản thân từ lâu.">Cạnh Flagstaff Gardens, ICD xây, đã ngừng làm khó bản thân từ lâu.</p>
+      <div class="meta"><span class="pill" data-en="Completed" data-vi="Đã hoàn thiện">Đã hoàn thiện</span><span class="pill">ICD</span></div>
+      <a class="lnk" href="../../aspire.html" data-en="Step inside →" data-vi="Bước vào →">Bước vào →</a></div>
+  </article>
+
+  <article class="exh rv"><a class="fig" href="../../piccolo-house.html"><span class="no">07</span><img src="../../images/piccolo-house/exterior-1.jpg" alt="Piccolo House" loading="lazy"/></a>
+    <div><p class="sub">Kew · <span data-en="Completed" data-vi="Đã hoàn thiện">Đã hoàn thiện</span></p>
+      <h2>Piccolo <span class="serif">House</span></h2>
+      <p class="d" data-en="Garden pavilions in Kew quiet, a wine cellar for long weekends, golf next door." data-vi="Những pavilion vườn trong bóng tối dịu của Kew, hầm rượu cho cuối weekend dài, sân golf ngay cạnh.">Những pavilion vườn trong bóng tối dịu của Kew, hầm rượu cho cuối tuần dài, sân golf ngay cạnh.</p>
+      <div class="meta"><span class="pill" data-en="Completed" data-vi="Đã hoàn thiện">Đã hoàn thiện</span><span class="pill">Kew</span></div>
+      <a class="lnk" href="../../piccolo-house.html" data-en="Step inside →" data-vi="Bước vào →">Bước vào →</a></div>
+  </article>
+</main>
+
+<footer><div class="wrap foot">
+  <span>© 2026 RIVERA</span>
+  <span data-en="The exhibition · Night Gallery edition" data-vi="Triển lãm · bản Night Gallery">Triển lãm · bản Night Gallery</span>
+</div></footer>
+
+<script>
+document.documentElement.classList.add('js');
+(function(){
+  function setLang(l){l=(l==='en')?'en':'vi';document.documentElement.setAttribute('lang',l);
+    document.querySelectorAll('[data-en]').forEach(function(el){var t=el.getAttribute('data-'+l);if(t!==null)el.textContent=t;});
+    document.querySelectorAll('.langbtn b[data-l]').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-l')===l);});
+    try{localStorage.setItem('rivera-lang',l);}catch(e){}}
+  var sv='vi';try{sv=localStorage.getItem('rivera-lang')||'vi';}catch(e){}
+  setLang(sv);
+  document.getElementById('lang').addEventListener('click',function(){setLang(document.documentElement.getAttribute('lang')==='vi'?'en':'vi');});
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+    document.querySelectorAll('.rv').forEach(function(el,i){el.style.transitionDelay=(i%2)*.08+'s';io.observe(el);});
+  }else{document.documentElement.classList.remove('js');}
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rivera 2.0 · Night Gallery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet" />
+<style>
+:root{--bg:#0E0B08;--tan:#C9A982;--ink:#F4EDE2;--faint:rgba(244,237,226,.5);--line:rgba(244,237,226,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:"Manrope",system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+header{padding:30px clamp(20px,5vw,60px) 6px;display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.logo{font-weight:800;letter-spacing:.42em;font-size:1rem}
+header p{color:var(--faint);font-size:.82rem}
+.main-link{display:block;margin:26px clamp(20px,5vw,60px) 10px;padding:clamp(28px,5vw,54px);border:1px solid rgba(201,169,130,.45);border-radius:16px;text-decoration:none;color:inherit;background:linear-gradient(150deg,#1A1030,#171009 55%,#0E0B08);transition:border-color .25s,transform .4s cubic-bezier(.19,1,.3,1)}
+.main-link:hover{border-color:#C9A982;transform:translateY(-3px)}
+.main-link b{display:block;font-size:.64rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#C9A982;margin-bottom:14px}
+.main-link h1{font-size:clamp(1.8rem,4.5vw,3.2rem);font-weight:700;letter-spacing:-.02em;line-height:1.05}
+.main-link h1 i{font-family:"Instrument Serif",Georgia,serif;font-style:italic;color:#C9A982}
+:lang(vi) .main-link h1 i{font-family:"Cormorant Garamond",serif;font-weight:500}
+.main-link p{margin-top:12px;color:var(--faint);max-width:60ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;padding:6px clamp(20px,5vw,60px) 46px}
+a.v{display:block;padding:20px;border:1px solid var(--line);border-radius:12px;text-decoration:none;color:inherit;background:#141009;transition:border-color .25s,transform .35s cubic-bezier(.19,1,.3,1)}
+a.v:hover{border-color:#C9A982;transform:translateY(-3px)}
+a.v h3{font-size:.95rem;margin-bottom:6px}
+a.v p{font-size:.8rem;color:var(--faint);line-height:1.55}
+.old{padding:0 clamp(20px,5vw,60px) 40px;color:rgba(244,237,226,.32);font-size:.78rem}
+.old a{color:rgba(201,169,130,.6)}
+footer{margin-top:auto;padding:18px clamp(20px,5vw,60px) 26px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:rgba(244,237,226,.32);font-size:.74rem}
+</style>
+</head>
+<body>
+<header><span class="logo">RIVERA</span><p>2.0 · Night Gallery · toàn bộ site</p></header>
+
+<a class="main-link" href="pages/index.html">
+  <b data-en="The site · start here" data-vi="Trang chính · vào đây">Trang chính · vào đây</b>
+  <h1>Night Gallery — <i>bảy tác phẩm treo trong bóng tối.</i></h1>
+  <p data-en="Full site: landing · exhibition · map room · reading shelf · practice profile · buyer's manual · letter page. Vietnamese default, EN toggle on every page." data-vi="Site đầy đủ: trang chủ · triển lãm · phòng bản đồ · tủ đọc · hồ sơ · cẩm nang · trang viết thư. Mặc định tiếng Việt, chuyển EN ở mọi trang.">Site đầy đủ: trang chủ · triển lãm · phòng bản đồ · tủ đọc · hồ sơ · cẩm nang · trang viết thư. Mặc định tiếng Việt, chuyển EN ở mọi trang.</p>
+</a>
+
+<div class="grid">
+  <a class="v" href="pages/projects.html"><h3>Triển lãm · projects</h3><p>Bảy dự án như tác phẩm, số khung viền mờ, ảnh sáng dần khi rê.</p></a>
+  <a class="v" href="pages/map.html"><h3>Phòng bản đồ · map</h3><p>Cuộn để chạy hết một ngày Melbourne: trời đổi màu, mặt trời di chuyển, đồng hồ chạy.</p></a>
+  <a class="v" href="pages/insights.html"><h3>Tủ đọc · insights</h3><p>Ghi chú thị trường kể lại cho rõ, không tiên tri.</p></a>
+  <a class="v" href="pages/about.html"><h3>Hồ sơ · about</h3><p>Công ty bắt đầu vì bực mình, giữ lại vì thích.</p></a>
+  <a class="v" href="pages/guide.html"><h3>Cẩm nang · guide</h3><p>Sáu chặng từ tiền cọc đến chìa khóa, không bất ngờ.</p></a>
+  <a class="v" href="pages/enquire.html"><h3>Viết thư · enquire</h3><p>Một lá thư, một câu trả lời thật, dấu ĐÃ NHẬN đóng khi gửi.</p></a>
+  <a class="v" href="pages/aura-melbourne-square.html"><h3>AURA · chương riêng</h3><p>Trang dự án mẫu theo chất Night Gallery (đang hoàn thiện).</p></a>
+</div>
+
+<p class="old">Concept cũ để so sánh: <a href="studio-a/index.html">Night Gallery (gốc)</a> · <a href="studio-b/index.html">Paper &amp; Light</a> · <a href="studio-c/index.html">Melbourne Grid</a> · <a href="studio-main/index.html">Golden Hour</a></p>
+
+<footer><span>RIVERA 2.0 transformation sprint</span><span>NIGHT GALLERY edition · VI default</span></footer>
+</body>
+</html>

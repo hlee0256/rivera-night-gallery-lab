@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rivera · Cẩm nang người mua</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Instrument+Serif:ital@0;1&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+<style>
+:root{--bg:#0E0B08;--bg2:#141009;--tan:#C9A982;--sand:#E6DACA;--paper:#F4F0E9;--line:rgba(201,169,130,.20);--muted:rgba(230,218,202,.60);--serif:"Instrument Serif",serif;--vserif:"Cormorant Garamond",serif;--ease:cubic-bezier(.16,1,.3,1)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--sand);font-family:"Manrope",system-ui,sans-serif;font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--tan);color:#1B130D}
+.serif{font-family:var(--serif);font-style:italic;font-weight:400}
+:lang(vi){--serif:"Cormorant Garamond",Georgia,serif}
+:lang(vi) .serif{font-weight:600;font-size:1.16em}
+.nav{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;justify-content:space-between;align-items:center;padding:18px clamp(18px,4vw,44px);background:rgba(14,11,8,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.logo{font-weight:800;letter-spacing:.42em;font-size:.95rem;color:var(--paper)}
+.nr{display:flex;gap:20px;align-items:center;font-size:.76rem;color:var(--muted)}
+.nr a:hover{color:var(--tan)}
+.langbtn{border:1px solid var(--line);background:transparent;border-radius:99px;padding:6px 12px;font-family:inherit;font-size:.66rem;font-weight:700;letter-spacing:.1em;color:var(--muted);cursor:pointer}
+.langbtn b.on{color:var(--tan)}
+@media(max-width:820px){.nr a{display:none}}
+.wrap{max-width:1000px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
+.head{padding:130px 0 46px}
+.kicker{font-size:.68rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--tan)}
+h1{font-size:clamp(2.2rem,5.6vw,4rem);color:var(--paper);letter-spacing:-.02em;margin-top:16px;line-height:1.06}
+.head p{margin-top:18px;color:var(--muted);max-width:56ch;font-weight:300}
+.step{display:grid;grid-template-columns:120px 1fr;gap:clamp(18px,4vw,56px);padding:clamp(30px,5vh,48px) 0;border-top:1px solid var(--line)}
+.step-no{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-size:clamp(2.4rem,5vw,3.6rem);line-height:1;color:var(--tan);opacity:.9}
+:lang(vi) .step-no{font-family:var(--vserif);font-weight:500}
+.step h2{font-size:clamp(1.3rem,2.6vw,1.8rem);color:var(--paper);font-weight:600;letter-spacing:-.015em;margin-bottom:12px}
+.step p{color:var(--muted);font-weight:300;max-width:60ch;margin-bottom:12px}
+.step p b{color:var(--sand);font-weight:600}
+.warn{margin-top:14px;padding:16px 20px;border-left:2px solid var(--tan);background:rgba(201,169,130,.06);border-radius:0 8px 8px 0;font-size:.92rem;color:var(--sand)}
+.warn b{color:var(--tan)}
+@media(max-width:680px){.step{grid-template-columns:1fr;gap:10px}}
+.cta{margin:60px 0 80px;border:1px solid var(--line);border-radius:14px;padding:clamp(28px,5vw,52px);text-align:center;background:var(--bg2)}
+.cta h3{font-size:clamp(1.4rem,3vw,2rem);color:var(--paper);font-weight:600;letter-spacing:-.02em}
+.cta p{color:var(--muted);margin:12px auto 24px;max-width:46ch;font-weight:300}
+.cta a.btn{display:inline-flex;align-items:center;gap:10px;background:var(--tan);color:#1B130D;border-radius:4px;padding:16px 30px;font-size:.82rem;font-weight:700;letter-spacing:.05em;transition:transform .3s var(--ease),background .25s}
+.cta a.btn:hover{transform:translateY(-2px);background:#D8BC97}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s var(--ease)}
+html.js .rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1!important;transform:none!important}}
+footer{border-top:1px solid var(--line);padding:30px 0 46px}
+.foot{max-width:1000px;margin:0 auto;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:.78rem}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="logo" href="index.html">RIVERA</a>
+  <div class="nr">
+    <a href="projects.html" data-en="Collection" data-vi="Triển lãm">Triển lãm</a>
+    <a href="map.html" data-en="Map room" data-vi="Phòng bản đồ">Phòng bản đồ</a>
+    <a href="insights.html" data-en="Reading" data-vi="Tủ đọc">Tủ đọc</a>
+    <button class="langbtn" id="lang"><b data-l="en">EN</b>/<b data-l="vi" class="on">VI</b></button>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="head">
+    <p class="kicker" data-en="Rivera · The buyer's manual" data-vi="Rivera · Cẩm nang người mua">Rivera · Cẩm nang người mua</p>
+    <h1><span data-en="Six steps," data-vi="Sáu chặng," >Sáu chặng,</span> <span class="serif" data-en="no surprises." data-vi="không bất ngờ.">không bất ngờ.</span></h1>
+    <p data-en="The whole journey from deposit to keys, told the way we wish someone had told us. Read it once before you fall for a floor plan." data-vi="Cả hành trình từ tiền đặt cọc đến chìa khóa, kể theo cách chúng tôi mong có ai kể cho mình nghe sớm hơn. Đọc một lượt trước khi mê tấm phối cảnh.">Cả hành trình từ tiền đặt cọc đến chìa khóa, kể theo cách chúng tôi mong có ai kể cho mình nghe sớm hơn. Đọc một lượt trước khi mê tấm phối cảnh.</p>
+  </div>
+
+  <section class="step rv">
+    <span class="step-no">01</span>
+    <div>
+      <h2 data-en="The deposit: money with an asterisk" data-vi="Tiền đặt cọc: tiền có dấu sao">Tiền đặt cọc: tiền có dấu sao</h2>
+      <p data-en="Off the plan, the deposit is typically <b>10%</b>, held in a trust account, not the developer's pocket. Ask which bank guarantees the trust. No bank guarantee, no deposit." data-vi="Mua dự án, tiền cọc thường là <b>10%</b>, nằm trong tài khoản ủy thác, không phải túi chủ đầu tư. Hỏi rõ ngân hàng nào bảo lãnh tài khoản đó. Không có bảo lãnh thì chưa cọc.">Mua dự án, tiền cọc thường là <b>10%</b>, nằm trong tài khoản ủy thác, không phải túi chủ đầu tư. Hỏi rõ ngân hàng nào bảo lãnh tài khoản đó. Không có bảo lãnh thì chưa cọc.</p>
+      <div class="warn"><b data-en="Rivera says:" data-vi="Rivera nói thẳng:">Rivera nói thẳng:</b> <span data-en="a deposit you cannot cleanly get back is a decision, not a gesture." data-vi="Tiền cọc mà không rút lại được sạch sẽ thì đó là quyết định, không phải lời hứa.">Tiền cọc mà không rút lại được sạch sẽ thì đó là quyết định, không phải lời hứa.</span></div>
+    </div>
+  </section>
+
+  <section class="step rv">
+    <span class="step-no">02</span>
+    <div>
+      <h2 data-en="The contract: read the boring pages" data-vi="Hợp đồng: đọc mấy trang nhàm chán">Hợp đồng: đọc mấy trang nhàm chán</h2>
+      <p data-en="Victoria gives a <b>3-business-day cooling-off</b> window on most private sales (not auctions). The contract of sale section 32 disclosures matter more than the glossy brochure attached to them." data-vi="Ở Victoria, đa số mua bán tư nhân có <b>3 ngày làm việc để hủy</b> (riêng đấu giá thì không). Phần công bố thông tin trong hợp đồng quan trọng hơn cuốn brochure đẹp đính kèm.">Ở Victoria, đa số mua bán tư nhân có <b>3 ngày làm việc để hủy</b> (riêng đấu giá thì không). Phần công bố thông tin trong hợp đồng quan trọng hơn cuốn brochure đẹp đính kèm.</p>
+      <div class="warn"><b data-en="Rivera says:" data-vi="Rivera nói thẳng:">Rivera nói thẳng:</b> <span data-en="we walk the section 32 with you, line by line, before you sign. Bring coffee." data-vi="Chúng tôi ngồi đọc từng dòng phần công bố cùng anh trước khi ký. Mang cà phê đến là được.">Chúng tôi ngồi đọc từng dòng phần công bố cùng anh trước khi ký. Mang cà phê đến là được.</span></div>
+    </div>
+  </section>
+
+  <section class="step rv">
+    <span class="step-no">03</span>
+    <div>
+      <h2 data-en="Off the plan: dating a floor plan" data-vi="Mua dự án: hẹn hò với tấm bản vẽ">Mua dự án: hẹn hò với tấm bản vẽ</h2>
+      <p data-en="You are buying something that does not exist yet. Settlement can be <b>2 to 4 years</b> out. Renders are artist's impressions, not promises. The building that rises can differ, within the law, from the picture that charmed you." data-vi="Anh đang mua thứ chưa tồn tại. Bàn giao có thể <b>2 đến 4 năm</b>. Ảnh phối cảnh là tranh họa sĩ, không phải lời hứa. Tòa nhà mọc lên có thể khác tấm hình đã làm anh say, và vẫn hợp pháp.">Anh đang mua thứ chưa tồn tại. Bàn giao có thể <b>2 đến 4 năm</b>. Ảnh phối cảnh là tranh họa sĩ, không phải lời hứa. Tòa nhà mọc lên có thể khác tấm hình đã làm anh say, và vẫn hợp pháp.</p>
+      <div class="warn"><b data-en="Rivera says:" data-vi="Rivera nói thẳng:">Rivera nói thẳng:</b> <span data-en="buy the developer's track record, the architect's name, and the orientation. In that order." data-vi="Hãy mua uy tín chủ đầu tư, tên kiến trúc sư, và hướng căn. Đúng thứ tự đó.">Hãy mua uy tín chủ đầu tư, tên kiến trúc sư, và hướng căn. Đúng thứ tự đó.</span></div>
+    </div>
+  </section>
+
+  <section class="step rv">
+    <span class="step-no">04</span>
+    <div>
+      <h2 data-en="Stamp duty: the quiet third sibling" data-vi="Thuế trước bạ: người anh cả ít nói">Thuế trước bạ: người anh cả ít nói</h2>
+      <p data-en="Victorian stamp duty runs into tens of thousands. Off the plan can cut it substantially because duty is calculated on the construction portion not yet built. Concessions exist for owner-occupiers; they change, so check at contract time, not at dinner-party time." data-vi="Thuế trước bạ ở Victoria tính lên hàng chục nghìn đô. Mua dự án có thể giảm đáng kể vì chỉ tính phần xây dựng chưa hoàn thành. Có ưu đãi cho người mua ở thật; chính sách hay đổi, hỏi lúc ký hợp đồng chứ đừng hỏi lúc đi tiệc.">Thuế trước bạ ở Victoria tính lên hàng chục nghìn đô. Mua dự án có thể giảm đáng kể vì chỉ tính phần xây dựng chưa hoàn thành. Có ưu đãi cho người mua ở thật; chính sách hay đổi, hỏi lúc ký hợp đồng chứ đừng hỏi lúc đi tiệc.</p>
+    </div>
+  </section>
+
+  <section class="step rv">
+    <span class="step-no">05</span>
+    <div>
+      <h2 data-en="FIRB: the paperwork for overseas buyers" data-vi="FIRB: giấy tờ cho người mua ở nước ngoài">FIRB: giấy tờ cho người mua ở nước ngoài</h2>
+      <p data-en="Non-residents buy <b>newly built</b> homes, not established ones, and apply to the FIRB first with an application fee. The approval letter has conditions. Read them; they are not decorative." data-vi="Người không cư trú chỉ được mua <b>nhà mới xây</b>, không phải nhà đã qua sử dụng, và phải nộp đơn FIRB trước với một khoản phí. Thư chấp thuận có kèm điều kiện. Đọc kỹ, chúng không phải trang trí.">Người không cư trú chỉ được mua <b>nhà mới xây</b>, không phải nhà đã qua sử dụng, và phải nộp đơn FIRB trước với một khoản phí. Thư chấp thuận có kèm điều kiện. Đọc kỹ, chúng không phải trang trí.</p>
+      <div class="warn"><b data-en="Rivera says:" data-vi="Rivera nói thẳng:">Rivera nói thẳng:</b> <span data-en="we prepare the FIRB file with you. It is paperwork, not a mystery." data-vi="Chúng tôi chuẩn bị bộ hồ sơ FIRB cùng anh. Đó là giấy tờ, không phải phép màu khó đoán.">Chúng tôi chuẩn bị bộ hồ sơ FIRB cùng anh. Đó là giấy tờ, không phải phép màu khó đoán.</span></div>
+    </div>
+  </section>
+
+  <section class="step rv">
+    <span class="step-no">06</span>
+    <div>
+      <h2 data-en="Settlement: keys, finally" data-vi="Bàn giao: chìa khóa, cuối cùng">Bàn giao: chìa khóa, cuối cùng</h2>
+      <p data-en="Before handover we do a defect walk together: every scratch, every door that sulks, photographed and lodged while the builder still answers the phone. Strata fees arrive with the keys. Budget for them from day one." data-vi="Trước khi nhận nhà, chúng tôi đi kiểm lỗi cùng anh: từng vết xước, từng cánh cửa hờn dỗi, chụp ảnh và gửi khi thợ còn nghe máy. Phí quản lý tòa nhà đến cùng lúc chìa khóa. Tính sẵn vào chi tiêu từ ngày đầu.">Trước khi nhận nhà, chúng tôi đi kiểm lỗi cùng anh: từng vết xước, từng cánh cửa hờn dỗi, chụp ảnh và gửi khi thợ còn nghe máy. Phí quản lý tòa nhà đến cùng lúc chìa khóa. Tính sẵn vào chi tiêu từ ngày đầu.</p>
+    </div>
+  </section>
+
+  <div class="cta rv">
+    <h3 data-en="Rather walk it than read it?" data-vi="Đọc mệt rồi, muốn đi xem luôn?">Đọc mệt rồi, muốn đi xem luôn?</h3>
+    <p data-en="We do the six steps with you, in person, in the actual suburbs. That is the job." data-vi="Cả sáu chặng, chúng tôi đi cùng anh, tại chính con phố đó. Đó là việc của chúng tôi.">Cả sáu chặng, chúng tôi đi cùng anh, tại chính con phố đó. Đó là việc của chúng tôi.</p>
+    <a class="btn" href="enquire.html"><span data-en="Write to us" data-vi="Viết thư cho chúng tôi">Viết thư cho chúng tôi</span> →</a>
+  </div>
+</main>
+
+<footer><div class="foot">
+  <span>© 2026 RIVERA</span>
+  <span data-en="General information only · not legal or financial advice" data-vi="Chỉ mang tính tham khảo · không phải tư vấn pháp lý hay tài chính">Chỉ mang tính tham khảo · không phải tư vấn pháp lý hay tài chính</span>
+</div></footer>
+
+<script>
+document.documentElement.classList.add('js');
+(function(){
+  function setLang(l){l=(l==='en')?'en':'vi';document.documentElement.setAttribute('lang',l);
+    document.querySelectorAll('[data-en]').forEach(function(el){var t=el.getAttribute('data-'+l);if(t!==null)el.innerHTML=t;});
+    document.querySelectorAll('.langbtn b[data-l]').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-l')===l);});
+    try{localStorage.setItem('rivera-lang',l);}catch(e){}}
+  var sv='vi';try{sv=localStorage.getItem('rivera-lang')||'vi';}catch(e){}
+  setLang(sv);
+  document.getElementById('lang').addEventListener('click',function(){setLang(document.documentElement.getAttribute('lang')==='vi'?'en':'vi');});
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+    document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+  }else{document.documentElement.classList.remove('js');}
+})();
+</script>
+</body>
+</html>

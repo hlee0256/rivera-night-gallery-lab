@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rivera · Tủ đọc</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Instrument+Serif:ital@0;1&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+<style>
+:root{--bg:#0E0B08;--bg2:#141009;--tan:#C9A982;--sand:#E6DACA;--paper:#F4F0E9;--line:rgba(201,169,130,.20);--muted:rgba(230,218,202,.60);--serif:"Instrument Serif",serif;--vserif:"Cormorant Garamond",serif;--ease:cubic-bezier(.16,1,.3,1)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--sand);font-family:"Manrope",system-ui,sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--tan);color:#1B130D}
+.serif{font-family:var(--serif);font-style:italic;font-weight:400}
+:lang(vi){--serif:"Cormorant Garamond",Georgia,serif}
+:lang(vi) .serif{font-weight:600;font-size:1.16em}
+.nav{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;justify-content:space-between;align-items:center;padding:18px clamp(18px,4vw,44px);background:rgba(14,11,8,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.logo{font-weight:800;letter-spacing:.42em;font-size:.95rem;color:var(--paper)}
+.nr{display:flex;gap:20px;align-items:center;font-size:.76rem;color:var(--muted)}
+.nr a:hover{color:var(--tan)}
+.langbtn{border:1px solid var(--line);background:transparent;border-radius:99px;padding:6px 12px;font-family:inherit;font-size:.66rem;font-weight:700;letter-spacing:.1em;color:var(--muted);cursor:pointer}
+.langbtn b.on{color:var(--tan)}
+@media(max-width:820px){.nr a{display:none}}
+.wrap{max-width:1080px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
+.head{padding:130px 0 40px}
+.kicker{font-size:.68rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--tan)}
+h1{font-size:clamp(2.2rem,5.6vw,4rem);color:var(--paper);letter-spacing:-.02em;margin-top:16px;line-height:1.05}
+.head p{margin-top:18px;color:var(--muted);max-width:52ch;font-weight:300}
+.shelf{padding:20px 0 80px;border-top:1px solid var(--line)}
+.clip{display:grid;grid-template-columns:86px 1fr auto;gap:clamp(14px,3vw,36px);align-items:baseline;padding:26px 4px;border-bottom:1px solid var(--line);transition:background .25s}
+.clip:hover{background:rgba(201,169,130,.05)}
+.cl-no{font-family:"Instrument Serif",Georgia,serif;font-style:italic;color:var(--tan);font-size:1.15rem}
+:lang(vi) .cl-no{font-family:var(--vserif);font-weight:500}
+.cl-t{color:var(--paper);font-weight:600;font-size:clamp(1.05rem,2.2vw,1.35rem);letter-spacing:-.01em;line-height:1.3}
+.cl-d{display:block;margin-top:7px;color:var(--muted);font-size:.92rem;font-weight:300;max-width:64ch}
+.cl-meta{display:block;margin-top:10px;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(230,218,202,.42)}
+.cl-go{color:var(--tan);opacity:0;transform:translateX(-8px);transition:all .3s var(--ease)}
+.clip:hover .cl-go{opacity:1;transform:none}
+@media(max-width:640px){.clip{grid-template-columns:1fr}.cl-go{display:none}}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s var(--ease)}
+html.js .rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1!important;transform:none!important}}
+footer{border-top:1px solid var(--line);padding:30px 0 46px}
+.foot{max-width:1080px;margin:0 auto;padding:0 clamp(18px,4vw,44px);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:.78rem}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="logo" href="index.html">RIVERA</a>
+  <div class="nr">
+    <a href="projects.html" data-en="Collection" data-vi="Triển lãm">Triển lãm</a>
+    <a href="map.html" data-en="Map room" data-vi="Phòng bản đồ">Phòng bản đồ</a>
+    <a href="about.html" data-en="Practice" data-vi="Hồ sơ">Hồ sơ</a>
+    <button class="langbtn" id="lang"><b data-l="en">EN</b>/<b data-l="vi" class="on">VI</b></button>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="head">
+    <p class="kicker" data-en="Rivera · The reading shelf" data-vi="Rivera · Tủ đọc">Rivera · Tủ đọc</p>
+    <h1><span data-en="The market," data-vi="Thị trường," >Thị trường,</span> <span class="serif" data-en="explained plainly." data-vi="kể lại cho rõ.">kể lại cho rõ.</span></h1>
+    <p data-en="Short notes on what is actually happening out there. No forecasts dressed as facts. Read one while your coffee is still hot." data-vi="Ghi chú ngắn về chuyện thật đang xảy ra. Không tiên tri, không khoác lố. Đọc một bài trong lúc cà phê còn nóng.">Ghi chú ngắn về chuyện thật đang xảy ra. Không tiên tri, không khoác lố. Đọc một bài trong lúc cà phê còn nóng.</p>
+  </div>
+
+  <div class="shelf">
+
+    <a class="clip rv" href="../../insight-clearance-below-50.html">
+      <span class="cl-no">No.1</span>
+      <span><span class="cl-t" data-en="Auction clearance below 50%: what it means for buyers" data-vi="Tỷ lệ đấu giá thành công dưới 50%: người mua nên hiểu thế nào">Tỷ lệ đấu giá thành công dưới 50%: người mua nên hiểu thế nào</span>
+      <span class="cl-d" data-en="When half the hammers fall silent, negotiation moves from the auction floor to the kitchen table." data-vi="Khi một nửa búa không rơi, cuộc thương lượng chuyển từ sàn đấu giá về bàn ăn nhà mình.">Khi một nửa búa không rơi, cuộc thương lượng chuyển từ sàn đấu giá về bàn ăn nhà mình.</span>
+      <span class="cl-meta" data-en="Market note · 4 min" data-vi="Ghi chú thị trường · 4 phút">Ghi chú thị trường · 4 phút</span></span>
+      <span class="cl-go">→</span>
+    </a>
+
+    <a class="clip rv" href="../../insight-auction-clearance.html">
+      <span class="cl-no">No.2</span>
+      <span><span class="cl-t" data-en="Reading the clearance rate without fooling yourself" data-vi="Đọc tỷ lệ clearance mà không tự lừa mình">Đọc tỷ lệ clearance mà không tự lừa mình</span>
+      <span class="cl-d" data-en="One number, three interpretations, and the only one that matters for your street." data-vi="Một con số, ba cách hiểu, và cách hiểu duy nhất có ích với con phố anh định mua.">Một con số, ba cách hiểu, và cách hiểu duy nhất có ích với con phố anh định mua.</span>
+      <span class="cl-meta" data-en="Market note · 5 min" data-vi="Ghi chú thị trường · 5 phút">Ghi chú thị trường · 5 phút</span></span>
+      <span class="cl-go">→</span>
+    </a>
+
+    <a class="clip rv" href="../../insight-buyers-gain-ground.html">
+      <span class="cl-no">No.3</span>
+      <span><span class="cl-t" data-en="Buyers are quietly getting their footing back" data-vi="Người mua đang lặng lẽ lấy lại thế chân">Người mua đang lặng lẽ lấy lại thế chân</span>
+      <span class="cl-d" data-en="Longer days on market, softer open homes, and what to ask before you celebrate." data-vi="Nhà nằm chờ lâu hơn, buổi mở cửa vắng hơn, và những câu cần hỏi trước khi mừng vội.">Nhà nằm chờ lâu hơn, buổi mở cửa vắng hơn, và những câu cần hỏi trước khi mừng vội.</span>
+      <span class="cl-meta" data-en="Market note · 4 min" data-vi="Ghi chú thị trường · 4 phút">Ghi chú thị trường · 4 phút</span></span>
+      <span class="cl-go">→</span>
+    </a>
+
+    <a class="clip rv" href="../../insight-firb-ban.html">
+      <span class="cl-no">No.4</span>
+      <span><span class="cl-t" data-en="The FIRB resale ban, in plain words" data-vi="Luật cấm bán lại của FIRB, nói cho dễ hiểu">Luật cấm bán lại của FIRB, nói cho dễ hiểu</span>
+      <span class="cl-d" data-en="What foreign buyers can and cannot do with a newly built apartment, minus the jargon." data-vi="Người nước ngoài được gì và mất gì với căn hộ mới xây, kể không vòng vo.">Người nước ngoài được gì và mất gì với căn hộ mới xây, kể không vòng vo.</span>
+      <span class="cl-meta" data-en="Policy note · 6 min" data-vi="Ghi chú chính sách · 6 phút">Ghi chú chính sách · 6 phút</span></span>
+      <span class="cl-go">→</span>
+    </a>
+
+    <a class="clip rv" href="../../insight-off-the-plan-investors.html">
+      <span class="cl-no">No.5</span>
+      <span><span class="cl-t" data-en="Off-the-plan investors: the second act" data-vi="Nhà đầu tư mua dự án: hồi hai">Nhà đầu tư mua dự án: hồi hai</span>
+      <span class="cl-d" data-en="The settlement-day maths nobody put in the brochure." data-vi="Bài toán ngày bàn giao mà tờ rơi quảng cáo không in.">Bài toán ngày bàn giao mà tờ rơi quảng cáo không in.</span>
+      <span class="cl-meta" data-en="Market note · 5 min" data-vi="Ghi chú thị trường · 5 phút">Ghi chú thị trường · 5 phút</span></span>
+      <span class="cl-go">→</span>
+    </a>
+
+    <a class="clip rv" href="../../insight-off-the-plan.html">
+      <span class="cl-no">No.6</span>
+      <span><span class="cl-t" data-en="Buying off the plan with eyes open" data-vi="Mua nhà dự án bằng mắt mở">Mua nhà dự án bằng mắt mở</span>
+      <span class="cl-d" data-en="Sunset clauses, render versus reality, and the questions that save six figures." data-vi="Điều khoản hoãn đóng cửa, ảnh đẹp khác thực tế, và mấy câu hỏi giúp anh giữ lại cả trăm triệu.">Điều khoản hoãn đóng cửa, ảnh đẹp khác thực tế, và mấy câu hỏi giúp anh giữ lại cả trăm triệu.</span>
+      <span class="cl-meta" data-en="Guide note · 7 min" data-vi="Ghi chú hướng dẫn · 7 phút">Ghi chú hướng dẫn · 7 phút</span></span>
+      <span class="cl-go">→</span>
+    </a>
+
+    <a class="clip rv" href="../../insight-prices-hold.html">
+      <span class="cl-no">No.7</span>
+      <span><span class="cl-t" data-en="Prices hold while stock hides" data-vi="Giá giữ sàn trong lúc hàng ẩn mình">Giá giữ sàn trong lúc hàng ẩn mình</span>
+      <span class="cl-d" data-en="Low listings are propping up prices. Here is how long that can last." data-vi="Ít hàng rao đang đỡ giá. Nó kéo dài được bao lâu thì đọc ở đây.">Ít hàng rao đang đỡ giá. Nó kéo dài được bao lâu thì đọc ở đây.</span>
+      <span class="cl-meta" data-en="Market note · 4 min" data-vi="Ghi chú thị trường · 4 phút">Ghi chú thị trường · 4 phút</span></span>
+      <span class="cl-go">→</span>
+    </a>
+
+    <a class="clip rv" href="../../insight-rba-rate-hold.html">
+      <span class="cl-no">No.8</span>
+      <span><span class="cl-t" data-en="RBA holds: what the pause actually buys you" data-vi="RBA giữ lãi suất: khoảng nghỉ này đáng giá bao nhiêu">RBA giữ lãi suất: khoảng nghỉ này đáng giá bao nhiêu</span>
+      <span class="cl-d" data-en="A rate pause is not a price signal. It is time. Spend it on paperwork." data-vi="Lãi suất đứng yên không phải tín hiệu giá. Đó là thời gian. Dùng vào việc giấy tờ cho đáng.">Lãi suất đứng yên không phải tín hiệu giá. Đó là thời gian. Dùng vào việc giấy tờ cho đáng.</span>
+      <span class="cl-meta" data-en="Policy note · 3 min" data-vi="Ghi chú chính sách · 3 phút">Ghi chú chính sách · 3 phút</span></span>
+      <span class="cl-go">→</span>
+    </a>
+
+  </div>
+</main>
+
+<footer><div class="foot">
+  <span>© 2026 RIVERA</span>
+  <span data-en="The reading shelf · Night Gallery edition" data-vi="Tủ đọc · bản Night Gallery">Tủ đọc · bản Night Gallery</span>
+</div></footer>
+
+<script>
+document.documentElement.classList.add('js');
+(function(){
+  function setLang(l){l=(l==='en')?'en':'vi';document.documentElement.setAttribute('lang',l);
+    document.querySelectorAll('[data-en]').forEach(function(el){var t=el.getAttribute('data-'+l);if(t!==null)el.textContent=t;});
+    document.querySelectorAll('.langbtn b[data-l]').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-l')===l);});
+    try{localStorage.setItem('rivera-lang',l);}catch(e){}}
+  var sv='vi';try{sv=localStorage.getItem('rivera-lang')||'vi';}catch(e){}
+  setLang(sv);
+  document.getElementById('lang').addEventListener('click',function(){setLang(document.documentElement.getAttribute('lang')==='vi'?'en':'vi');});
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+    document.querySelectorAll('.rv').forEach(function(el,i){el.style.transitionDelay=(i%3)*.06+'s';io.observe(el);});
+  }else{document.documentElement.classList.remove('js');}
+})();
+</script>
+</body>
+</html>

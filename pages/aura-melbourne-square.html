@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="vi" data-lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AURA · Chương riêng · Rivera</title>
+<meta name="description" content="Chương riêng dành cho AURA tại Melbourne Square, Southbank: toà tháp 67 tầng, 673 căn hộ, kiến trúc COX, ôm quanh công viên Kennedy. Giá từ $579.000, tham khảo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+/*__PAPER_LIGHT_CSS__*/
+/* ============================================================
+   Chương riêng · AURA · phần riêng của trang
+   ============================================================ */
+.cv-word{font-family:var(--sans);font-weight:800;font-size:clamp(3.6rem,11.5vw,9.5rem);line-height:.92;letter-spacing:-.02em;color:var(--ink);}
+.cv-sub{font-family:var(--serif);font-style:italic;font-size:clamp(1.25rem,2.6vw,1.9rem);color:var(--brown);margin-top:.7rem;}
+.cv-dek{font-family:var(--serif);font-size:clamp(1.05rem,1.7vw,1.24rem);line-height:1.75;color:var(--ink-soft);max-width:38rem;margin-top:1.25rem;}
+.cover-plate{margin-top:clamp(1.8rem,4vw,3rem);}
+.cover-plate .plate img{aspect-ratio:16/10;}
+@media(min-width:900px){.cover-plate .plate img{aspect-ratio:21/10;}}
+
+/* ---------- Bảng thông số in trên giấy (spec sheet) ---------- */
+.specsheet{border-top:1px solid var(--ink);margin-top:clamp(1.4rem,3vw,2.2rem);}
+.spec-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.4rem 2rem;align-items:baseline;padding:.95rem .1rem;border-bottom:1px solid var(--hair);}
+.spec-k{font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);line-height:1.6;}
+.spec-v{font-family:var(--serif);font-style:italic;font-weight:500;font-size:1.16rem;color:var(--ink);text-align:right;}
+.spec-v small{display:inline-block;font-family:var(--sans);font-style:normal;font-weight:600;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--clay);margin-right:.4rem;}
+.spec-cap{grid-column:1/-1;font-size:.6rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--clay);padding:1.3rem .1rem .2rem;}
+.spec-note{margin-top:1.2rem;font-family:var(--serif);font-style:italic;font-size:.94rem;line-height:1.7;color:var(--ink-soft);max-width:40rem;}
+
+/* ---------- Số thứ tự bản in (folio) ---------- */
+.plate figcaption{display:flex;flex-wrap:wrap;align-items:baseline;gap:.6rem;}
+.folio{font-family:var(--sans);font-style:normal;font-weight:700;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--brown);}
+
+/* ---------- Rivera nói thật ---------- */
+.honest{background:#fffdf8;border:1px solid var(--hair-strong);padding:1.35rem 1.3rem;box-shadow:var(--shadow-plate);}
+.honest h3{font-size:.66rem;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--ink);padding-bottom:.85rem;border-bottom:1px solid var(--hair);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem;}
+.honest h3::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--clay);flex:none;}
+.honest ol{list-style:none;}
+.honest li{display:grid;grid-template-columns:1.6rem 1fr;gap:.6rem;padding:.9rem 0;border-bottom:1px dashed var(--hair);}
+.honest li:last-child{border-bottom:none;}
+.honest .no{font-family:var(--serif);font-style:italic;font-size:1.15rem;line-height:1.4;color:var(--clay);}
+.honest li p{font-family:var(--serif);font-size:.97rem;line-height:1.62;color:#3A2E22;}
+
+/* ---------- Thư gửi bạn đọc ---------- */
+.letter h2{font-size:clamp(1.4rem,2.8vw,2rem);font-weight:800;letter-spacing:-.02em;margin-bottom:1.1rem;}
+.letter p{font-family:var(--serif);font-size:1.06rem;line-height:1.85;color:#2E2419;margin-bottom:1.1rem;}
+.letter .salut{font-weight:600;}
+.letter .sign{font-family:var(--serif);font-style:italic;font-size:1.35rem;color:var(--brown);margin:1.6rem 0 0;}
+.cta-links{display:flex;flex-wrap:wrap;align-items:center;gap:1.2rem;margin-top:1.8rem;}
+.letter .lnk{font-size:.7rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--brown);border-bottom:1px solid var(--tan);padding-bottom:.15rem;}
+.letter .lnk:hover{color:var(--ink);}
+</style>
+</head>
+<body>
+
+<!-- ================= MASTHEAD ================= -->
+<header class="mast">
+  <div class="mast-word">RIVERA<small data-en="PAPER &amp; LIGHT" data-vi="GIẤY VÀ ÁNH SÁNG">GIẤY VÀ ÁNH SÁNG</small></div>
+  <div class="mast-issue serif" data-en="Issue No. 08 · Special Chapter" data-vi="Ấn phẩm số 08 · Chương riêng">Ấn phẩm số 08 · Chương riêng</div>
+  <div class="mast-right">
+    <a class="mast-link" href="./projects.html" data-en="All projects" data-vi="Tất cả dự án">Tất cả dự án</a>
+    <button class="lang-btn" id="lang-btn" type="button" data-en="VI" data-vi="EN">EN</button>
+  </div>
+</header>
+
+<!-- ================= BÌA CHƯƠNG ================= -->
+<section class="sheet cover" id="chuyen-rieng">
+  <div class="runhead"><span data-en="RIVERA · NO. 08" data-vi="RIVERA · SỐ 08">RIVERA · SỐ 08</span><span data-en="Special Chapter" data-vi="Chương riêng">Chương riêng</span></div>
+
+  <p class="cover-kicker reveal" style="--d:.1s" data-en="Special Chapter · Southbank" data-vi="Chương đặc biệt · Southbank">Chương đặc biệt · Southbank</p>
+  <h1 class="cv-word reveal" style="--d:.2s">AURA</h1>
+  <p class="cv-sub reveal" style="--d:.3s" data-en="at Melbourne Square" data-vi="tại Melbourne Square">tại Melbourne Square</p>
+  <p class="cv-dek reveal" style="--d:.4s" data-en="A single chapter for the 67-level tower wrapped around Kennedy Park, in the heart of Southbank. Architecture by COX, three sky clubs, and an honest word about the trade-offs." data-vi="Một chương riêng dành cho toà tháp 67 tầng ôm quanh công viên Kennedy, giữa lòng Southbank. Kiến trúc COX, ba câu lạc bộ trên trời, và một lời nói thật về những đánh đổi.">Một chương riêng dành cho toà tháp 67 tầng ôm quanh công viên Kennedy, giữa lòng Southbank. Kiến trúc COX, ba câu lạc bộ trên trời, và một lời nói thật về những đánh đổi.</p>
+  <svg class="inkline" viewBox="0 0 400 14" preserveAspectRatio="none" aria-hidden="true">
+    <path class="l1" pathLength="100" d="M4 8 C 70 2, 140 12, 210 7 S 340 3, 396 8"/>
+    <path class="l2" pathLength="100" d="M14 11 C 80 6, 150 14, 220 10 S 330 7, 388 11"/>
+  </svg>
+
+  <figure class="plate cover-plate tape reveal" style="--d:.5s;--tilt:.4deg">
+    <img src="../../images/aura-melbourne-square/hero.jpg" alt="Toà tháp AURA lúc hoàng hôn, nhìn từ đại lộ Hoff" width="1280" height="800" fetchpriority="high">
+    <figcaption><span class="folio" aria-hidden="true">Pl. Bìa</span><span data-en="The tower at golden hour, from Hoff Boulevard" data-vi="Toà tháp lúc hoàng hôn, nhìn từ đại lộ Hoff">Toà tháp lúc hoàng hôn, nhìn từ đại lộ Hoff</span></figcaption>
+  </figure>
+
+  <div class="cover-strip">
+    <div><b data-en="Issue No. 08" data-vi="Ấn phẩm số 08">Ấn phẩm số 08</b> · <span data-en="Special chapter" data-vi="Chương riêng">Chương riêng</span></div>
+    <div><b data-en="67 levels" data-vi="67 tầng">67 tầng</b> · <span data-en="673 residences" data-vi="673 căn hộ">673 căn hộ</span></div>
+    <div><b data-en="Now selling" data-vi="Đang mở bán">Đang mở bán</b> · <span data-en="From $579K" data-vi="Từ $579.000">Từ $579.000</span></div>
+  </div>
+  <div class="scrollhint"><span data-en="Turn the page" data-vi="Lật trang">Lật trang</span><span class="arr">↓</span></div>
+</section>
+
+<!-- ================= CHƯƠNG 01 · BẢNG THÔNG SỐ ================= -->
+<section class="sheet" id="thong-so">
+  <div class="runhead"><span data-en="PAPER &amp; LIGHT · AURA" data-vi="GIẤY VÀ ÁNH SÁNG · AURA">GIẤY VÀ ÁNH SÁNG · AURA</span><span data-en="Chapter 01" data-vi="Chương 01">Chương 01</span></div>
+
+  <div class="chaphead reveal">
+    <div class="chapnum" data-en="Chapter 01 · The spec sheet" data-vi="Chương 01 · Bảng thông số">Chương 01 · Bảng thông số</div>
+    <p class="chap-kicker" data-en="printed as ledger rows, not web cards" data-vi="in trên giấy thành từng dòng kẻ, không phải thẻ web">in trên giấy thành từng dòng kẻ, không phải thẻ web</p>
+    <h2><span data-en="The tower, " data-vi="Toà tháp, ">Toà tháp, </span><span class="serif" data-en="reduced to ledger lines." data-vi="thu gọn thành những dòng kẻ.">thu gọn thành những dòng kẻ.</span></h2>
+  </div>
+
+  <div class="specsheet">
+    <div class="spec-row"><span class="spec-k" data-en="Levels" data-vi="Tầng cao">Tầng cao</span><span class="spec-v" data-en="67 levels" data-vi="67 tầng">67 tầng</span></div>
+    <div class="spec-row"><span class="spec-k" data-en="Residences" data-vi="Căn hộ">Căn hộ</span><span class="spec-v" data-en="673 residences" data-vi="673 căn hộ">673 căn hộ</span></div>
+    <div class="spec-row"><span class="spec-k" data-en="Architecture" data-vi="Kiến trúc">Kiến trúc</span><span class="spec-v" data-en="COX" data-vi="COX">COX</span></div>
+    <div class="spec-row"><span class="spec-k" data-en="Interiors" data-vi="Nội thất">Nội thất</span><span class="spec-v" data-en="DKO" data-vi="DKO">DKO</span></div>
+    <div class="spec-row"><span class="spec-k" data-en="Landscape" data-vi="Cảnh quan">Cảnh quan</span><span class="spec-v" data-en="Oculus" data-vi="Oculus">Oculus</span></div>
+    <div class="spec-row"><span class="spec-k" data-en="Developer" data-vi="Chủ đầu tư">Chủ đầu tư</span><span class="spec-v" data-en="OSK Property" data-vi="OSK Property">OSK Property</span></div>
+    <div class="spec-row"><span class="spec-k" data-en="Three sky clubs" data-vi="Ba câu lạc bộ trên trời">Ba câu lạc bộ trên trời</span><span class="spec-v" data-en="AURA Club · Meridian · Cumulus" data-vi="AURA Club · Meridian · Cumulus">AURA Club · Meridian · Cumulus</span></div>
+    <div class="spec-row"><span class="spec-k" data-en="Japanese garden" data-vi="Vườn Nhật">Vườn Nhật</span><span class="spec-v" data-en="Level 07, with a teahouse" data-vi="tầng 07, có đình trà">tầng 07, có đình trà</span></div>
+    <div class="spec-row"><span class="spec-k" data-en="Kennedy Park" data-vi="Công viên Kennedy">Công viên Kennedy</span><span class="spec-v" data-en="3,745 sqm, on site" data-vi="3.745 m², ngay tại chỗ">3.745 m², ngay tại chỗ</span></div>
+    <div class="spec-row"><span class="spec-k" data-en="Status" data-vi="Tình trạng">Tình trạng</span><span class="spec-v" data-en="selling now · construction late 2026" data-vi="đang mở bán · khởi công cuối 2026">đang mở bán · khởi công cuối 2026</span></div>
+
+    <div class="spec-cap" data-en="Guide pricing" data-vi="Giá tham khảo">Giá tham khảo</div>
+    <div class="spec-row"><span class="spec-k" data-en="Studio" data-vi="Studio">Studio</span><span class="spec-v"><small data-en="from" data-vi="từ">từ</small>$579.000</span></div>
+    <div class="spec-row"><span class="spec-k" data-en="1 bedroom" data-vi="1 phòng ngủ">1 phòng ngủ</span><span class="spec-v"><small data-en="from" data-vi="từ">từ</small>$596.000</span></div>
+    <div class="spec-row"><span class="spec-k" data-en="2 bedrooms" data-vi="2 phòng ngủ">2 phòng ngủ</span><span class="spec-v"><small data-en="from" data-vi="từ">từ</small>$855.000</span></div>
+    <div class="spec-row"><span class="spec-k" data-en="3 bedrooms" data-vi="3 phòng ngủ">3 phòng ngủ</span><span class="spec-v"><small data-en="from" data-vi="từ">từ</small>$1.819.000</span></div>
+  </div>
+
+  <p class="spec-note reveal" data-en="From $579,000, indicative, and subject to level, aspect and timing. All imagery is artist's impression. Not financial advice." data-vi="Giá từ $579.000 là giá tham khảo, có thể thay đổi theo tầng, hướng và thời điểm mua. Toàn bộ hình ảnh là phối cảnh minh hoạ. Không phải lời khuyên tài chính.">Giá từ $579.000 là giá tham khảo, có thể thay đổi theo tầng, hướng và thời điểm mua. Toàn bộ hình ảnh là phối cảnh minh hoạ. Không phải lời khuyên tài chính.</p>
+</section>
+
+<!-- ================= CHƯƠNG 02 · CHÂN DUNG BẰNG ẢNH ================= -->
+<section class="sheet" id="chan-dung">
+  <div class="runhead"><span data-en="PAPER &amp; LIGHT · AURA" data-vi="GIẤY VÀ ÁNH SÁNG · AURA">GIẤY VÀ ÁNH SÁNG · AURA</span><span data-en="Chapter 02" data-vi="Chương 02">Chương 02</span></div>
+
+  <div class="chaphead reveal">
+    <div class="chapnum" data-en="Chapter 02 · A portrait in plates" data-vi="Chương 02 · Chân dung bằng ảnh">Chương 02 · Chân dung bằng ảnh</div>
+    <p class="chap-kicker" data-en="five plates, folioed like a print run" data-vi="năm tấm ảnh, đánh số như một bộ bản in">năm tấm ảnh, đánh số như một bộ bản in</p>
+    <h2><span data-en="A tower, " data-vi="Một toà tháp, ">Một toà tháp, </span><span class="serif" data-en="seen through five plates." data-vi="nhìn qua năm tấm ảnh.">nhìn qua năm tấm ảnh.</span></h2>
+  </div>
+
+  <div class="essay essay-grid">
+    <div class="essay-meta reveal">
+      <span class="marg" data-en="plates folioed as in a print run, ground to sky" data-vi="các tấm ảnh đánh số theo bộ bản in, từ mặt đất lên tới trời cao">các tấm ảnh đánh số theo bộ bản in, từ mặt đất lên tới trời cao</span>
+      <span class="folio" aria-hidden="true">Pl. 01 – 05</span>
+    </div>
+
+    <div class="wide">
+      <figure class="plate" style="--d:.1s;--tilt:-.6deg">
+        <img src="../../images/aura-melbourne-square/exterior-overview.jpg" alt="Thành phố lúc chạng vạng, nhìn từ trên cao" width="1280" height="800" loading="lazy" decoding="async">
+        <figcaption><span class="folio" aria-hidden="true">Pl. 01</span><span data-en="The city at dusk, seen from above" data-vi="Thành phố lúc chạng vạng, nhìn từ trên cao">Thành phố lúc chạng vạng, nhìn từ trên cao</span></figcaption>
+      </figure>
+    </div>
+    <p class="marg plate-note" style="--d:.2s" data-en="editor's note: artist's impressions; we toured the model before featuring this tower" data-vi="ghi chú của biên tập: hình ảnh là phối cảnh minh hoạ; chúng tôi đã xem mô hình trước khi giới thiệu toà tháp này">ghi chú của biên tập: hình ảnh là phối cảnh minh hoạ; chúng tôi đã xem mô hình trước khi giới thiệu toà tháp này</p>
+
+    <div class="duo">
+      <figure class="plate pA" style="--d:.15s;--tilt:-.8deg">
+        <img src="../../images/aura-melbourne-square/club-cumulus-sunset.jpg" alt="Cumulus Club, phòng ngắm hoàng hôn" width="900" height="675" loading="lazy" decoding="async">
+        <figcaption><span class="folio" aria-hidden="true">Pl. 02</span><span data-en="Cumulus Club, the sunset lounge" data-vi="Cumulus Club, phòng ngắm hoàng hôn">Cumulus Club, phòng ngắm hoàng hôn</span></figcaption>
+      </figure>
+      <figure class="plate pB" style="--d:.25s;--tilt:1deg">
+        <img src="../../images/aura-melbourne-square/amenity-pool.jpg" alt="Hồ bơi trong nhà 25 mét, tầng 07" width="900" height="675" loading="lazy" decoding="async">
+        <figcaption><span class="folio" aria-hidden="true">Pl. 03</span><span data-en="The 25-metre indoor pool, Level 07" data-vi="Hồ bơi trong nhà 25 mét, tầng 07">Hồ bơi trong nhà 25 mét, tầng 07</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="duo">
+      <figure class="plate pA" style="--d:.15s;--tilt:-.8deg">
+        <img src="../../images/aura-melbourne-square/living-room-alta.jpg" alt="Phòng khách bộ sưu tập Alta" width="900" height="675" loading="lazy" decoding="async">
+        <figcaption><span class="folio" aria-hidden="true">Pl. 04</span><span data-en="The Alta collection living room" data-vi="Phòng khách bộ sưu tập Alta">Phòng khách bộ sưu tập Alta</span></figcaption>
+      </figure>
+      <figure class="plate pB" style="--d:.25s;--tilt:1deg">
+        <img src="../../images/aura-melbourne-square/garden-japanese.jpg" alt="Vườn Nhật trên tầng 07, tháp Arts Centre phía xa" width="900" height="675" loading="lazy" decoding="async">
+        <figcaption><span class="folio" aria-hidden="true">Pl. 05</span><span data-en="The Japanese garden, the Arts Centre spire beyond" data-vi="Vườn Nhật trên tầng 07, tháp Arts Centre phía xa">Vườn Nhật trên tầng 07, tháp Arts Centre phía xa</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CHƯƠNG 03 · VỊ TRÍ VÀ NHỮNG ĐÁNH ĐỔI ================= -->
+<section class="sheet" id="noi-that">
+  <div class="runhead"><span data-en="PAPER &amp; LIGHT · AURA" data-vi="GIẤY VÀ ÁNH SÁNG · AURA">GIẤY VÀ ÁNH SÁNG · AURA</span><span data-en="Chapter 03" data-vi="Chương 03">Chương 03</span></div>
+
+  <div class="chaphead reveal">
+    <div class="chapnum" data-en="Chapter 03 · Location and the trade-offs" data-vi="Chương 03 · Vị trí và những đánh đổi">Chương 03 · Vị trí và những đánh đổi</div>
+    <p class="chap-kicker" data-en="walk to everything, honest about the rest" data-vi="đi bộ tới mọi thứ, nói thật về phần còn lại">đi bộ tới mọi thứ, nói thật về phần còn lại</p>
+    <h2><span data-en="A park " data-vi="Một công viên ">Một công viên </span><span class="serif" data-en="at the front door." data-vi="ngay trước cửa nhà.">ngay trước cửa nhà.</span></h2>
+  </div>
+
+  <div class="prose">
+    <div class="prose-main">
+      <p class="lead reveal" style="--d:.1s" data-en="We included AURA in this issue for a simple reason: it is built around a park. Kennedy Park, 3,745 square metres with a waterfall, sits at the tower's base, with a full-line Woolworths and childcare in the same precinct. A few steps on is the Southbank Arts Precinct, where NGV, Arts Centre and Hamer Hall open year-round." data-vi="Chúng tôi đưa AURA vào ấn phẩm này vì một lý do đơn giản: nó được dựng quanh một công viên. Kennedy Park rộng 3.745 mét vuông với thác nước nằm ngay dưới chân tháp, cùng siêu thị Woolworths đầy đủ và nhà trẻ trong cùng khu phức hợp. Vài bước chân nữa là Khu Nghệ thuật Southbank, nơi NGV, Arts Centre và Hamer Hall mở cửa quanh năm.">Chúng tôi đưa AURA vào ấn phẩm này vì một lý do đơn giản: nó được dựng quanh một công viên. Kennedy Park rộng 3.745 mét vuông với thác nước nằm ngay dưới chân tháp, cùng siêu thị Woolworths đầy đủ và nhà trẻ trong cùng khu phức hợp. Vài bước chân nữa là Khu Nghệ thuật Southbank, nơi NGV, Arts Centre và Hamer Hall mở cửa quanh năm.</p>
+      <p class="reveal" style="--d:.2s" data-en="St Kilda Road trams are a short walk away, Anzac Station on the Metro Tunnel opened in November 2025, and Flinders Street is about 11 minutes on foot. The Royal Botanic Gardens and the Yarra are within walking distance too." data-vi="Đi bộ ra St Kilda Road có tàu điện, ga Anzac của Metro Tunnel mở cửa từ tháng 11, 2025, và ga Flinders Street cách khoảng 11 phút đi bộ. Vườn Bách thảo Hoàng gia và sông Yarra cũng trong tầm đi bộ.">Đi bộ ra St Kilda Road có tàu điện, ga Anzac của Metro Tunnel mở cửa từ tháng 11, 2025, và ga Flinders Street cách khoảng 11 phút đi bộ. Vườn Bách thảo Hoàng gia và sông Yarra cũng trong tầm đi bộ.</p>
+
+      <blockquote class="pull reveal" style="--d:.3s"><span data-en="The higher you rise, the wider the city, and the park stays right below." data-vi="Càng lên cao, thành phố càng rộng, và công viên vẫn nằm ngay dưới chân.">Càng lên cao, thành phố càng rộng, và công viên vẫn nằm ngay dưới chân.</span><span class="who" data-en="Rivera · on AURA" data-vi="Rivera · về AURA">Rivera · về AURA</span></blockquote>
+
+      <p class="reveal" style="--d:.4s" data-en="In short: a tower with a front garden, in a city you can walk everywhere." data-vi="Nói ngắn gọn: một toà tháp có vườn trước cửa, giữa một thành phố đi bộ tới mọi nơi.">Nói ngắn gọn: một toà tháp có vườn trước cửa, giữa một thành phố đi bộ tới mọi nơi.</p>
+    </div>
+
+    <div class="prose-side">
+      <aside class="honest reveal" style="--d:.2s">
+        <h3 data-en="Honest words" data-vi="Rivera nói thật">Rivera nói thật</h3>
+        <ol>
+          <li><span class="no" aria-hidden="true">01</span><p data-en="Buying off the plan means waiting. Construction starts late 2026, handover later still. Best for unhurried buyers." data-vi="Mua trên bản vẽ nghĩa là chờ. Khởi công cuối 2026, bàn giao còn xa hơn. Hợp với người mua không vội.">Mua trên bản vẽ nghĩa là chờ. Khởi công cuối 2026, bàn giao còn xa hơn. Hợp với người mua không vội.</p></li>
+          <li><span class="no" aria-hidden="true">02</span><p data-en="Three sky clubs come with strata fees. Read the levy schedule before signing; we will send it with the documents." data-vi="Ba câu lạc bộ trên trời đi kèm phí quản lý. Hãy đọc bảng phí trước khi ký; chúng tôi sẽ gửi kèm tài liệu.">Ba câu lạc bộ trên trời đi kèm phí quản lý. Hãy đọc bảng phí trước khi ký; chúng tôi sẽ gửi kèm tài liệu.</p></li>
+          <li><span class="no" aria-hidden="true">03</span><p data-en="Upper west-facing floors have the best sunsets, but fierce summer sun. Choose your aspect by how you live, not by the photos." data-vi="Tầng cao hướng tây có hoàng hôn đẹp nhất, nhưng nắng hè gay gắt. Chọn hướng theo cách bạn sống, không theo ảnh.">Tầng cao hướng tây có hoàng hôn đẹp nhất, nhưng nắng hè gay gắt. Chọn hướng theo cách bạn sống, không theo ảnh.</p></li>
+        </ol>
+      </aside>
+      <p class="marg" style="--d:.3s" data-en="never decide before asking about timing and levies" data-vi="đừng quyết định khi chưa hỏi về mốc thời gian và phí quản lý">đừng quyết định khi chưa hỏi về mốc thời gian và phí quản lý</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CHƯƠNG 04 · THƯ GỬI BẠN ĐỌC ================= -->
+<section class="sheet" id="thu">
+  <div class="runhead"><span data-en="PAPER &amp; LIGHT · AURA" data-vi="GIẤY VÀ ÁNH SÁNG · AURA">GIẤY VÀ ÁNH SÁNG · AURA</span><span data-en="Chapter 04" data-vi="Chương 04">Chương 04</span></div>
+
+  <div class="chaphead reveal">
+    <div class="chapnum" data-en="Chapter 04 · A letter to the reader" data-vi="Chương 04 · Thư gửi bạn đọc">Chương 04 · Thư gửi bạn đọc</div>
+    <p class="chap-kicker" data-en="closing words of a special chapter" data-vi="lời kết của một chương riêng">lời kết của một chương riêng</p>
+    <h2><span data-en="Before you decide, " data-vi="Trước khi quyết định, ">Trước khi quyết định, </span><span class="serif" data-en="come and see us." data-vi="hãy đến gặp chúng tôi.">hãy đến gặp chúng tôi.</span></h2>
+  </div>
+
+  <div class="letter-wrap">
+    <div class="letter reveal">
+      <p class="salut" data-en="Dear reader," data-vi="Bạn đọc thân mến,">Bạn đọc thân mến,</p>
+      <p data-en="Every chapter in this issue is a home we inspected in person. For AURA we toured the model, read the price list and the levies, and asked plainly about the trade-offs. Our answer is still yes: a park at the tower's base, three clubs for body, mind and spirit, and an address you can walk everywhere from, from around $579,000." data-vi="Mỗi chương trong ấn phẩm này là một ngôi nhà chúng tôi đã tự tay xem. Với AURA, chúng tôi xem mô hình, đọc kỹ bảng giá và phí quản lý, rồi hỏi thẳng về những đánh đổi. Câu trả lời của chúng tôi vẫn là có: một công viên dưới chân tháp, ba câu lạc bộ cho thân, tâm và trí, và một địa chỉ đi bộ tới mọi nơi, với giá khởi điểm khoảng $579.000.">Mỗi chương trong ấn phẩm này là một ngôi nhà chúng tôi đã tự tay xem. Với AURA, chúng tôi xem mô hình, đọc kỹ bảng giá và phí quản lý, rồi hỏi thẳng về những đánh đổi. Câu trả lời của chúng tôi vẫn là có: một công viên dưới chân tháp, ba câu lạc bộ cho thân, tâm và trí, và một địa chỉ đi bộ tới mọi nơi, với giá khởi điểm khoảng $579.000.</p>
+      <p data-en="But beauty on paper is not enough. Come see us, tour the model, ask about timing and levies, then decide. If AURA is not the right home for you, we will say so, and walk with you to the one that is." data-vi="Nhưng đẹp trên giấy chưa phải là đủ. Hãy đến gặp chúng tôi, xem mô hình, hỏi về mốc thời gian và phí quản lý, rồi mới quyết định. Nếu AURA không phải ngôi nhà hợp với bạn, chúng tôi sẽ nói thẳng, và cùng bạn đi tìm căn phù hợp.">Nhưng đẹp trên giấy chưa phải là đủ. Hãy đến gặp chúng tôi, xem mô hình, hỏi về mốc thời gian và phí quản lý, rồi mới quyết định. Nếu AURA không phải ngôi nhà hợp với bạn, chúng tôi sẽ nói thẳng, và cùng bạn đi tìm căn phù hợp.</p>
+      <p class="sign" data-en="Yours, Rivera" data-vi="Trân trọng, Rivera">Trân trọng, Rivera</p>
+      <div class="cta-links">
+        <a class="btn" href="./enquire.html"><span data-en="Enquire about AURA" data-vi="Liên hệ về AURA">Liên hệ về AURA</span> <span aria-hidden="true">→</span></a>
+        <a class="lnk" href="./projects.html"><span data-en="← Back to the projects" data-vi="← Về lại trang dự án">← Về lại trang dự án</span></a>
+      </div>
+      <p class="letter-note" data-en="From $579,000 indicative. All imagery artist's impression. Not financial advice." data-vi="Giá từ $579.000, tham khảo. Toàn bộ hình ảnh là phối cảnh minh hoạ. Không phải lời khuyên tài chính.">Giá từ $579.000, tham khảo. Toàn bộ hình ảnh là phối cảnh minh hoạ. Không phải lời khuyên tài chính.</p>
+    </div>
+
+    <div class="contact-col">
+      <h3 data-en="Rivera, in person" data-vi="Rivera, gặp trực tiếp">Rivera, gặp trực tiếp</h3>
+      <div class="row"><span class="k" data-en="Email" data-vi="Thư điện tử">Thư điện tử</span><a href="mailto:info.riveraau@gmail.com">info.riveraau@gmail.com</a></div>
+      <div class="row"><span class="k" data-en="Vietnam" data-vi="Việt Nam">Việt Nam</span><a href="tel:+84782067555">+84 782 067 555</a></div>
+      <div class="row"><span class="k" data-en="Australia" data-vi="Úc">Úc</span><a href="tel:+61450151686">+61 450 151 686</a></div>
+      <p class="letter-note" data-en="One advisor, in person, wherever suits you." data-vi="Một chuyên viên, gặp trực tiếp, ở nơi nào thuận tiện cho bạn.">Một chuyên viên, gặp trực tiếp, ở nơi nào thuận tiện cho bạn.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= THANH CHƯƠNG BÊN LỀ ================= -->
+<nav class="rail" aria-label="Mục lục chương">
+  <a href="#chuyen-rieng" data-target="chuyen-rieng"><span class="num serif" data-en="00" data-vi="00">00</span><span class="tl" data-en="Aura" data-vi="Aura">Aura</span></a>
+  <a href="#thong-so" data-target="thong-so"><span class="num serif" data-en="01" data-vi="01">01</span><span class="tl" data-en="Spec sheet" data-vi="Thông số">Thông số</span></a>
+  <a href="#chan-dung" data-target="chan-dung"><span class="num serif" data-en="02" data-vi="02">02</span><span class="tl" data-en="Plates" data-vi="Chân dung">Chân dung</span></a>
+  <a href="#noi-that" data-target="noi-that"><span class="num serif" data-en="03" data-vi="03">03</span><span class="tl" data-en="Honest words" data-vi="Nói thật">Nói thật</span></a>
+  <a href="#thu" data-target="thu"><span class="num serif" data-en="04" data-vi="04">04</span><span class="tl" data-en="Letter" data-vi="Thư">Thư</span></a>
+</nav>
+
+<script>
+(function(){
+  'use strict';
+  document.documentElement.classList.add('js');
+
+  var REDUCED = false;
+  try{ REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){}
+
+  /* ---------- Ngôn ngữ: mặc định VI, lưu theo khoá rivera-lang ---------- */
+  var lang = 'vi';
+  try{ lang = localStorage.getItem('rivera-lang') || 'vi'; }catch(e){}
+  if(lang !== 'en' && lang !== 'vi'){ lang = 'vi'; }
+
+  function applyLang(l){
+    document.documentElement.lang = l;
+    document.documentElement.setAttribute('data-lang', l);
+    var els = document.querySelectorAll('[data-vi]'), i, el, t;
+    for(i = 0; i < els.length; i++){
+      el = els[i];
+      t = el.getAttribute(l === 'vi' ? 'data-vi' : 'data-en');
+      if(t !== null){ el.textContent = t; }
+    }
+    var btn = document.getElementById('lang-btn');
+    if(btn){ btn.textContent = (l === 'vi') ? 'EN' : 'VI'; }
+  }
+  applyLang(lang);
+
+  var btn = document.getElementById('lang-btn');
+  if(btn){
+    btn.addEventListener('click', function(){
+      lang = (lang === 'vi') ? 'en' : 'vi';
+      try{ localStorage.setItem('rivera-lang', lang); }catch(e){}
+      applyLang(lang);
+    });
+  }
+
+  /* ---------- Hiện dần khi cuộn ---------- */
+  var revealEls = document.querySelectorAll('.sheet, .reveal, .plate, .marg, .inkline');
+  var pending = Array.prototype.slice.call(revealEls);
+  if('IntersectionObserver' in window && !REDUCED){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          en.target.classList.add('in-view');
+          io.unobserve(en.target);
+        }
+      });
+    }, {threshold:.12, rootMargin:'0px 0px -6% 0px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  }
+  if(!REDUCED){
+    var ticking = false;
+    function checkInView(){
+      ticking = false;
+      for(var i = pending.length - 1; i >= 0; i--){
+        var el = pending[i];
+        if(el.classList.contains('in-view')){ pending.splice(i, 1); continue; }
+        var r = el.getBoundingClientRect();
+        if(r.top < window.innerHeight * .94 && r.bottom > 0){
+          el.classList.add('in-view');
+          pending.splice(i, 1);
+        }
+      }
+      if(!pending.length){
+        window.removeEventListener('scroll', onScrollCheck);
+        window.removeEventListener('resize', onScrollCheck);
+      }
+    }
+    function onScrollCheck(){
+      if(!ticking){ ticking = true; requestAnimationFrame(checkInView); }
+    }
+    window.addEventListener('scroll', onScrollCheck, {passive:true});
+    window.addEventListener('resize', onScrollCheck);
+    onScrollCheck();
+  }
+
+  /* ---------- Đánh dấu chương đang đọc trên thanh lề ---------- */
+  var railLinks = Array.prototype.slice.call(document.querySelectorAll('.rail a'));
+  var sheets = Array.prototype.slice.call(document.querySelectorAll('.sheet'));
+  if('IntersectionObserver' in window && railLinks.length){
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          var id = en.target.id;
+          railLinks.forEach(function(a){
+            a.classList.toggle('active', a.getAttribute('data-target') === id);
+          });
+        }
+      });
+    }, {rootMargin:'-42% 0px -52% 0px'});
+    sheets.forEach(function(s){ spy.observe(s); });
+  }
+
+  /* ---------- Giảm chuyển động: dừng video ---------- */
+  if(REDUCED){
+    var vids = document.querySelectorAll('video');
+    for(var v = 0; v < vids.length; v++){ vids[v].pause(); }
+  }
+})();
+</script>
+</body>
+</html>

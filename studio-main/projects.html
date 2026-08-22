@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rivera · Bảy ngôi nhà</title>
+<meta name="description" content="Bảy dự án Rivera tại Melbourne. Ngôi nào cũng đã tự đi, tự kiểm." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+<style>
+:root{
+  --sky1:#171009; --ink:#F4EDE2; --sub:rgba(244,237,226,.72); --faint:rgba(244,237,226,.45);
+  --accent:#C9A982; --hairline:rgba(244,237,226,.14);
+  --serif:"Instrument Serif",Georgia,serif; --ease:cubic-bezier(.19,1,.22,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--sky1);color:var(--ink);font-family:"Manrope",system-ui,sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}
+::selection{background:var(--accent);color:#1B130D}
+.serif{font-family:var(--serif);font-style:italic;font-weight:400}
+:lang(vi){--serif:"Cormorant Garamond",Georgia,serif}
+:lang(vi) .serif{font-weight:600;font-size:1.18em}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,44px)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;align-items:center;justify-content:space-between;padding:20px clamp(20px,4vw,44px);background:rgba(14,11,8,.75);backdrop-filter:blur(14px);border-bottom:1px solid var(--hairline)}
+.logo{font-weight:800;letter-spacing:.4em;font-size:1.02rem}
+.nav-r{display:flex;align-items:center;gap:22px}
+.nav a.nl{font-size:.78rem;letter-spacing:.06em;color:var(--faint)}
+.nav a.nl:hover{color:var(--accent)}
+.langbtn{display:inline-flex;gap:5px;border:1px solid var(--hairline);border-radius:99px;padding:6px 12px;font-family:inherit;font-size:.68rem;font-weight:700;letter-spacing:.1em;color:var(--sub);background:transparent;cursor:pointer}
+.langbtn em{font-style:normal;opacity:.4}
+.langbtn b{font-weight:700;color:var(--faint)}
+.langbtn b.on{color:var(--accent)}
+@media(max-width:900px){.nav a.nl{display:none}}
+.head{padding:150px 0 40px}
+.kicker{font-size:.7rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:clamp(2.6rem,7vw,5.6rem);margin-top:20px;letter-spacing:-.03em;line-height:1.02}
+h1 .serif{color:var(--accent)}
+.head p{margin-top:20px;color:var(--sub);max-width:52ch;font-weight:300}
+.list{padding:30px 0 110px;border-top:1px solid var(--hairline);margin-top:30px}
+.item{display:grid;grid-template-columns:70px 1.05fr .95fr;gap:clamp(18px,3vw,44px);align-items:center;padding:clamp(26px,4vh,40px) 0;border-bottom:1px solid var(--hairline)}
+.item:hover .nm{color:var(--accent);transform:translateX(10px)}
+.no{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--faint)}
+.nm{display:block;font-size:clamp(1.5rem,3.4vw,2.6rem);font-weight:600;letter-spacing:-.03em;line-height:1.05;transition:color .3s,transform .5s var(--ease)}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.tagpill{font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--hairline);border-radius:99px;padding:7px 13px;color:var(--faint)}
+.tagpill.gold{background:var(--accent);border-color:var(--accent);color:#1B130D}
+.im{border-radius:12px;overflow:hidden;aspect-ratio:16/10;background:#0E0B08}
+.im img{width:100%;height:100%;object-fit:cover;transform:scale(1.05);transition:transform 1.1s var(--ease)}
+.item:hover .im img{transform:scale(1.1)}
+.price{margin-top:14px;color:var(--sub);font-size:.9rem}
+@media(max-width:860px){.item{grid-template-columns:44px 1fr}.im{grid-column:1/-1;order:-1}}
+footer{border-top:1px solid var(--hairline);padding:56px 0 40px}
+.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:var(--faint);font-size:.82rem}
+.foot a{color:var(--sub)}
+.foot a:hover{color:var(--accent)}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1;transform:none;transition:none}.im img{transform:none;transition:none}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="logo" href="index.html">RIVERA</a>
+  <div class="nav-r">
+    <a class="nl" href="index.html" data-en="Home" data-vi="Trang chủ">Trang chủ</a>
+    <a class="nl" href="../../about.html" data-en="Practice" data-vi="Phương châm">Phương châm</a>
+    <a class="nl" href="../../map.html" data-en="Map" data-vi="Bản đồ">Bản đồ</a>
+    <button class="langbtn" id="lang" type="button" aria-label="Đổi ngôn ngữ"><b data-l="en">EN</b><em>/</em><b data-l="vi" class="on">VI</b></button>
+    <a class="langbtn" style="text-decoration:none" href="../../enquire.html" data-en="Enquire" data-vi="Liên hệ">Liên hệ</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="head">
+    <p class="kicker" data-en="The collection · Melbourne" data-vi="Bộ sưu tập · Melbourne">Bộ sưu tập · Melbourne</p>
+    <h1>Bảy ngôi nhà.<br/><span class="serif" data-en="Nothing more." data-vi="Không hơn.">Không hơn.</span></h1>
+    <p data-en="We do not carry forty listings to look busy. These are the seven we would put our own people in, and we have stood in every one of them." data-vi="Chúng tôi không ôm bốn mươi căn cho ra vẻ đông hàng. Bảy căn này là bảy căn chúng tôi sẵn sàng đưa người thân vào ở, và từng căn đều đã tự mình bước vào.">Chúng tôi không ôm bốn mươi căn cho ra vẻ đông hàng. Bảy căn này là bảy căn chúng tôi sẵn sàng đưa người thân vào ở, và từng căn đều đã tự mình bước vào.</p>
+  </div>
+
+  <div class="list" id="list">
+
+    <a class="item rv" href="../../aura-melbourne-square.html">
+      <span class="no">01</span>
+      <span>
+        <span class="nm">AURA <span class="serif">Melbourne Square</span></span>
+        <span class="meta"><span class="tagpill gold" data-en="Now selling" data-vi="Đang mở bán">Đang mở bán</span><span class="tagpill">Southbank</span><span class="tagpill">COX</span></span>
+        <span class="price" data-en="From $579K" data-vi="Từ $579K">Từ $579K</span>
+      </span>
+      <span class="im"><img src="../../images/aura-melbourne-square/exterior-overview.jpg" alt="AURA" loading="lazy"/></span>
+    </a>
+
+    <a class="item rv" href="../../collins-wharf-aluna.html">
+      <span class="no">02</span>
+      <span>
+        <span class="nm">Collins Wharf <span class="serif">Aluna</span></span>
+        <span class="meta"><span class="tagpill gold" data-en="Now selling" data-vi="Đang mở bán">Đang mở bán</span><span class="tagpill">Docklands</span><span class="tagpill">Lendlease</span></span>
+        <span class="price" data-en="From $620K · completed 2029" data-vi="Từ $620K · hoàn thành 2029">Từ $620K · hoàn thành 2029</span>
+      </span>
+      <span class="im"><img src="../../images/collins-wharf-aluna/exterior-2.jpg" alt="Aluna" loading="lazy"/></span>
+    </a>
+
+    <a class="item rv" href="../../671-chapel-street.html">
+      <span class="no">03</span>
+      <span>
+        <span class="nm">671 <span class="serif">Chapel Street</span></span>
+        <span class="meta"><span class="tagpill gold" data-en="Now selling" data-vi="Đang mở bán">Đang mở bán</span><span class="tagpill">South Yarra</span><span class="tagpill">CASA</span></span>
+        <span class="price" data-en="From $665K · completed 2028" data-vi="Từ $665K · hoàn thành 2028">Từ $665K · hoàn thành 2028</span>
+      </span>
+      <span class="im"><img src="../../images/671-chapel-street/facade.jpg" alt="671 Chapel" loading="lazy"/></span>
+    </a>
+
+    <a class="item rv" href="../../collins-wharf-ancora.html">
+      <span class="no">04</span>
+      <span>
+        <span class="nm">Collins Wharf <span class="serif">Ancora</span></span>
+        <span class="meta"><span class="tagpill gold" data-en="Selling" data-vi="Đang bán">Đang bán</span><span class="tagpill">Docklands</span><span class="tagpill">2027</span></span>
+        <span class="price" data-en="From $598K · under construction" data-vi="Từ $598K · đang xây">Từ $598K · đang xây</span>
+      </span>
+      <span class="im"><img src="../../images/collins-wharf-ancora/exterior-dusk.jpg" alt="Ancora" loading="lazy"/></span>
+    </a>
+
+    <a class="item rv" href="../../380-melbourne.html">
+      <span class="no">05</span>
+      <span>
+        <span class="nm">380 <span class="serif">Melbourne</span></span>
+        <span class="meta"><span class="tagpill" data-en="Completed" data-vi="Đã hoàn thiện">Đã hoàn thiện</span><span class="tagpill">CBD</span><span class="tagpill">Elenberg Fraser</span></span>
+        <span class="price" data-en="On application · move-in ready" data-vi="Giá theo yêu cầu · sẵn vào ở">Giá theo yêu cầu · sẵn vào ở</span>
+      </span>
+      <span class="im"><img src="../../images/380-melbourne/exterior-3.jpg" alt="380" loading="lazy"/></span>
+    </a>
+
+    <a class="item rv" href="../../piccolo-house.html">
+      <span class="no">06</span>
+      <span>
+        <span class="nm">Piccolo <span class="serif">House</span></span>
+        <span class="meta"><span class="tagpill" data-en="Completed" data-vi="Đã hoàn thiện">Đã hoàn thiện</span><span class="tagpill">Kew</span></span>
+        <span class="price" data-en="On application" data-vi="Giá theo yêu cầu">Giá theo yêu cầu</span>
+      </span>
+      <span class="im"><img src="../../images/piccolo-house/exterior-1.jpg" alt="Piccolo" loading="lazy"/></span>
+    </a>
+
+    <a class="item rv" href="../../aspire.html">
+      <span class="no">07</span>
+      <span>
+        <span class="nm">Aspire <span class="serif">Melbourne</span></span>
+        <span class="meta"><span class="tagpill" data-en="Completed" data-vi="Đã hoàn thiện">Đã hoàn thiện</span><span class="tagpill">CBD</span><span class="tagpill">ICD</span></span>
+        <span class="price" data-en="On application" data-vi="Giá theo yêu cầu">Giá theo yêu cầu</span>
+      </span>
+      <span class="im"><img src="../../images/aspire/exterior-2.jpg" alt="Aspire" loading="lazy"/></span>
+    </a>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span data-en="Prices are indicative and change without notice. Ask us for today's numbers." data-vi="Giá mang tính tham khảo và thay đổi không báo trước. Hỏi chúng tôi để lấy số mới nhất.">Giá mang tính tham khảo và thay đổi không báo trước. Hỏi chúng tôi để lấy số mới nhất.</span>
+    <span><a href="mailto:info.riveraau@gmail.com">info.riveraau@gmail.com</a> · +84 782 067 555 · +61 450 151 686</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  function setLang(l){
+    l=(l==='en')?'en':'vi';
+    document.documentElement.setAttribute('lang',l);
+    document.querySelectorAll('[data-en]').forEach(function(el){var t=el.getAttribute('data-'+l);if(t!==null)el.textContent=t;});
+    document.querySelectorAll('.langbtn b[data-l]').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-l')===l);});
+    try{localStorage.setItem('rivera-lang',l);}catch(e){}
+  }
+  var saved='vi'; try{saved=localStorage.getItem('rivera-lang')||'vi';}catch(e){}
+  setLang(saved);
+  document.getElementById('lang').addEventListener('click',function(){
+    setLang(document.documentElement.getAttribute('lang')==='vi'?'en':'vi');
+  });
+  if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+    document.querySelectorAll('.rv').forEach(function(el,i){el.style.transitionDelay=(i%3)*0.06+'s';io.observe(el);});
+  }else{
+    document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in');});
+  }
+})();
+</script>
+</body>
+</html>
