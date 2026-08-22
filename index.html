@@ -273,11 +273,11 @@ body.dawn .counter small{color:rgba(35,26,18,.55)}
 .exh-price{font-size:clamp(17px,1.6vw,21px);color:var(--ink)}
 .exh-price b{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--brown);font-size:1.12em}
 .exh-link{
-  font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);
-  border-bottom:1px solid rgba(35,26,18,.3);padding-bottom:5px;
-  transition:color .3s,border-color .3s;
+  font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#F4F0E9;
+  background:var(--brown);padding:13px 26px;border-radius:999px;
+  transition:background .3s,transform .3s;
 }
-.exh-link:hover{color:var(--brown);border-color:var(--brown)}
+.exh-link:hover{background:#5E3B20;transform:translateY(-1px)}
 .js .exh .rv{opacity:0;transform:translateY(28px);transition:opacity 1s ease,transform 1s var(--ease-out)}
 .js .exh.in .rv{opacity:1;transform:none}
 .js .exh.in .rv:nth-child(2){transition-delay:.1s}
@@ -313,7 +313,8 @@ body.dawn .counter small{color:rgba(35,26,18,.55)}
 .wcard .wover{
   position:absolute;inset:0;z-index:1;display:flex;align-items:flex-end;padding:18px;
   background:linear-gradient(180deg,transparent 55%,rgba(14,11,8,.78));
-  font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--sand);opacity:0;transition:opacity .4s ease;
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#F4F0E9;opacity:0;transition:opacity .4s ease;
+  background:linear-gradient(180deg,transparent 45%,rgba(14,11,8,.72));
 }
 .wcard:hover .wover{opacity:1}
 .wcard h3{margin-top:16px;font-size:19px;font-weight:600;color:var(--ink)}
