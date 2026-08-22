@@ -3,54 +3,953 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Rivera 2.0 · Night Gallery</title>
+<title>Rivera · Melbourne</title>
+<meta name="description" content="Rivera: bảy căn nhà thật tại Melbourne, đều do chúng tôi tự đến xem trước khi giới thiệu." />
+<meta name="theme-color" content="#F4F0E9" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet" />
 <style>
-:root{--bg:#0E0B08;--tan:#C9A982;--ink:#F4EDE2;--faint:rgba(244,237,226,.5);--line:rgba(244,237,226,.12)}
+/* ============================================================
+   NIGHT GALLERY · Studio A concept
+   Dark cinematic single-scroll. One private exhibition.
+   ============================================================ */
+:root{
+  --bg:#0E0B08;          /* warm near-black */
+  --bg2:#141009;         /* slightly lifted gallery floor */
+  --espresso:#1B130D;
+  --brown:#7A4E2D;
+  --clay:#9A6A41;
+  --tan:#C9A982;
+  --sand:#E6DACA;
+  --paper:#F4F0E9;
+  --ink:#231A12;
+  --line:rgba(201,169,130,.20);
+  --muted:rgba(230,218,202,.60);
+  --sans:'Manrope',sans-serif;
+  --serif:'Instrument Serif',serif;
+  --vserif:'Cormorant Garamond',serif;
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --wipe:cubic-bezier(.77,0,.18,1);
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:"Manrope",system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
-header{padding:30px clamp(20px,5vw,60px) 6px;display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
-.logo{font-weight:800;letter-spacing:.42em;font-size:1rem}
-header p{color:var(--faint);font-size:.82rem}
-.main-link{display:block;margin:26px clamp(20px,5vw,60px) 10px;padding:clamp(28px,5vw,54px);border:1px solid rgba(201,169,130,.45);border-radius:16px;text-decoration:none;color:inherit;background:linear-gradient(150deg,#1A1030,#171009 55%,#0E0B08);transition:border-color .25s,transform .4s cubic-bezier(.19,1,.3,1)}
-.main-link:hover{border-color:#C9A982;transform:translateY(-3px)}
-.main-link b{display:block;font-size:.64rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#C9A982;margin-bottom:14px}
-.main-link h1{font-size:clamp(1.8rem,4.5vw,3.2rem);font-weight:700;letter-spacing:-.02em;line-height:1.05}
-.main-link h1 i{font-family:"Instrument Serif",Georgia,serif;font-style:italic;color:#C9A982}
-:lang(vi) .main-link h1 i{font-family:"Cormorant Garamond",serif;font-weight:500}
-.main-link p{margin-top:12px;color:var(--faint);max-width:60ch}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;padding:6px clamp(20px,5vw,60px) 46px}
-a.v{display:block;padding:20px;border:1px solid var(--line);border-radius:12px;text-decoration:none;color:inherit;background:#141009;transition:border-color .25s,transform .35s cubic-bezier(.19,1,.3,1)}
-a.v:hover{border-color:#C9A982;transform:translateY(-3px)}
-a.v h3{font-size:.95rem;margin-bottom:6px}
-a.v p{font-size:.8rem;color:var(--faint);line-height:1.55}
-.old{padding:0 clamp(20px,5vw,60px) 40px;color:rgba(244,237,226,.32);font-size:.78rem}
-.old a{color:rgba(201,169,130,.6)}
-footer{margin-top:auto;padding:18px clamp(20px,5vw,60px) 26px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:rgba(244,237,226,.32);font-size:.74rem}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--tan);color:var(--ink)}
+a{color:inherit;text-decoration:none}
+img,video{display:block;max-width:100%}
+.serif{font-family:var(--serif);font-style:italic;font-weight:400}
+html[lang="vi"] .serif{font-family:var(--vserif)}
+
+/* ---------- atmosphere: grain · vignette · dawn glow ---------- */
+.grain{
+  position:fixed;inset:-80px;z-index:60;pointer-events:none;display:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+  animation:grain 1.1s steps(5) infinite;
+}
+@keyframes grain{
+  0%{transform:translate(0,0)}20%{transform:translate(-38px,24px)}
+  40%{transform:translate(30px,-36px)}60%{transform:translate(-22px,-18px)}
+  80%{transform:translate(36px,30px)}100%{transform:translate(0,0)}
+}
+.veil{position:fixed;inset:0;z-index:59;pointer-events:none;display:none}
+.glow{
+  position:fixed;inset:0;z-index:58;pointer-events:none;display:none;opacity:0;transition:opacity 1.4s ease;
+  background:radial-gradient(135% 75% at 50% 118%,rgba(244,240,233,.95),rgba(244,240,233,.35) 42%,transparent 68%);
+}
+body.dawn .glow{opacity:1}
+
+/* ---------- cursor ---------- */
+.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;z-index:90;pointer-events:none;border-radius:50%}
+.cursor-dot{width:6px;height:6px;background:var(--brown);transform:translate(-50%,-50%)}
+.cursor-ring{
+  width:36px;height:36px;border:1px solid rgba(122,78,45,.55);
+  transform:translate(-50%,-50%);
+  transition:width .3s var(--ease-out),height .3s var(--ease-out),background .3s ease,border-color .3s ease;
+}
+body.cur-hover .cursor-ring{width:62px;height:62px;background:rgba(122,78,45,.07);border-color:rgba(122,78,45,.9)}
+body.cur-drag .cursor-ring{width:92px;height:92px;background:rgba(122,78,45,.10);border-color:var(--brown)}
+@media (hover:none){.cursor-dot,.cursor-ring{display:none}}
+
+/* ---------- header ---------- */
+.hd{
+  position:fixed;top:0;left:0;right:0;z-index:70;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px clamp(20px,4vw,44px);
+  background:linear-gradient(180deg,rgba(244,240,233,.92),rgba(244,240,233,0));
+  transition:color .8s ease,background .8s ease;
+}
+.hd .word{
+  font-weight:800;font-size:14px;letter-spacing:.42em;color:var(--sand);
+  color:var(--ink);
+  transition:color .8s ease;
+}
+.hd .word em{font-style:normal;color:var(--brown)}
+.hd-r{display:flex;align-items:center;gap:18px}
+.lang{
+  background:none;border:1px solid rgba(35,26,18,.28);color:var(--ink);cursor:pointer;
+  font-family:var(--sans);font-size:11px;letter-spacing:.22em;padding:7px 14px;
+  border-radius:999px;transition:border-color .3s,color .3s;
+}
+.lang .on{color:var(--brown)}
+.hd a.lk{
+  font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink);
+  border-bottom:1px solid rgba(35,26,18,.25);padding-bottom:4px;transition:color .3s,border-color .3s;
+}
+.hd a.lk:hover{border-color:var(--brown)}
+body.dawn .hd{background:linear-gradient(180deg,rgba(244,240,233,.85),rgba(244,240,233,0))}
+body.dawn .hd .word,body.dawn .hd a.lk{color:var(--ink)}
+body.dawn .lang{color:var(--ink);border-color:rgba(35,26,18,.3)}
+body.dawn .lang .on{color:var(--brown)}
+body.dawn .hd .word em{color:var(--brown)}
+
+/* ---------- side exhibit counter ---------- */
+.counter{
+  position:fixed;right:24px;top:50%;transform:translateY(-50%);z-index:68;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  font-family:var(--serif);font-style:italic;
+}
+.counter i{width:1px;height:44px;background:rgba(35,26,18,.2);display:block}
+.counter b{font-weight:400;font-size:26px;color:var(--brown);line-height:1}
+.counter small{font-size:12px;color:rgba(35,26,18,.55)}
+body.dawn .counter b{color:var(--brown)}
+body.dawn .counter small{color:rgba(35,26,18,.55)}
+@media (max-width:900px){.counter{display:none}}
+
+/* ---------- hero / lobby ---------- */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.9) brightness(1.04) contrast(1.02)}
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(244,240,233,.38),rgba(244,240,233,.05) 34%,rgba(244,240,233,.42) 58%,#F4F0E9 88%);
+}
+.hero-in{position:relative;z-index:2;padding:0 clamp(22px,6vw,84px) 10vh}
+.hero-eyebrow{
+  font-size:11px;letter-spacing:.5em;text-transform:uppercase;color:var(--tan);
+  color:var(--brown);
+  margin-bottom:5vh;
+}
+.hero h1{
+  font-size:clamp(52px,10.5vw,150px);line-height:.98;font-weight:600;color:var(--ink);
+}
+.hero h1 .t2{color:var(--brown)}
+.hero-sub{
+  margin-top:3.4vh;max-width:46ch;color:rgba(35,26,18,.78);
+  font-size:clamp(15px,1.4vw,17px);line-height:1.8;font-weight:400;
+}
+.hero-meta{
+  display:flex;gap:0;margin-top:6vh;border-top:1px solid var(--line);
+  border-top:1px solid rgba(35,26,18,.18);
+  padding-top:2.4vh;flex-wrap:wrap;
+}
+.hero-meta span{
+  font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(35,26,18,.62);
+  padding-right:20px;margin-right:20px;border-right:1px solid rgba(35,26,18,.16);
+  margin-bottom:8px;
+}
+.hero-meta span:last-child{border-right:0;margin-right:0;padding-right:0}
+.scrollcue{
+  position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:3;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  font-size:9.5px;letter-spacing:.42em;text-transform:uppercase;color:rgba(35,26,18,.55);
+}
+.scrollcue i{width:1px;height:52px;background:rgba(35,26,18,.2);position:relative;overflow:hidden}
+.scrollcue i::after{
+  content:"";position:absolute;left:0;top:-100%;width:100%;height:100%;background:var(--brown);
+  animation:cue 2.2s var(--ease-out) infinite;
+}
+@keyframes cue{0%{top:-100%}55%{top:0}100%{top:100%}}
+
+@media (max-width:700px){
+  .scrollcue{display:none}
+  .hd-r{gap:12px}
+  .hd a.lk{font-size:10px;letter-spacing:.18em}
+}
+
+/* JS-gated entrance (content fully visible without JS) */
+.js .hero .rv{opacity:0;transform:translateY(30px);transition:opacity 1.1s ease,transform 1.1s var(--ease-out)}
+.js .hero.in .rv{opacity:1;transform:none}
+.js .hero.in .rv:nth-child(2){transition-delay:.15s}
+.js .hero.in .rv:nth-child(3){transition-delay:.3s}
+.js .hero.in .rv:nth-child(4){transition-delay:.45s}
+
+/* ---------- section chrome ---------- */
+.sec-eyebrow{
+  font-size:11px;letter-spacing:.5em;text-transform:uppercase;color:var(--tan);
+  color:var(--brown);
+}
+.sec-h{
+  font-size:clamp(30px,4.4vw,62px);font-weight:600;line-height:1.12;color:var(--ink);
+  margin-top:2.6vh;
+}
+.sec-h .serif{color:var(--brown);font-weight:400}
+.sec-p{max-width:52ch;margin-top:3.2vh;color:rgba(35,26,18,.76);font-weight:400;line-height:1.85;font-size:clamp(14px,1.35vw,16.5px)}
+
+/* ---------- statement ---------- */
+.stmt{padding:22vh clamp(22px,6vw,84px);position:relative;border-bottom:1px solid rgba(35,26,18,.12)}
+.stmt .sec-p{margin-top:4.5vh}
+.stats{
+  display:flex;gap:0;margin-top:9vh;flex-wrap:wrap;
+  border-top:1px solid rgba(35,26,18,.15);padding-top:5vh;
+}
+.stat{flex:1 1 160px;padding-right:30px}
+.stat b{display:block;font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(34px,4vw,52px);color:var(--brown)}
+.stat span{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(35,26,18,.6)}
+.js .stmt .rv{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s var(--ease-out)}
+.js .stmt.in .rv{opacity:1;transform:none}
+
+/* ---------- exhibits ---------- */
+.exh{
+  position:relative;padding:16vh clamp(22px,6vw,84px);
+  display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(28px,6vw,90px);align-items:center;
+  border-bottom:1px solid rgba(35,26,18,.12);overflow:hidden;
+}
+.exh:nth-child(even){background:#EFE7D9}
+.exh.r{grid-template-columns:.96fr 1.04fr}
+.exh-fig{grid-column:1;grid-row:1}
+.exh.r .exh-fig{grid-column:2}
+.exh-body{grid-column:2;grid-row:1;position:relative;z-index:2}
+.exh.r .exh-body{grid-column:1}
+@media (max-width:860px){
+  .exh,.exh.r{grid-template-columns:1fr;gap:7vh}
+  .exh-fig,.exh.r .exh-fig{grid-column:1;grid-row:auto}
+  .exh-body,.exh.r .exh-body{grid-column:1;grid-row:auto}
+}
+.num{
+  position:absolute;top:-2%;z-index:0;pointer-events:none;user-select:none;
+  font-family:var(--serif);font-style:italic;font-weight:400;
+  font-size:clamp(170px,26vw,420px);line-height:.82;
+  color:transparent;-webkit-text-stroke:1px rgba(122,78,45,.25);
+  left:-1%;
+}
+.exh:nth-child(even) .num{left:auto;right:-1%}
+@media (max-width:860px){.num{font-size:clamp(120px,40vw,190px)}}
+.exh-fig{position:relative;z-index:1}
+.js .fig-frame{
+  position:relative;aspect-ratio:4/3;overflow:hidden;background:#E2D7C5;
+  clip-path:inset(0 100% 0 0);
+}
+.exh-film .fig-frame{aspect-ratio:16/9}
+.js .fig-frame{transition:clip-path 1.25s var(--wipe)}
+.js .exh-fig.in .fig-frame{clip-path:inset(0 0% 0 0)}
+.fig-media{
+  position:absolute;inset:-13% 0;background-size:cover;background-position:center;
+  transform:scale(1.06);will-change:transform;
+}
+.fig-frame img,.fig-frame video{width:100%;height:100%;object-fit:cover}
+.fig-media img{width:100%;height:100%;object-fit:cover}
+.fig-cap{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:14px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(35,26,18,.58);
+}
+.fig-cap .fno{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--brown);text-transform:none;letter-spacing:0}
+.exh-tag{
+  font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--brown);
+  display:inline-block;border:1px solid rgba(122,78,45,.38);padding:7px 14px;border-radius:999px;
+}
+.exh-name{
+  font-size:clamp(30px,4.2vw,58px);font-weight:600;line-height:1.05;
+  margin-top:3vh;color:var(--ink);
+}
+.exh-name .serif{color:var(--brown);font-weight:400}
+.exh-loc{margin-top:1.6vh;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(35,26,18,.6)}
+.exh-desc{margin-top:3.2vh;color:rgba(35,26,18,.78);font-weight:400;line-height:1.85;font-size:clamp(14px,1.3vw,16px);max-width:46ch}
+.exh-foot{
+  margin-top:4.5vh;display:flex;align-items:center;gap:clamp(20px,3vw,40px);flex-wrap:wrap;
+}
+.exh-price{font-size:clamp(17px,1.6vw,21px);color:var(--ink)}
+.exh-price b{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--brown);font-size:1.12em}
+.exh-link{
+  font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);
+  border-bottom:1px solid rgba(35,26,18,.3);padding-bottom:5px;
+  transition:color .3s,border-color .3s;
+}
+.exh-link:hover{color:var(--brown);border-color:var(--brown)}
+.js .exh .rv{opacity:0;transform:translateY(28px);transition:opacity 1s ease,transform 1s var(--ease-out)}
+.js .exh.in .rv{opacity:1;transform:none}
+.js .exh.in .rv:nth-child(2){transition-delay:.1s}
+.js .exh.in .rv:nth-child(3){transition-delay:.2s}
+.js .exh.in .rv:nth-child(4){transition-delay:.3s}
+
+/* ---------- the wall (horizontal drag strip) ---------- */
+.wall-sec{position:relative;background:#EFE7D9;padding:18vh 0 13vh;border-bottom:1px solid rgba(35,26,18,.12);overflow:hidden}
+.wall-head{padding:0 clamp(22px,6vw,84px) 6vh}
+.wall-hint{display:flex;align-items:center;gap:16px;margin-top:3vh;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:rgba(35,26,18,.58)}
+.wall-hint i{width:64px;height:1px;background:rgba(35,26,18,.2);position:relative;overflow:hidden}
+.wall-hint i::after{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--brown);animation:cue 2s var(--ease-out) infinite}
+.wall{
+  display:flex;gap:clamp(20px,3vw,44px);overflow-x:auto;
+  padding:0 clamp(22px,6vw,84px) 7vh;
+  scroll-snap-type:x proximity;cursor:grab;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.wall::-webkit-scrollbar{display:none}
+.wall.dragging{cursor:grabbing;scroll-snap-type:none}
+.wcard{
+  flex:0 0 min(58vw,540px);scroll-snap-align:center;
+  position:relative;user-select:none;-webkit-user-select:none;
+}
+.wcard .wph{position:relative;aspect-ratio:16/11;overflow:hidden;background:var(--espresso)}
+.wcard .wph img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease-out);filter:saturate(.95) brightness(1)}
+.wcard:hover .wph img{transform:scale(1.05)}
+.wcard .wno{
+  position:absolute;top:14px;left:16px;z-index:2;
+  font-family:var(--serif);font-style:italic;font-size:26px;color:var(--paper);
+  text-shadow:0 2px 18px rgba(0,0,0,.5);
+}
+.wcard .wover{
+  position:absolute;inset:0;z-index:1;display:flex;align-items:flex-end;padding:18px;
+  background:linear-gradient(180deg,transparent 55%,rgba(14,11,8,.78));
+  font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--sand);opacity:0;transition:opacity .4s ease;
+}
+.wcard:hover .wover{opacity:1}
+.wcard h3{margin-top:16px;font-size:19px;font-weight:600;color:var(--ink)}
+.wcard .wsub{margin-top:6px;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(35,26,18,.58)}
+.wcard .wmeta{margin-top:10px;font-size:13px;color:var(--brown)}
+.wall-note{
+  margin:2vh clamp(22px,6vw,84px) 0;font-size:10px;letter-spacing:.22em;
+  text-transform:uppercase;color:rgba(35,26,18,.52);
+}
+.js .wall-head .rv{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s var(--ease-out)}
+.js .wall-head.in .rv{opacity:1;transform:none}
+.js .wcard{opacity:0;transform:translateY(34px);transition:opacity .9s ease,transform .9s var(--ease-out)}
+.js .wcard.in{opacity:1;transform:none}
+
+/* ---------- visitors' book · the dawn ---------- */
+.book{
+  position:relative;background:var(--paper);color:var(--ink);
+  padding:20vh clamp(22px,6vw,84px) 12vh;
+}
+.book .sec-eyebrow{color:var(--brown)}
+.book .sec-h{color:var(--ink)}
+.book .sec-h .serif{color:var(--brown)}
+.book .sec-p{color:rgba(35,26,18,.72)}
+.book-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(40px,6vw,110px);margin-top:9vh}
+@media (max-width:860px){.book-grid{grid-template-columns:1fr;gap:8vh}}
+.book-side{display:flex;flex-direction:column;gap:26px}
+.book-side .bx-label{font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:rgba(35,26,18,.55)}
+.book-side a.bx{font-size:15px;color:var(--ink);border-bottom:1px solid rgba(35,26,18,.25);padding-bottom:3px;width:max-content;transition:border-color .3s}
+.book-side a.bx:hover{border-color:var(--brown)}
+.book-side .bx-line{height:1px;background:rgba(35,26,18,.15)}
+.form{display:flex;flex-direction:column;gap:30px}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+@media (max-width:560px){.f-row{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:10px}
+.field label{font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:rgba(35,26,18,.6)}
+.field input,.field select,.field textarea{
+  background:transparent;border:0;border-bottom:1px solid rgba(35,26,18,.3);
+  color:var(--ink);font-family:var(--sans);font-size:15px;font-weight:400;
+  padding:10px 2px;border-radius:0;outline:none;transition:border-color .3s;
+  -webkit-appearance:none;appearance:none;
+}
+.field select{cursor:pointer}
+.field select option{color:var(--ink);background:var(--paper)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--brown)}
+.field textarea{resize:vertical;min-height:96px}
+.field ::placeholder{color:rgba(35,26,18,.4)}
+.btn{
+  align-self:flex-start;margin-top:8px;border:0;cursor:pointer;
+  background:var(--ink);color:var(--paper);
+  font-family:var(--sans);font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+  padding:17px 38px;border-radius:999px;transition:background .35s ease;
+}
+.btn:hover{background:var(--brown)}
+.form-ok{
+  display:none;margin-top:26px;padding:18px 22px;border:1px solid rgba(122,78,45,.4);
+  color:var(--brown);font-size:14px;line-height:1.7;
+}
+.form-ok.show{display:block}
+.js .book .rv{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s var(--ease-out)}
+.js .book.in .rv{opacity:1;transform:none}
+
+/* ---------- footer ---------- */
+.foot{
+  background:var(--paper);color:var(--ink);
+  border-top:1px solid rgba(35,26,18,.15);
+  padding:9vh clamp(22px,6vw,84px) 6vh;
+  display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;
+}
+.foot .fword{
+  font-weight:800;font-size:clamp(30px,4vw,52px);letter-spacing:.3em;color:var(--ink);line-height:1;
+}
+.foot .fword em{font-style:normal;color:var(--brown)}
+.foot .ftag{
+  margin-top:18px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:rgba(35,26,18,.55);
+  line-height:2.1;
+}
+.foot .fright{text-align:right;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(35,26,18,.5);line-height:2.2}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  .js .hero .rv,.js .stmt .rv,.js .exh .rv,.js .wall-head .rv,.js .wcard,.js .book .rv{opacity:1 !important;transform:none !important}
+  .js .fig-frame{clip-path:none !important}
+  .grain{animation:none}
+}
 </style>
 </head>
 <body>
-<header><span class="logo">RIVERA</span><p>2.0 · Night Gallery · toàn bộ site</p></header>
 
-<a class="main-link" href="pages/index.html">
-  <b data-en="The site · start here" data-vi="Trang chính · vào đây">Trang chính · vào đây</b>
-  <h1>Night Gallery — <i>bảy tác phẩm treo trong bóng tối.</i></h1>
-  <p data-en="Full site: landing · exhibition · map room · reading shelf · practice profile · buyer's manual · letter page. Vietnamese default, EN toggle on every page." data-vi="Site đầy đủ: trang chủ · triển lãm · phòng bản đồ · tủ đọc · hồ sơ · cẩm nang · trang viết thư. Mặc định tiếng Việt, chuyển EN ở mọi trang.">Site đầy đủ: trang chủ · triển lãm · phòng bản đồ · tủ đọc · hồ sơ · cẩm nang · trang viết thư. Mặc định tiếng Việt, chuyển EN ở mọi trang.</p>
-</a>
+<!-- atmosphere -->
+<div class="grain" aria-hidden="true"></div>
+<div class="veil" aria-hidden="true"></div>
+<div class="glow" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
 
-<div class="grid">
-  <a class="v" href="pages/projects.html"><h3>Triển lãm · projects</h3><p>Bảy dự án như tác phẩm, số khung viền mờ, ảnh sáng dần khi rê.</p></a>
-  <a class="v" href="pages/map.html"><h3>Phòng bản đồ · map</h3><p>Cuộn để chạy hết một ngày Melbourne: trời đổi màu, mặt trời di chuyển, đồng hồ chạy.</p></a>
-  <a class="v" href="pages/insights.html"><h3>Tủ đọc · insights</h3><p>Ghi chú thị trường kể lại cho rõ, không tiên tri.</p></a>
-  <a class="v" href="pages/about.html"><h3>Hồ sơ · about</h3><p>Công ty bắt đầu vì bực mình, giữ lại vì thích.</p></a>
-  <a class="v" href="pages/guide.html"><h3>Cẩm nang · guide</h3><p>Sáu chặng từ tiền cọc đến chìa khóa, không bất ngờ.</p></a>
-  <a class="v" href="pages/enquire.html"><h3>Viết thư · enquire</h3><p>Một lá thư, một câu trả lời thật, dấu ĐÃ NHẬN đóng khi gửi.</p></a>
-  <a class="v" href="pages/aura-melbourne-square.html"><h3>AURA · chương riêng</h3><p>Trang dự án mẫu theo chất Night Gallery (đang hoàn thiện).</p></a>
+<!-- header -->
+<header class="hd">
+  <a class="word" href="#top"><span data-en="RIVER" data-vi="RIVER">RIVER</span><em data-en="A" data-vi="A">A</em></a>
+  <div class="hd-r">
+    <button class="lang" id="lang" type="button" aria-label="Switch language / Đổi ngôn ngữ">
+      <span data-l="en" data-en="EN" data-vi="EN">EN</span><span style="opacity:.4">·</span><span data-l="vi" class="on" data-en="VI" data-vi="VI">VI</span>
+    </button>
+    <a class="lk" href="pages/projects.html" data-en="Exhibition" data-vi="Triển lãm">Triển lãm</a>
+    <a class="lk" href="pages/map.html" data-en="Map room" data-vi="Phòng bản đồ">Phòng bản đồ</a>
+    <a class="lk" href="pages/insights.html" data-en="Reading" data-vi="Tủ đọc">Tủ đọc</a>
+    <a class="lk" href="pages/about.html" data-en="Practice" data-vi="Hồ sơ">Hồ sơ</a>
+    <a class="lk" href="#book" data-en="Contact" data-vi="Liên hệ">Liên hệ</a>
+  </div>
+</header>
+
+<!-- exhibit counter -->
+<div class="counter" aria-hidden="true">
+  <i></i><b id="cur-num">01</b><small data-en="07" data-vi="07">07</small><i></i>
 </div>
 
-<p class="old">Concept cũ để so sánh: <a href="studio-a/index.html">Night Gallery (gốc)</a> · <a href="studio-b/index.html">Paper &amp; Light</a> · <a href="studio-c/index.html">Melbourne Grid</a> · <a href="studio-main/index.html">Golden Hour</a></p>
+<main id="top">
 
-<footer><span>RIVERA 2.0 transformation sprint</span><span>NIGHT GALLERY edition · VI default</span></footer>
+<!-- ============ LOBBY ============ -->
+<section class="hero">
+  <video autoplay muted loop playsinline preload="metadata"
+         poster="images/aura-melbourne-square/hero-poster.jpg" aria-hidden="true">
+    <source src="images/aura-melbourne-square/hero-cut.mp4" type="video/mp4" />
+  </video>
+  <div class="hero-in">
+    <div class="hero-eyebrow rv" data-en="RIVERA · NIGHT EXHIBITION" data-vi="RIVERA · TRIỂN LÃM ĐÊM">RIVERA · TRIỂN LÃM ĐÊM</div>
+    <h1>
+      <span class="t1 rv" data-en="Seven homes." data-vi="Bảy căn nhà.">Bảy căn nhà.</span><br />
+      <span class="t2 serif rv" data-en="One night." data-vi="Một đêm.">Một đêm.</span>
+    </h1>
+    <p class="hero-sub rv" data-en="The gallery opens after dark. Seven works, all real homes, all walked through by us in person." data-vi="Phòng triển lãm chỉ mở khi trời tối. Bảy tác phẩm, đều là nhà thật, đều do chúng tôi tự đến xem.">Phòng triển lãm chỉ mở khi trời tối. Bảy tác phẩm, đều là nhà thật, đều do chúng tôi tự đến xem.</p>
+    <div class="hero-meta rv">
+      <span data-en="MELBOURNE" data-vi="MELBOURNE">MELBOURNE</span>
+      <span data-en="OPENS 18:00" data-vi="MỞ CỬA 18:00">MỞ CỬA 18:00</span>
+      <span data-en="FREE ENTRY" data-vi="VÀO CỬA TỰ DO">VÀO CỬA TỰ DO</span>
+    </div>
+  </div>
+  <div class="scrollcue"><span data-en="Scroll to enter" data-vi="Cuộn để bước vào">Cuộn để bước vào</span><i></i></div>
+</section>
+
+<!-- ============ CURATOR'S NOTE ============ -->
+<section class="stmt">
+  <div class="sec-eyebrow rv" data-en="CURATOR'S NOTE" data-vi="LỜI GIÁM TUYỂN">LỜI GIÁM TUYỂN</div>
+  <h2 class="sec-h rv">
+    <span data-en="Ten years. " data-vi="Mười năm. ">Mười năm. </span><span class="serif" data-en="A hundred families." data-vi="Một trăm gia đình.">Một trăm gia đình.</span><span data-en=" Fifty suburbs." data-vi=" Năm mươi khu phố."> Năm mươi khu phố.</span>
+  </h2>
+  <p class="sec-p rv" data-en="We only sell what we have walked through ourselves. Every project, several times: morning, noon, night. Some things only show themselves when the city lights come on." data-vi="Chúng tôi không bán thứ mình chưa đứng trong đó. Mỗi dự án, vài lần: sáng, trưa, tối. Có những điều chỉ thấy khi thành phố lên đèn.">Chúng tôi không bán thứ mình chưa đứng trong đó. Mỗi dự án, vài lần: sáng, trưa, tối. Có những điều chỉ thấy khi thành phố lên đèn.</p>
+  <p class="sec-p rv" data-en="Tonight this room hangs seven works. Each one an address, a story, a real price. No more. No fewer." data-vi="Tối nay, phòng này bày bảy tác phẩm. Mỗi tác phẩm một địa chỉ, một câu chuyện, một mức giá thật. Không thêm. Không bớt.">Tối nay, phòng này bày bảy tác phẩm. Mỗi tác phẩm một địa chỉ, một câu chuyện, một mức giá thật. Không thêm. Không bớt.</p>
+  <div class="stats rv">
+    <div class="stat"><b data-en="10+" data-vi="10+">10+</b><span data-en="Years in practice" data-vi="Năm thực hành">Năm thực hành</span></div>
+    <div class="stat"><b data-en="100+" data-vi="100+">100+</b><span data-en="Families" data-vi="Gia đình">Gia đình</span></div>
+    <div class="stat"><b data-en="50+" data-vi="50+">50+</b><span data-en="Suburbs" data-vi="Khu phố">Khu phố</span></div>
+    <div class="stat"><b data-en="7" data-vi="7">7</b><span data-en="Works tonight" data-vi="Tác phẩm tối nay">Tác phẩm tối nay</span></div>
+  </div>
+</section>
+
+<!-- ============ EXHIBIT 01 · AURA ============ -->
+<section class="exh" id="ex-1">
+  <span class="num serif" aria-hidden="true" data-en="01" data-vi="01">01</span>
+  <figure class="exh-fig exh-film">
+    <div class="fig-frame">
+      <video class="fig-media" autoplay muted loop playsinline preload="metadata"
+             poster="images/aura-melbourne-square/hero-poster.jpg" aria-hidden="true">
+        <source src="images/aura-melbourne-square/hero-cut.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <figcaption class="fig-cap"><span class="fno" data-en="Work 01" data-vi="Tác phẩm 01">Tác phẩm 01</span><span data-en="Film · artist's impression" data-vi="Phim · hình minh hoạ">Phim · hình minh hoạ</span></figcaption>
+  </figure>
+  <div class="exh-body">
+    <div class="exh-tag rv" data-en="PRE-CONSTRUCTION · SELLING NOW" data-vi="SẮP KHỞI CÔNG · ĐANG MỞ BÁN">SẮP KHỞI CÔNG · ĐANG MỞ BÁN</div>
+    <h3 class="exh-name rv"><span data-en="AURA at " data-vi="AURA at ">AURA at </span><span class="serif" data-en="Melbourne Square." data-vi="Melbourne Square.">Melbourne Square.</span></h3>
+    <div class="exh-loc rv" data-en="7 HOFF BOULEVARD, SOUTHBANK" data-vi="7 HOFF BOULEVARD, SOUTHBANK">7 HOFF BOULEVARD, SOUTHBANK</div>
+    <p class="exh-desc rv" data-en="The 67-level gateway tower wrapped around Kennedy Park. Three sky clubs, a Japanese garden, and light you rarely find in a city." data-vi="Tháp cửa ngõ 67 tầng ôm trọn công viên Kennedy. Ba câu lạc bộ trên cao, một khu vườn Nhật, và thứ ánh sáng hiếm có giữa lòng thành phố.">Tháp cửa ngõ 67 tầng ôm trọn công viên Kennedy. Ba câu lạc bộ trên cao, một khu vườn Nhật, và thứ ánh sáng hiếm có giữa lòng thành phố.</p>
+    <div class="exh-foot rv">
+      <span class="exh-price"><span data-en="From " data-vi="Từ ">Từ </span><b data-en="$579,000" data-vi="$579,000">$579,000</b></span>
+      <a class="exh-link" href="pages/aura-melbourne-square.html" data-en="View the work" data-vi="Xem chi tiết">Xem chi tiết</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXHIBIT 02 · PICCOLO ============ -->
+<section class="exh r" id="ex-2">
+  <span class="num serif" aria-hidden="true" data-en="02" data-vi="02">02</span>
+  <figure class="exh-fig">
+    <div class="fig-frame">
+      <div class="fig-media" style="background-image:url('images/piccolo-house/exterior-1.jpg')" role="img" aria-label="Piccolo House"></div>
+    </div>
+    <figcaption class="fig-cap"><span class="fno" data-en="Work 02" data-vi="Tác phẩm 02">Tác phẩm 02</span><span data-en="Artist's impression" data-vi="Hình minh hoạ">Hình minh hoạ</span></figcaption>
+  </figure>
+  <div class="exh-body">
+    <div class="exh-tag rv" data-en="UNDER CONSTRUCTION · SELLING NOW" data-vi="ĐANG THI CÔNG · ĐANG MỞ BÁN">ĐANG THI CÔNG · ĐANG MỞ BÁN</div>
+    <h3 class="exh-name rv"><span data-en="Piccolo " data-vi="Piccolo ">Piccolo </span><span class="serif" data-en="House." data-vi="House.">House.</span></h3>
+    <div class="exh-loc rv" data-en="18 BARRY STREET, KEW" data-vi="18 BARRY STREET, KEW">18 BARRY STREET, KEW</div>
+    <p class="exh-desc rv" data-en="Five low-rise pavilions among the trees of Kew. Hecker Guthrie interiors and a wellness level like a private resort." data-vi="Năm pavilion thấp tầng nằm giữa cây xanh Kew. Nội thất Hecker Guthrie, một tầng wellness như khu nghỉ dưỡng riêng.">Năm pavilion thấp tầng nằm giữa cây xanh Kew. Nội thất Hecker Guthrie, một tầng wellness như khu nghỉ dưỡng riêng.</p>
+    <div class="exh-foot rv">
+      <span class="exh-price"><span data-en="From " data-vi="Từ ">Từ </span><b data-en="$2,200,000" data-vi="$2,200,000">$2,200,000</b></span>
+      <a class="exh-link" href="pages/projects.html" data-en="View the work" data-vi="Xem chi tiết">Xem chi tiết</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXHIBIT 03 · ALUNA ============ -->
+<section class="exh" id="ex-3">
+  <span class="num serif" aria-hidden="true" data-en="03" data-vi="03">03</span>
+  <figure class="exh-fig">
+    <div class="fig-frame">
+      <div class="fig-media" style="background-image:url('images/collins-wharf-aluna/exterior-1.jpg')" role="img" aria-label="Collins Wharf Aluna"></div>
+    </div>
+    <figcaption class="fig-cap"><span class="fno" data-en="Work 03" data-vi="Tác phẩm 03">Tác phẩm 03</span><span data-en="Artist's impression" data-vi="Hình minh hoạ">Hình minh hoạ</span></figcaption>
+  </figure>
+  <div class="exh-body">
+    <div class="exh-tag rv" data-en="PRE-CONSTRUCTION · SELLING NOW" data-vi="SẮP KHỞI CÔNG · ĐANG MỞ BÁN">SẮP KHỞI CÔNG · ĐANG MỞ BÁN</div>
+    <h3 class="exh-name rv"><span data-en="Collins Wharf · " data-vi="Collins Wharf · ">Collins Wharf · </span><span class="serif" data-en="Aluna." data-vi="Aluna.">Aluna.</span></h3>
+    <div class="exh-loc rv" data-en="989 COLLINS STREET, DOCKLANDS" data-vi="989 COLLINS STREET, DOCKLANDS">989 COLLINS STREET, DOCKLANDS</div>
+    <p class="exh-desc rv" data-en="On the water, facing the harbour. Built by Lendlease, with the city mirrored in the Yarra." data-vi="Ven sông, mặt nước, nhìn thẳng ra cảng. Lendlease xây, thành phố soi bóng xuống Yarra.">Ven sông, mặt nước, nhìn thẳng ra cảng. Lendlease xây, thành phố soi bóng xuống Yarra.</p>
+    <div class="exh-foot rv">
+      <span class="exh-price"><span data-en="From " data-vi="Từ ">Từ </span><b data-en="$580,500" data-vi="$580,500">$580,500</b></span>
+      <a class="exh-link" href="pages/projects.html" data-en="View the work" data-vi="Xem chi tiết">Xem chi tiết</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXHIBIT 04 · ANCORA ============ -->
+<section class="exh r" id="ex-4">
+  <span class="num serif" aria-hidden="true" data-en="04" data-vi="04">04</span>
+  <figure class="exh-fig">
+    <div class="fig-frame">
+      <div class="fig-media" style="background-image:url('images/collins-wharf-ancora/exterior-dusk.jpg')" role="img" aria-label="Collins Wharf Ancora"></div>
+    </div>
+    <figcaption class="fig-cap"><span class="fno" data-en="Work 04" data-vi="Tác phẩm 04">Tác phẩm 04</span><span data-en="Artist's impression" data-vi="Hình minh hoạ">Hình minh hoạ</span></figcaption>
+  </figure>
+  <div class="exh-body">
+    <div class="exh-tag rv" data-en="UNDER CONSTRUCTION · SELLING NOW" data-vi="ĐANG THI CÔNG · ĐANG MỞ BÁN">ĐANG THI CÔNG · ĐANG MỞ BÁN</div>
+    <h3 class="exh-name rv"><span data-en="Collins Wharf · " data-vi="Collins Wharf · ">Collins Wharf · </span><span class="serif" data-en="Ancora." data-vi="Ancora.">Ancora.</span></h3>
+    <div class="exh-loc rv" data-en="971 COLLINS STREET, DOCKLANDS" data-vi="971 COLLINS STREET, DOCKLANDS">971 COLLINS STREET, DOCKLANDS</div>
+    <p class="exh-desc rv" data-en="A tower rising beside Victoria Harbour. A hotel-style lobby, a pool that looks out over the water." data-vi="Một tòa tháp đang lớn dần bên cảng Victoria. Sảnh kiểu khách sạn, hồ bơi nhìn ra mặt nước.">Một tòa tháp đang lớn dần bên cảng Victoria. Sảnh kiểu khách sạn, hồ bơi nhìn ra mặt nước.</p>
+    <div class="exh-foot rv">
+      <span class="exh-price"><span data-en="From " data-vi="Từ ">Từ </span><b data-en="$1,205,000" data-vi="$1,205,000">$1,205,000</b></span>
+      <a class="exh-link" href="pages/projects.html" data-en="View the work" data-vi="Xem chi tiết">Xem chi tiết</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXHIBIT 05 · 671 CHAPEL ============ -->
+<section class="exh" id="ex-5">
+  <span class="num serif" aria-hidden="true" data-en="05" data-vi="05">05</span>
+  <figure class="exh-fig">
+    <div class="fig-frame">
+      <div class="fig-media" style="background-image:url('images/671-chapel-street/exterior-2.jpg')" role="img" aria-label="671 Chapel Street"></div>
+    </div>
+    <figcaption class="fig-cap"><span class="fno" data-en="Work 05" data-vi="Tác phẩm 05">Tác phẩm 05</span><span data-en="Artist's impression" data-vi="Hình minh hoạ">Hình minh hoạ</span></figcaption>
+  </figure>
+  <div class="exh-body">
+    <div class="exh-tag rv" data-en="UNDER CONSTRUCTION · SELLING NOW" data-vi="ĐANG THI CÔNG · ĐANG MỞ BÁN">ĐANG THI CÔNG · ĐANG MỞ BÁN</div>
+    <h3 class="exh-name rv"><span data-en="671 " data-vi="671 ">671 </span><span class="serif" data-en="Chapel Street." data-vi="Chapel Street.">Chapel Street.</span></h3>
+    <div class="exh-loc rv" data-en="671 CHAPEL STREET, SOUTH YARRA" data-vi="671 CHAPEL STREET, SOUTH YARRA">671 CHAPEL STREET, SOUTH YARRA</div>
+    <p class="exh-desc rv" data-en="Designed by Bates Smart, limited in number. In the pulse of South Yarra, a place to be still." data-vi="Bates Smart thiết kế, số lượng có hạn. Giữa nhịp sống South Yarra, vẫn có chỗ để lặng.">Bates Smart thiết kế, số lượng có hạn. Giữa nhịp sống South Yarra, vẫn có chỗ để lặng.</p>
+    <div class="exh-foot rv">
+      <span class="exh-price"><span data-en="From " data-vi="Từ ">Từ </span><b data-en="$1,425,000" data-vi="$1,425,000">$1,425,000</b></span>
+      <a class="exh-link" href="pages/projects.html" data-en="View the work" data-vi="Xem chi tiết">Xem chi tiết</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXHIBIT 06 · 380 MELBOURNE ============ -->
+<section class="exh r" id="ex-6">
+  <span class="num serif" aria-hidden="true" data-en="06" data-vi="06">06</span>
+  <figure class="exh-fig">
+    <div class="fig-frame">
+      <div class="fig-media" style="background-image:url('images/380-melbourne/exterior-2.jpg')" role="img" aria-label="380 Melbourne"></div>
+    </div>
+    <figcaption class="fig-cap"><span class="fno" data-en="Work 06" data-vi="Tác phẩm 06">Tác phẩm 06</span><span data-en="Artist's impression" data-vi="Hình minh hoạ">Hình minh hoạ</span></figcaption>
+  </figure>
+  <div class="exh-body">
+    <div class="exh-tag rv" data-en="COMPLETED · MOVE-IN READY" data-vi="ĐÃ HOÀN THÀNH · SẴN SÀNG DỌN VÀO">ĐÃ HOÀN THÀNH · SẴN SÀNG DỌN VÀO</div>
+    <h3 class="exh-name rv"><span data-en="380 " data-vi="380 ">380 </span><span class="serif" data-en="Melbourne." data-vi="Melbourne.">Melbourne.</span></h3>
+    <div class="exh-loc rv" data-en="380 LONSDALE STREET, MELBOURNE" data-vi="380 LONSDALE STREET, MELBOURNE">380 LONSDALE STREET, MELBOURNE</div>
+    <p class="exh-desc rv" data-en="Completed, ready to move into. A few steps from Melbourne Central, the Queen Victoria Market at the end of the street." data-vi="Đã hoàn thành, sẵn sàng dọn vào. Cách Melbourne Central vài bước chân, chợ Queen Victoria ngay cuối phố.">Đã hoàn thành, sẵn sàng dọn vào. Cách Melbourne Central vài bước chân, chợ Queen Victoria ngay cuối phố.</p>
+    <div class="exh-foot rv">
+      <span class="exh-price"><span data-en="From " data-vi="Từ ">Từ </span><b data-en="$900,000" data-vi="$900,000">$900,000</b></span>
+      <a class="exh-link" href="pages/projects.html" data-en="View the work" data-vi="Xem chi tiết">Xem chi tiết</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXHIBIT 07 · ASPIRE ============ -->
+<section class="exh" id="ex-7">
+  <span class="num serif" aria-hidden="true" data-en="07" data-vi="07">07</span>
+  <figure class="exh-fig">
+    <div class="fig-frame">
+      <div class="fig-media" style="background-image:url('images/aspire/exterior-1.jpg')" role="img" aria-label="Aspire Melbourne"></div>
+    </div>
+    <figcaption class="fig-cap"><span class="fno" data-en="Work 07" data-vi="Tác phẩm 07">Tác phẩm 07</span><span data-en="Artist's impression" data-vi="Hình minh hoạ">Hình minh hoạ</span></figcaption>
+  </figure>
+  <div class="exh-body">
+    <div class="exh-tag rv" data-en="COMPLETED · MOVE-IN READY" data-vi="ĐÃ HOÀN THÀNH · SẴN SÀNG DỌN VÀO">ĐÃ HOÀN THÀNH · SẴN SÀNG DỌN VÀO</div>
+    <h3 class="exh-name rv"><span data-en="Aspire " data-vi="Aspire ">Aspire </span><span class="serif" data-en="Melbourne." data-vi="Melbourne.">Melbourne.</span></h3>
+    <div class="exh-loc rv" data-en="301 KING STREET, MELBOURNE" data-vi="301 KING STREET, MELBOURNE">301 KING STREET, MELBOURNE</div>
+    <p class="exh-desc rv" data-en="The quiet western edge of the city. An indoor pool, a gym, and a view that opens up across Melbourne." data-vi="Góc phía tây yên tĩnh của trung tâm. Hồ bơi trong nhà, phòng gym, và tầm nhìn rộng ra cả thành phố.">Góc phía tây yên tĩnh của trung tâm. Hồ bơi trong nhà, phòng gym, và tầm nhìn rộng ra cả thành phố.</p>
+    <div class="exh-foot rv">
+      <span class="exh-price"><span data-en="From " data-vi="Từ ">Từ </span><b data-en="$610,000" data-vi="$610,000">$610,000</b></span>
+      <a class="exh-link" href="pages/projects.html" data-en="View the work" data-vi="Xem chi tiết">Xem chi tiết</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE WALL ============ -->
+<section class="wall-sec" id="wall-sec">
+  <div class="wall-head">
+    <div class="sec-eyebrow rv" data-en="THE WALL" data-vi="BỨC TƯỜNG">BỨC TƯỜNG</div>
+    <h2 class="sec-h rv"><span data-en="Walk the " data-vi="Dạo quanh ">Dạo quanh </span><span class="serif" data-en="wall." data-vi="bức tường.">bức tường.</span></h2>
+    <div class="wall-hint rv"><i></i><span data-en="Drag to look" data-vi="Kéo ngang để xem">Kéo ngang để xem</span></div>
+  </div>
+  <div class="wall" id="wall">
+    <a class="wcard" href="pages/aura-melbourne-square.html">
+      <div class="wph"><span class="wno serif" data-en="01" data-vi="01">01</span><img src="images/aura-melbourne-square/hero-poster.jpg" alt="" loading="lazy" decoding="async" /><span class="wover" data-en="View the work" data-vi="Xem chi tiết">Xem chi tiết</span></div>
+      <h3 data-en="AURA at Melbourne Square" data-vi="AURA at Melbourne Square">AURA at Melbourne Square</h3>
+      <div class="wsub" data-en="SOUTHBANK" data-vi="SOUTHBANK">SOUTHBANK</div>
+      <div class="wmeta" data-en="From $579,000 · Pre-construction" data-vi="Từ $579,000 · Sắp khởi công">Từ $579,000 · Sắp khởi công</div>
+    </a>
+    <a class="wcard" href="pages/projects.html">
+      <div class="wph"><span class="wno serif" data-en="02" data-vi="02">02</span><img src="images/piccolo-house/hero-poster.jpg" alt="" loading="lazy" decoding="async" /><span class="wover" data-en="View the work" data-vi="Xem chi tiết">Xem chi tiết</span></div>
+      <h3 data-en="Piccolo House" data-vi="Piccolo House">Piccolo House</h3>
+      <div class="wsub" data-en="KEW" data-vi="KEW">KEW</div>
+      <div class="wmeta" data-en="From $2,200,000 · Under construction" data-vi="Từ $2,200,000 · Đang thi công">Từ $2,200,000 · Đang thi công</div>
+    </a>
+    <a class="wcard" href="pages/projects.html">
+      <div class="wph"><span class="wno serif" data-en="03" data-vi="03">03</span><img src="images/collins-wharf-aluna/hero-poster.jpg" alt="" loading="lazy" decoding="async" /><span class="wover" data-en="View the work" data-vi="Xem chi tiết">Xem chi tiết</span></div>
+      <h3 data-en="Collins Wharf · Aluna" data-vi="Collins Wharf · Aluna">Collins Wharf · Aluna</h3>
+      <div class="wsub" data-en="DOCKLANDS" data-vi="DOCKLANDS">DOCKLANDS</div>
+      <div class="wmeta" data-en="From $580,500 · Pre-construction" data-vi="Từ $580,500 · Sắp khởi công">Từ $580,500 · Sắp khởi công</div>
+    </a>
+    <a class="wcard" href="pages/projects.html">
+      <div class="wph"><span class="wno serif" data-en="04" data-vi="04">04</span><img src="images/collins-wharf-ancora/hero-poster.jpg" alt="" loading="lazy" decoding="async" /><span class="wover" data-en="View the work" data-vi="Xem chi tiết">Xem chi tiết</span></div>
+      <h3 data-en="Collins Wharf · Ancora" data-vi="Collins Wharf · Ancora">Collins Wharf · Ancora</h3>
+      <div class="wsub" data-en="DOCKLANDS" data-vi="DOCKLANDS">DOCKLANDS</div>
+      <div class="wmeta" data-en="From $1,205,000 · Under construction" data-vi="Từ $1,205,000 · Đang thi công">Từ $1,205,000 · Đang thi công</div>
+    </a>
+    <a class="wcard" href="pages/projects.html">
+      <div class="wph"><span class="wno serif" data-en="05" data-vi="05">05</span><img src="images/671-chapel-street/hero-poster.jpg" alt="" loading="lazy" decoding="async" /><span class="wover" data-en="View the work" data-vi="Xem chi tiết">Xem chi tiết</span></div>
+      <h3 data-en="671 Chapel Street" data-vi="671 Chapel Street">671 Chapel Street</h3>
+      <div class="wsub" data-en="SOUTH YARRA" data-vi="SOUTH YARRA">SOUTH YARRA</div>
+      <div class="wmeta" data-en="From $1,425,000 · Under construction" data-vi="Từ $1,425,000 · Đang thi công">Từ $1,425,000 · Đang thi công</div>
+    </a>
+    <a class="wcard" href="pages/projects.html">
+      <div class="wph"><span class="wno serif" data-en="06" data-vi="06">06</span><img src="images/380-melbourne/hero-poster.jpg" alt="" loading="lazy" decoding="async" /><span class="wover" data-en="View the work" data-vi="Xem chi tiết">Xem chi tiết</span></div>
+      <h3 data-en="380 Melbourne" data-vi="380 Melbourne">380 Melbourne</h3>
+      <div class="wsub" data-en="MELBOURNE" data-vi="MELBOURNE">MELBOURNE</div>
+      <div class="wmeta" data-en="From $900,000 · Completed" data-vi="Từ $900,000 · Đã hoàn thành">Từ $900,000 · Đã hoàn thành</div>
+    </a>
+    <a class="wcard" href="pages/projects.html">
+      <div class="wph"><span class="wno serif" data-en="07" data-vi="07">07</span><img src="images/aspire/hero-poster.jpg" alt="" loading="lazy" decoding="async" /><span class="wover" data-en="View the work" data-vi="Xem chi tiết">Xem chi tiết</span></div>
+      <h3 data-en="Aspire Melbourne" data-vi="Aspire Melbourne">Aspire Melbourne</h3>
+      <div class="wsub" data-en="MELBOURNE" data-vi="MELBOURNE">MELBOURNE</div>
+      <div class="wmeta" data-en="From $610,000 · Completed" data-vi="Từ $610,000 · Đã hoàn thành">Từ $610,000 · Đã hoàn thành</div>
+    </a>
+  </div>
+  <p class="wall-note" data-en="Prices are indicative. All imagery is artist's impression." data-vi="Giá mang tính tham khảo. Toàn bộ hình ảnh là minh hoạ của nghệ sĩ.">Giá mang tính tham khảo. Toàn bộ hình ảnh là minh hoạ của nghệ sĩ.</p>
+</section>
+
+<!-- ============ VISITORS' BOOK ============ -->
+<section class="book" id="book">
+  <div class="sec-eyebrow rv" data-en="VISITORS' BOOK" data-vi="SỔ LƯU NIỆM">SỔ LƯU NIỆM</div>
+  <h2 class="sec-h rv"><span data-en="See each work " data-vi="Gặp riêng ">Gặp riêng </span><span class="serif" data-en="in private." data-vi="từng tác phẩm.">từng tác phẩm.</span></h2>
+  <p class="sec-p rv" data-en="The gallery stays open until midnight. For a closer look, leave a note and we will take you there ourselves." data-vi="Triển lãm mở đến nửa đêm. Muốn xem kỹ hơn, để lại lời nhắn. Chúng tôi sẽ dẫn bạn đến tận nơi.">Triển lãm mở đến nửa đêm. Muốn xem kỹ hơn, để lại lời nhắn. Chúng tôi sẽ dẫn bạn đến tận nơi.</p>
+  <div class="book-grid">
+    <div class="book-side rv">
+      <div class="bx-label" data-en="CONTACT" data-vi="LIÊN HỆ">LIÊN HỆ</div>
+      <a class="bx" href="mailto:info.riveraau@gmail.com" data-en="info.riveraau@gmail.com" data-vi="info.riveraau@gmail.com">info.riveraau@gmail.com</a>
+      <a class="bx" href="tel:+84782067555" data-en="VN · +84 782 067 555" data-vi="VN · +84 782 067 555">VN · +84 782 067 555</a>
+      <a class="bx" href="tel:+61450151686" data-en="AUS · +61 450 151 686" data-vi="AUS · +61 450 151 686">AUS · +61 450 151 686</a>
+      <div class="bx-line"></div>
+      <a class="bx" href="#book" data-en="Private viewings" data-vi="Xem nhà riêng tư">Xem nhà riêng tư</a>
+    </div>
+    <form class="form rv" id="enq" novalidate>
+      <div class="f-row">
+        <div class="field">
+          <label for="f-name" data-en="Name" data-vi="Họ tên">Họ tên</label>
+          <input id="f-name" name="name" type="text" required autocomplete="name" data-en-ph="Your name" data-vi-ph="Tên của bạn" placeholder="Tên của bạn" />
+        </div>
+        <div class="field">
+          <label for="f-phone" data-en="Phone" data-vi="Điện thoại">Điện thoại</label>
+          <input id="f-phone" name="phone" type="tel" required autocomplete="tel" data-en-ph="Phone number" data-vi-ph="Số điện thoại" placeholder="Số điện thoại" />
+        </div>
+      </div>
+      <div class="f-row">
+        <div class="field">
+          <label for="f-email" data-en="Email" data-vi="Email">Email</label>
+          <input id="f-email" name="email" type="email" required autocomplete="email" data-en-ph="Email address" data-vi-ph="Địa chỉ email" placeholder="Địa chỉ email" />
+        </div>
+        <div class="field">
+          <label for="f-project" data-en="Interested in" data-vi="Dự án quan tâm">Dự án quan tâm</label>
+          <select id="f-project" name="project">
+            <option value="" data-en="Choose a project" data-vi="Chọn dự án">Chọn dự án</option>
+            <option data-en="AURA at Melbourne Square" data-vi="AURA at Melbourne Square">AURA at Melbourne Square</option>
+            <option data-en="Piccolo House" data-vi="Piccolo House">Piccolo House</option>
+            <option data-en="Collins Wharf · Aluna" data-vi="Collins Wharf · Aluna">Collins Wharf · Aluna</option>
+            <option data-en="Collins Wharf · Ancora" data-vi="Collins Wharf · Ancora">Collins Wharf · Ancora</option>
+            <option data-en="671 Chapel Street" data-vi="671 Chapel Street">671 Chapel Street</option>
+            <option data-en="380 Melbourne" data-vi="380 Melbourne">380 Melbourne</option>
+            <option data-en="Aspire Melbourne" data-vi="Aspire Melbourne">Aspire Melbourne</option>
+            <option data-en="Other" data-vi="Khác">Khác</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-msg" data-en="Message" data-vi="Lời nhắn">Lời nhắn</label>
+        <textarea id="f-msg" name="message" rows="3" data-en-ph="What are you looking for?" data-vi-ph="Bạn đang tìm gì?" placeholder="Bạn đang tìm gì?"></textarea>
+      </div>
+      <button class="btn" type="submit" data-en="Send note" data-vi="Gửi lời nhắn">Gửi lời nhắn</button>
+      <div class="form-ok" id="form-ok" role="status" data-en="Received. We will reply within the day." data-vi="Đã nhận. Chúng tôi sẽ liên hệ trong ngày.">Đã nhận. Chúng tôi sẽ liên hệ trong ngày.</div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div>
+    <div class="fword"><span data-en="RIVER" data-vi="RIVER">RIVER</span><em data-en="A" data-vi="A">A</em></div>
+    <div class="ftag">
+      <div data-en="THE NIGHT GALLERY · MELBOURNE" data-vi="PHÒNG TRIỂN LÃM ĐÊM · MELBOURNE">PHÒNG TRIỂN LÃM ĐÊM · MELBOURNE</div>
+      <div data-en="Open from 6 pm. Better with an appointment." data-vi="Mở cửa từ 18:00. Có hẹn trước, càng tốt.">Mở cửa từ 18:00. Có hẹn trước, càng tốt.</div>
+    </div>
+  </div>
+  <div class="fright">
+    <div data-en="© 2026 Rivera · Melbourne" data-vi="© 2026 Rivera · Melbourne">© 2026 Rivera · Melbourne</div>
+    <div data-en="Concept page for review" data-vi="Trang concept để thẩm định">Trang concept để thẩm định</div>
+  </div>
+</footer>
+
+<script>
+
+/* reduced motion: still the films */
+if(matchMedia('(prefers-reduced-motion: reduce)').matches){
+  document.querySelectorAll('video').forEach(function(v){v.removeAttribute('autoplay');v.pause();});
+}
+(function(){
+  "use strict";
+  var root = document.documentElement;
+  root.classList.add("js");
+  var RM = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var FINE = window.matchMedia && matchMedia("(hover:hover) and (pointer:fine)").matches;
+
+  /* ---------------- language ---------------- */
+  var LANG_KEY = "rivera-lang";
+  function applyLang(l){
+    var en = (l === "en");
+    var nodes = document.querySelectorAll("[data-en]");
+    for (var i = 0; i < nodes.length; i++){
+      nodes[i].textContent = nodes[i].getAttribute(en ? "data-en" : "data-vi");
+    }
+    var phs = document.querySelectorAll("[data-en-ph]");
+    for (var j = 0; j < phs.length; j++){
+      phs[j].setAttribute("placeholder", phs[j].getAttribute(en ? "data-en-ph" : "data-vi-ph"));
+    }
+    document.documentElement.lang = l;
+  }
+  var lang = "vi";
+  try { lang = (localStorage.getItem(LANG_KEY) === "en") ? "en" : "vi"; } catch(e){}
+  var langBtn = document.getElementById("lang");
+  if (langBtn){
+    langBtn.addEventListener("click", function(){
+      lang = (lang === "en") ? "vi" : "en";
+      applyLang(lang);
+      try { localStorage.setItem(LANG_KEY, lang); } catch(e){}
+      var spans = langBtn.querySelectorAll("[data-l]");
+      for (var k = 0; k < spans.length; k++){
+        spans[k].className = (spans[k].getAttribute("data-l") === lang) ? "on" : "";
+      }
+    });
+  }
+  applyLang(lang);
+
+  /* ---------------- cursor ring ---------------- */
+  if (FINE && !RM){
+    var dot = document.querySelector(".cursor-dot");
+    var ring = document.querySelector(".cursor-ring");
+    var mx = -100, my = -100, rx = -100, ry = -100, raf = null;
+    window.addEventListener("pointermove", function(e){
+      mx = e.clientX; my = e.clientY;
+      if (dot){ dot.style.transform = "translate(" + mx + "px," + my + "px) translate(-50%,-50%)"; }
+      if (!raf){ raf = requestAnimationFrame(step); }
+    });
+    function step(){
+      rx += (mx - rx) * 0.16; ry += (my - ry) * 0.16;
+      if (ring){ ring.style.transform = "translate(" + rx + "px," + ry + "px) translate(-50%,-50%)"; }
+      raf = null;
+      if (Math.abs(mx - rx) > 0.4 || Math.abs(my - ry) > 0.4){ raf = requestAnimationFrame(step); }
+    }
+    document.addEventListener("mouseover", function(e){
+      var t = e.target.closest ? e.target.closest("a,button,.wall,input,select,textarea,.lang") : null;
+      document.body.classList.toggle("cur-hover", !!t && !t.classList.contains("wall"));
+      document.body.classList.toggle("cur-drag", !!(t && t.classList.contains("wall")));
+    });
+  }
+
+  /* ---------------- video autoplay fallback ---------------- */
+  var vids = document.querySelectorAll("video");
+  for (var v = 0; v < vids.length; v++){
+    var p = vids[v].play ? vids[v].play() : null;
+    if (p && p.catch){ p.catch(function(){}); }
+  }
+
+  /* ---------------- reveal on scroll ---------------- */
+  var revealEls = document.querySelectorAll(".hero, .stmt, .exh, .wall-head, .book");
+  var cards = document.querySelectorAll(".wcard");
+  if ("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(entries){
+      for (var i = 0; i < entries.length; i++){
+        if (entries[i].isIntersecting){ entries[i].target.classList.add("in"); }
+      }
+    }, { rootMargin: "0px 0px -10% 0px", threshold: 0.12 });
+    for (var r = 0; r < revealEls.length; r++){ io.observe(revealEls[r]); }
+    var io2 = new IntersectionObserver(function(entries){
+      for (var j = 0; j < entries.length; j++){
+        if (entries[j].isIntersecting){ entries[j].target.classList.add("in"); }
+      }
+    }, { rootMargin: "0px 0px -6% 0px", threshold: 0.05 });
+    for (var c = 0; c < cards.length; c++){ io2.observe(cards[c]); }
+    /* the dawn: body flips when the visitors' book enters */
+    var dawnIO = new IntersectionObserver(function(entries){
+      document.body.classList.toggle("dawn", entries[0].isIntersecting);
+    }, { threshold: 0 });
+    dawnIO.observe(document.getElementById("book"));
+  } else {
+    /* no IO: everything visible, dawn on book presence */
+    for (var r2 = 0; r2 < revealEls.length; r2++){ revealEls[r2].classList.add("in"); }
+    for (var c2 = 0; c2 < cards.length; c2++){ cards[c2].classList.add("in"); }
+  }
+
+  /* ---------------- scroll loop: parallax · counter ---------------- */
+  var exhibits = Array.prototype.slice.call(document.querySelectorAll(".exh"));
+  var nums = Array.prototype.slice.call(document.querySelectorAll(".exh .num"));
+  var medias = Array.prototype.slice.call(document.querySelectorAll(".exh-fig .fig-media"));
+  var curNum = document.getElementById("cur-num");
+  var ticking = false;
+
+  function onScroll(){
+    if (ticking){ return; }
+    ticking = true;
+    requestAnimationFrame(function(){
+      ticking = false;
+      var sy = window.pageYOffset || document.documentElement.scrollTop;
+      var vh = window.innerHeight;
+      if (!RM){
+        for (var i = 0; i < exhibits.length; i++){
+          var rect = exhibits[i].getBoundingClientRect();
+          var mid = rect.top + rect.height / 2;
+          var prog = (mid - vh / 2) / vh;
+          if (nums[i]){ nums[i].style.transform = "translateY(" + (prog * -110) + "px)"; }
+          if (medias[i] && Math.abs(prog) < 1.6){
+            medias[i].style.transform = "translateY(" + (prog * 42) + "px) scale(1.06)";
+          }
+        }
+      }
+      var active = 0;
+      for (var e = 0; e < exhibits.length; e++){
+        if (exhibits[e].getBoundingClientRect().top < vh * 0.55){ active = e; }
+      }
+      if (curNum){
+        var n = active + 1;
+        curNum.textContent = (n < 10 ? "0" : "") + n;
+      }
+    });
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+  onScroll();
+
+  /* ---------------- the wall: drag + wheel ---------------- */
+  var wall = document.getElementById("wall");
+  if (wall){
+    if (FINE){
+      var down = false, startX = 0, startLeft = 0, moved = false;
+      wall.addEventListener("pointerdown", function(e){
+        down = true; moved = false;
+        startX = e.clientX; startLeft = wall.scrollLeft;
+        wall.classList.add("dragging");
+        try { wall.setPointerCapture(e.pointerId); } catch(err){}
+      });
+      wall.addEventListener("pointermove", function(e){
+        if (!down){ return; }
+        var dx = e.clientX - startX;
+        if (Math.abs(dx) > 4){ moved = true; }
+        wall.scrollLeft = startLeft - dx;
+      });
+      window.addEventListener("pointerup", function(){
+        down = false;
+        wall.classList.remove("dragging");
+      });
+    }
+    if (FINE){
+      wall.addEventListener("wheel", function(e){
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)){
+          e.preventDefault();
+          wall.scrollLeft += e.deltaY * 1.4;
+        }
+      }, { passive: false });
+    }
+  }
+
+  /* ---------------- enquiry form ---------------- */
+  var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbwurdZI9R-458lfe4Aelh67iBZJ4-8ZAxO4iTIANxkyLkSsqjkrTHJb0fN8nv8NhV52Qw/exec";
+  var form = document.getElementById("enq");
+  var okBox = document.getElementById("form-ok");
+  if (form){
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      if (!form.checkValidity()){ form.reportValidity(); return; }
+      var payload = {
+        name: document.getElementById("f-name").value,
+        phone: document.getElementById("f-phone").value,
+        email: document.getElementById("f-email").value,
+        project: document.getElementById("f-project").value,
+        message: document.getElementById("f-msg").value
+      };
+      var btn = form.querySelector("button[type=submit]");
+      btn.disabled = true;
+      if (typeof fetch === "undefined"){
+        done();
+      } else {
+        fetch(FORM_ENDPOINT, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload)
+        }).then(function(){
+          done();
+        }).catch(function(){
+          done();
+        });
+      }
+      function done(){
+        form.style.display = "none";
+        okBox.classList.add("show");
+        applyLang(lang);
+      }
+    });
+  }
+})();
+</script>
 </body>
 </html>
