@@ -12,13 +12,13 @@
 :root{--bg:#F4F0E9;--bg2:#EFE7D9;--tan:#C9A982;--sand:#231A12;--paper:#F4F0E9;--line:rgba(122,78,45,.25);--muted:rgba(35,26,18,.68);--serif:"Instrument Serif",serif;--vserif:"Cormorant Garamond",serif;--ease:cubic-bezier(.16,1,.3,1)}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--sand);font-family:"Manrope",system-ui,sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:#2A2118;font-family:"Manrope",system-ui,sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--tan);color:#1B130D}
 .serif{font-family:var(--serif);font-style:italic;font-weight:400}
 :lang(vi){--serif:"Cormorant Garamond",Georgia,serif}
 :lang(vi) .serif{font-weight:600;font-size:1.16em}
-.nav{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;justify-content:space-between;align-items:center;padding:18px clamp(18px,4vw,44px);background:rgba(14,11,8,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;justify-content:space-between;align-items:center;padding:18px clamp(18px,4vw,44px);background:rgba(244,240,233,.97);box-shadow:0 2px 14px rgba(35,26,18,.08);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .logo{font-weight:800;letter-spacing:.42em;font-size:.95rem;color:var(--paper)}
 .nr{display:flex;gap:20px;align-items:center;font-size:.76rem;color:var(--muted)}
 .nr a:hover{color:var(--tan)}
@@ -37,7 +37,7 @@ h1{font-size:clamp(2.2rem,5.6vw,4rem);color:var(--paper);letter-spacing:-.02em;m
 :lang(vi) .cl-no{font-family:var(--vserif);font-weight:500}
 .cl-t{color:var(--paper);font-weight:600;font-size:clamp(1.05rem,2.2vw,1.35rem);letter-spacing:-.01em;line-height:1.3}
 .cl-d{display:block;margin-top:7px;color:var(--muted);font-size:.92rem;font-weight:300;max-width:64ch}
-.cl-meta{display:block;margin-top:10px;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(230,218,202,.42)}
+.cl-meta{display:block;margin-top:10px;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(35,26,18,.42)}
 .cl-go{color:var(--tan);opacity:0;transform:translateX(-8px);transition:all .3s var(--ease)}
 .clip:hover .cl-go{opacity:1;transform:none}
 @media(max-width:640px){.clip{grid-template-columns:1fr}.cl-go{display:none}}
